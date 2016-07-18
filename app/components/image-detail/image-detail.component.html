@@ -1,0 +1,21 @@
+<div class="pusher">
+    <div class="ui inverted vertical masthead segment">
+        <div class="ui text container">
+            <div class="center aligned">
+                <img src="http://localhost:8011/images/{{photo.imageName}}" class="ui image massive centered" alt="">
+            </div>
+            <br>
+            <div class="ui grid">
+                <div class="left floated six wide column " style="color: grey;">
+                    <span (click)="goBack()" style="cursor: pointer; color: white;"><i class="long arrow left icon" ></i>Back</span>
+                </div>
+                <div class="left floated six wide column right aligned" style="cursor: pointer; color: white;">
+                    <i class="thumbs outline up icon"></i> {{photo.likes}} &nbsp;&nbsp; <a (click)="likeDisplay()">{{like}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <image-comments [photo]="photo"></image-comments>
+</div>

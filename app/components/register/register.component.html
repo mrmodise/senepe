@@ -1,0 +1,74 @@
+<div class="container">
+    <div *ngIf="registered" class="ui middle aligned center aligned grid">
+        <div class="ui message">
+            <i class="close icon"></i>
+            <div class="header">
+                Successful!
+            </div>
+            <p>You have been successfully registered</p>
+        </div>
+    </div>
+    <div *ngIf="error" class="field">
+        <div class="ui middle aligned center aligned grid">
+            <div class="ui error message">
+                <b>Error</b>: You were not registered, please check that the server is running
+            </div>
+        </div>
+    </div>
+    <br>
+    <form class="ui form raised segment" (ngSubmit)="register()" #registerForm="ngForm">
+        <h3 class="ui dividing header">Register with us to share your photos with your friends for free</h3>
+        <div class="field">
+            <label for="name">* Name</label>
+            <div class="two fields">
+                <div class="field">
+                    <input type="text" name="firstName" placeholder="firstname" [(ngModel)]="newUser.firstName" required />
+                </div>
+                <div class="field">
+                    <input type="text" name="lastName" placeholder="lastname" [(ngModel)]="newUser.lastName" required />
+                </div>
+            </div>
+            <!-- end of two field -->
+        </div>
+        <!-- end of field -->
+        <div class="field">
+            <label for="username">* Username / email</label>
+            <div class="two fields">
+                <div class="field">
+                    <input type="text" name="userName" placeholder="username" #userName="ngModel" [(ngModel)]="newUser.userName" required />
+                </div>
+                <div class="field">
+                    <input type="email" name="email" placeholder="email" #email="ngModel" [(ngModel)]="newUser.email" required />
+                </div>
+                <div [hidden]="userName.valid || userName.pristine" style="color: red;">
+                    Username is required
+                </div>
+                <div [hidden]="email.valid || email.pristine" style="color: red;">
+                    Email is required
+                </div>
+            </div>
+            <!-- end of two field -->
+        </div>
+        <!-- end of field -->
+
+        <div class="field">
+            <label for="userName">* Password</label>
+            <div class="two fields">
+                <div class="field">
+                    <input type="password" pPassword name="password" #password="ngModel" placeholder="password" [(ngModel)]="newUser.password" />
+                </div>
+                <div class="field">
+                    <input type="password" pPassword name="password" placeholder="password again" [(ngModel)]="newUser.password" required  />
+                </div>
+                <!-- end of field -->
+            </div>
+            <!-- end of two field -->
+            <div [hidden]="password.valid || password.pristine" style="color: red;">
+                Password is required
+            </div>
+        </div>
+        <!-- end of last field -->
+        <button type="submit" class="ui primary button" [disabled]="!registerForm.form.valid">Register</button>
+    </form>
+</div>
+<!-- end of container -->

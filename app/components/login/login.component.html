@@ -1,0 +1,32 @@
+<div class="ui text container">
+    <div *ngIf="error" class="field">
+        <div class="ui middle aligned center aligned grid">
+            <div class="ui error message">
+                <b>Error</b>: Invalid username and password
+            </div>
+        </div>
+    </div>
+    <div *ngIf="err === 0" class="field">
+        <div class="ui middle aligned center aligned grid">
+            <div class="ui error message">
+                <b>Reason</b>: Server is currently down
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="ui middle aligned center raised segment">
+        <form class="ui form" (ngSubmit)="onSubmit()" #loginForm="ngForm" [hidden]="loginService.isAuthenticated()">
+            <div class="field">
+                <div class="field">
+                    <label for="username">* Username</label>
+                    <input type="text" name="username" placeholder="username" [(ngModel)]="model.username" required />
+                </div>
+                <div class="field">
+                    <label for="password">* Password</label>
+                    <input type="password" name="password" placeholder="password" [(ngModel)]="model.password" required />
+                </div>
+            </div>
+            <button type="submit" class="ui primary button" [disabled]="!loginForm.form.valid">Login</button>
+        </form>
+    </div>
+</div>
