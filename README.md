@@ -31,5 +31,10 @@ run application as spring boot application
 Senepe uses REST API as the middle layer sitting between the front-end and the back-end. The REST API is consumed using Angular2 Http client in services. 
 
 ```
-I am hoping to write a much detailed tutorial soon. 
+a) I am hoping to write a much detailed tutorial soon. 
+b) update angular2 router to the RC version
+c) add hibernate search
+d) add reddis for improved application performance
+e) add in-memory text-editor
+f) document how to deploy to heroku and digital ocean
 ```
