@@ -38,4 +38,5 @@ d) add reddis for improved application performance
 e) add in-memory text-editor
 f) document how to deploy to heroku and digital ocean
 g) add AJAX to handle updating front-end with realtime data from back-end
+h) Update the security design of the application
 ```
