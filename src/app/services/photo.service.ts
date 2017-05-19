@@ -14,6 +14,7 @@ import 'rxjs/Rx';
  * Handles all logic related to photos logic
  * @author Morebodi Modise
  * @class PhotoService
+ * @date May 2017
  */
 
 @Injectable()
@@ -48,9 +49,21 @@ export class PhotoService {
    */
   public getPhotoById(photoId: number): Observable<Photo> {
     return this.http
-      .post(this.properties.PHOTO_BY_ID_URL, photoId, {headers: this.properties.JSON_HEADERS})
-      .map(res => res.json())
-      .catch(error => error.json());
+      .post(this.properties.PHOTO_BY_ID_URL, photoId, {headers: this.properties.JSON_HEADERS}) // stringify payload
+      .map(res => res.json()) // map response
+      .catch(error => error.json()); // catch any error if it exists
+  }
+
+  /**
+   * Pings the server to request updating a photo
+   * @param photo
+   * @returns {Observable<R|T>}
+   */
+  public updatePhoto(photo: Photo): Observable<Photo> {
+    return this.http
+      .post(this.properties.UPDATE_PHOTO_URL, photo, {headers: this.properties.JSON_HEADERS}) // stringify payload
+      .map(res => res.toString()) // map response
+      .catch(error => error.toString()); // catch any error if it exists
   }
 
 }
