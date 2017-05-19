@@ -18,6 +18,7 @@ import {PhotoService} from "./services/photo.service";
 
 // routing
 import {routing} from "./app.routing";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {routing} from "./app.routing";
     RegisterComponent,
     NavbarComponent,
     PhotoListComponent,
-    SidePanelComponent
+    SidePanelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
