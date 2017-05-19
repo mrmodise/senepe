@@ -11,7 +11,7 @@ import {Config} from '../config/config';
 import 'rxjs/Rx';
 
 /**
- * Handles all logic related to photos logic
+ * Handles all logic related to photos
  * @author Morebodi Modise
  * @class PhotoService
  * @date May 2017
