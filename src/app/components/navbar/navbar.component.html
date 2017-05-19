@@ -1,0 +1,25 @@
+<div class="ui default raised menu">
+  <div class="ui secondary pointing menu">
+    <a class="item" routerLink="/home">
+      <img src="resources/static/pic/senepe_logo.png" height="10%" width="100%" alt="logo">
+    </a>
+    <a class="item" routerLink="/home">
+      <h2>Senepe</h2>
+    </a>
+    <a class="item" routerLink="/home">
+      Home
+    </a>
+    <a class="item" *ngIf="loginService.isAuthenticated()" routerLink="/album">
+      Album
+    </a>
+  </div>
+  <div class="right menu">
+    <p class="item"><b>Welcome:</b>&nbsp; {{loginService.getLoggedInUser()}}</p>
+    <a *ngIf="!loginService.isAuthenticated()" class="item" routerLink="register">
+      Sign up
+    </a>
+    <a class="item" routerLink="/login" (click)="logoutClick()">
+      {{loginService.isAuthenticated()? 'Logout' : 'Login'}}
+    </a>
+  </div>
+</div>
