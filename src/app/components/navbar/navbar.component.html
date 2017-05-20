@@ -14,7 +14,6 @@
     </a>
   </div>
   <div class="right menu">
-    <p class="item"><b>Welcome:</b>&nbsp; {{loginService.getLoggedInUser()}}</p>
     <a *ngIf="!loginService.isAuthenticated()" class="item" routerLink="register">
       Sign up
     </a>
