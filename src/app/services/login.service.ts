@@ -61,6 +61,14 @@ export class LoginService {
   }
 
   /**
+   * Returns the currently logged in user
+   * @returns {string|null}
+   */
+  public getLoggedInUser(){
+    return localStorage.getItem("currentUserName");
+  }
+
+  /**
    * Checks if user is authenticated
    * @returns {boolean}
    */
@@ -70,7 +78,7 @@ export class LoginService {
     let storeToken = localStorage.getItem("token");
 
     // if the user and token exists in the local storage, user is authenticated
-    if ((storeUser != "" || storeUser != undefined) && (storeToken != "" || storeToken!= undefined)) {
+    if ((storeUser != null || storeUser != undefined) && (storeToken != null || storeToken!= undefined)) {
       return true;
     } else {
       return false;
