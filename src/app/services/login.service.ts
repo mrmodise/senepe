@@ -1,8 +1,15 @@
+// defaults
 import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
+
+// RxJS
 import {Observable} from "rxjs/Observable";
+
+// custom
 import {User} from "../models/user";
 import {Config} from "../config/config";
+
+// router
 import {Router} from "@angular/router";
 
 @Injectable()
@@ -46,6 +53,7 @@ export class LoginService {
    * handles the logout process
    */
   public logout() {
+    // clear local storage
     localStorage.setItem("token", "");
     localStorage.setItem("currentUserName", "");
     this.router.navigate(['/home'])
@@ -57,10 +65,11 @@ export class LoginService {
    * @returns {boolean}
    */
   public isAuthenticated() {
-    // set
+    // retrieve current user and token from local storage
     let storeUser = localStorage.getItem("currentUserName");
     let storeToken = localStorage.getItem("token");
 
+    // if the user and token exists in the local storage, user is authenticated
     if ((storeUser != "" || storeUser != undefined) && (storeToken != "" || storeToken!= undefined)) {
       return true;
     } else {
