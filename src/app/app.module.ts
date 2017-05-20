@@ -20,6 +20,7 @@ import {LoginService} from "./services/login.service";
 
 // routing
 import {routing} from "./app.routing";
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {routing} from "./app.routing";
     NavbarComponent,
     PhotoListComponent,
     SidePanelComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
