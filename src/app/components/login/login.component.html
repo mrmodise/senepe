@@ -1,36 +1,35 @@
 <div class="container">
-  <div *ngIf="error" class="field">
-    <div class="ui error message">
-      <div class="ui middle aligned center aligned grid">
-        <b>Error</b>: {{errBody}} <br> {{body.message}}
+  <div class="ui three column grid">
+    <div class="column">
+    </div>
+    <div class="column">
+      <div class="ui segment">
+        <div *ngIf="loginFailed">
+          <div class="ui error message">
+            <b>Server Error </b>: {{message}}
+          </div>
+        </div>
+        <br>
+        <form class="ui form" (ngSubmit)="onSubmit()" [hidden]="loginService.isAuthenticated()">
+          <div class="field">
+            <div class="field">
+              <label for="username">* Username</label>
+              <input type="text" name="username" placeholder="username" [(ngModel)]="model.username" required/>
+            </div>
+            <div class="field">
+              <label for="password">* Password</label>
+              <input type="password" name="password" placeholder="password" [(ngModel)]="model.password" required/>
+            </div>
+          </div>
+          <button type="submit" class="ui primary button">Submit</button>
+        </form>
+      </div>
+      <div [hidden]="!loginService.isAuthenticated()">
+        <p>Logged in successfully</p>
+        <h1>Welcome back {{currentUserName}}</h1>
       </div>
     </div>
-  </div>
-  <div *ngIf="err === 0" class="field">
-    <div class="ui error message">
-      <div class="ui middle aligned center aligned grid">
-        <b>Error</b>: Server is currently down
-      </div>
+    <div class="column">
     </div>
-  </div>
-  <br>
-  <div class="ui middle aligned center aligned grid">
-    <form class="ui form" (ngSubmit)="onSubmit()" [hidden]="loginService.isAuthenticated()">
-      <div class="field">
-        <div class="field">
-          <label for="username">* Username</label>
-          <input type="text" name="username" placeholder="username" [(ngModel)]="model.username" required />
-        </div>
-        <div class="field">
-          <label for="password">* Password</label>
-          <input type="password" name="password" placeholder="password" [(ngModel)]="model.password" required />
-        </div>
-      </div>
-      <button type="submit" class="ui primary button">Submit</button>
-    </form>
-  </div>
-  <div [hidden]="!loginService.isAuthenticated()">
-    <p>Logged in successfully</p>
-    <h1>Welcome back {{currentUserName}}</h1>
   </div>
 </div>

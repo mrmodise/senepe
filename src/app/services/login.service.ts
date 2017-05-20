@@ -26,12 +26,11 @@ export class LoginService {
    * @param model
    * @returns {Observable<Response>}
    */
-  public login(model): Observable<User> {
-    return this
-      .http
+  public login(model): Observable<Response> {
+    return this.http
       .post(this.properties.LOGIN_URL, model, {headers: this.properties.JSON_HEADERS}) // stringify payload and post to server
-      .map(res => res.toString()) // maps response
-      .catch(error => error.toString()); // maps error in case of one
+      .map(res => res.json()) // .json() to return the data
+      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
   }
 
   /**
@@ -45,27 +44,8 @@ export class LoginService {
     return this
       .http
       .post(this.properties.TOKENIZE_URL, {headers: TOKEN_HEADER})
-      .map(res => res.toString())
-      .catch(error => error.toString());
-  }
-
-  /**
-   * handles the logout process
-   */
-  public logout() {
-    // clear local storage
-    localStorage.setItem("token", "");
-    localStorage.setItem("currentUserName", "");
-    this.router.navigate(['/home'])
-    alert("You have been logged out");
-  }
-
-  /**
-   * Returns the currently logged in user
-   * @returns {string|null}
-   */
-  public getLoggedInUser(){
-    return localStorage.getItem("currentUserName");
+      .map(res => console.log(res))
+      .catch((error:any) => Observable.throw(error.json || 'Server error'));
   }
 
   /**
@@ -84,6 +64,4 @@ export class LoginService {
       return false;
     }
   }
-
-
 }
