@@ -29,9 +29,9 @@ export class LoginService {
   public login(model): Observable<User> {
     return this
       .http
-      .post(this.properties.LOGIN_URL, model, {headers: this.properties.JSON_HEADERS})
-      .map(res => res.toString())
-      .catch(error => error.toString());
+      .post(this.properties.LOGIN_URL, model, {headers: this.properties.JSON_HEADERS}) // stringify payload and post to server
+      .map(res => res.toString()) // maps response
+      .catch(error => error.toString()); // maps error in case of one
   }
 
   /**
