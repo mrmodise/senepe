@@ -1,5 +1,5 @@
 # Senepe
-A photo sharing Web app developed in Spring boot (backend) and Angular 2 (frontend). 
+A photo sharing Web app developed in Spring boot (backend) and Angular 4 (frontend). 
 
 # Overview
 The Web application uses H2, an in-memory database to store the uploaded photos as such may not worry about database credentials
