@@ -7,8 +7,8 @@ The Web application uses H2, an in-memory database to store the uploaded photos 
 # Requirement
 ```
 1. An Internet connection
-2. Spring Tool Suite IDE
-3. Visual Studio Code (optional)
+2. Spring Tool Suite IDE (I use Intellij IDEA)
+3. Any text editor (I use WebStorm)
 4. Few photos for testing purposes
 ```
 
@@ -16,8 +16,9 @@ For front-end
 ```
 git clone https://github.com/mrmodise/senepe.git
 cd senepe
-npm install (to install angular2 dependencies - you need Internet connection for this)
-npm start (to start the Web application)
+npm install (to install Angular dependencies - you need Internet connection for this)
+
+see bottom 'development' section for more information
 ```
 
 For backend
