@@ -11,14 +11,15 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PhotoListComponent } from './components/photo-list/photo-list.component';
 import { SidePanelComponent } from './components/side-panel/side-panel.component';
+import { LoginComponent } from './components/login/login.component';
 
 // services
 import {RegisterService} from "./services/register.service";
 import {PhotoService} from "./services/photo.service";
+import {LoginService} from "./services/login.service";
 
 // routing
 import {routing} from "./app.routing";
-import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpModule,
     routing
   ],
-  providers: [RegisterService, PhotoService],
+  providers: [RegisterService, PhotoService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
