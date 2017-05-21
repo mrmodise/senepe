@@ -21,6 +21,8 @@ import {LoginService} from "./services/login.service";
 // routing
 import {routing} from "./app.routing";
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import {AuthService} from "./services/auth.service";
+import { AlbumComponent } from './components/album/album.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     PhotoListComponent,
     SidePanelComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AlbumComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HttpModule,
     routing
   ],
-  providers: [RegisterService, PhotoService, LoginService],
+  providers: [RegisterService, PhotoService, LoginService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
