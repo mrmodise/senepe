@@ -35,18 +35,12 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> login(@RequestBody Map<String, String> json) throws ServletException {
 
-		// set content-type
+		// set header as application/json
 		final HttpHeaders httpHeaders= new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		// error messages placeholder
 		String message;
 
-		// if both username and password do not exist
-		if(json.get("username") == null || json.get("password") == null){
-			message = "{\"message\": \"Please fill in username and password\"}";
-			// write response to client
-			return new ResponseEntity<>(message, httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
 		// retrieve user credentials
 		String userName = json.get("username");
 		String password = json.get("password");
@@ -54,14 +48,22 @@ public class UserController {
 		// retrieve single user credentials
 		User user = userService.findByUsername(userName);
 
+		// retrieve user password
+		String pwd = user.getPassword();
+
+		// if both username and password do not exist
+		if(json.get("username") == null || json.get("password") == null){
+			message = "{\"message\": \"Please fill in username and password\"}";
+			// write response to client
+			return new ResponseEntity<>(message, httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 		// no user found
 		if (user == null){
 			message = "{\"message\": \"User not found\"}";
 			// write response to client
 			return new ResponseEntity<>(message, httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		String pwd = user.getPassword();
 
 		// password mismatch
 		if(!password.equals(pwd)){
