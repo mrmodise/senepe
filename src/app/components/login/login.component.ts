@@ -3,10 +3,9 @@ import { Component, OnInit } from '@angular/core';
 
 // custom
 import {LoginService} from "../../services/login.service";
-import {Router} from "@angular/router";
 
-// jquery
-declare var $: any;
+// router
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',

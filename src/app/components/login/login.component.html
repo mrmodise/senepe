@@ -13,11 +13,11 @@
         <form class="ui form" (ngSubmit)="onSubmit()" [hidden]="loginService.isAuthenticated()">
           <div class="field">
             <div class="field">
-              <label for="username">* Username</label>
+              <label>* Username</label>
               <input type="text" name="username" placeholder="username" [(ngModel)]="model.username" required/>
             </div>
             <div class="field">
-              <label for="password">* Password</label>
+              <label>* Password</label>
               <input type="password" name="password" placeholder="password" [(ngModel)]="model.password" required/>
             </div>
           </div>
