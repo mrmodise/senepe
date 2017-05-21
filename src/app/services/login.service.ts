@@ -26,7 +26,7 @@ export class LoginService {
    * @param model
    * @returns {Observable<Response>}
    */
-  public login(model): Observable<Response> {
+  public login(model): Observable<User> {
     return this.http
       .post(this.properties.LOGIN_URL, model, {headers: this.properties.JSON_HEADERS}) // stringify payload and post to server
       .map(res => res.json()) // .json() to return the data
@@ -34,31 +34,15 @@ export class LoginService {
   }
 
   /**
-   * Pings the server to request data tokenization
-   * @param data
-   * @returns {Observable<R|T>}
-   */
-  public tokenizePayload(data) {
-    // set authentication header
-    const TOKEN_HEADER: Headers = new Headers({'Authorization': 'Bearer ' + data});
-    return this
-      .http
-      .post(this.properties.TOKENIZE_URL, {headers: TOKEN_HEADER})
-      .map(res => console.log(res))
-      .catch((error:any) => Observable.throw(error.json || 'Server error'));
-  }
-
-  /**
    * Checks if user is authenticated
    * @returns {boolean}
    */
   public isAuthenticated() {
-    // retrieve current user and token from local storage
-    let storeUser = localStorage.getItem("currentUserName");
-    let storeToken = localStorage.getItem("token");
 
     // if the user and token exists in the local storage, user is authenticated
-    if ((storeUser != null || storeUser != undefined) && (storeToken != null || storeToken!= undefined)) {
+    if ((localStorage.getItem("currentUserName") != null ||
+      localStorage.getItem("currentUserName") != undefined)
+      && (localStorage.getItem("token") != null || localStorage.getItem("token") != undefined)) {
       return true;
     } else {
       return false;
