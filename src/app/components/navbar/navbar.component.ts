@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 
 @Component({
@@ -8,9 +9,19 @@ import {LoginService} from "../../services/login.service";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
+  /**
+   * handles the logout process
+   */
+  public logOut() {
+      // clear local storage
+      localStorage.setItem("token", "");
+      localStorage.setItem("currentUserName", "");
+      this.router.navigate(['home'])
+      alert("You have been logged out");
+  }
 }
