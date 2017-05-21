@@ -11,7 +11,7 @@ export class Config{
   public PHOTO_BY_ID_URL = 'http://localhost:8088/photo/get';
   public UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
   public LOGIN_URL = 'http://localhost:8088/user/login';
-  public TOKENIZE_URL = 'http://localhost:8088/user/login';
+  public TOKENIZE_URL = 'http://localhost:8011/rest/user/users';
 
   // headers
   public JSON_HEADERS: Headers = new Headers({'Content-Type': 'application/json'});

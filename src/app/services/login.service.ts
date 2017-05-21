@@ -1,6 +1,6 @@
 // defaults
 import {Injectable} from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 
 // RxJS
 import {Observable} from "rxjs/Observable";
@@ -24,13 +24,25 @@ export class LoginService {
   /**
    * Pings the server for a login request
    * @param model
-   * @returns {Observable<Response>}
+   * @returns {Observable<User>}
    */
   public login(model): Observable<User> {
     return this.http
       .post(this.properties.LOGIN_URL, model, {headers: this.properties.JSON_HEADERS}) // stringify payload and post to server
       .map(res => res.json()) // .json() to return the data
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
+  }
+
+  // for each login session we send a token
+  public sendToken(token) {
+    // set authorization headers
+    let headersUrl = new Headers({ 'Authorization': 'Bearer ' + token });
+    // send the token details to backend
+    return this
+      .http
+      .get(this.properties.TOKENIZE_URL, {headers: headersUrl}) // send authorization headers
+      .map(res => res.json()) // .json() to return the data
+      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // errpr handling
   }
 
   /**
@@ -47,5 +59,16 @@ export class LoginService {
     } else {
       return false;
     }
+  }
+
+  /**
+   * handles the logout process
+   */
+  public logOut() {
+    // clear local storage
+    localStorage.setItem("token", "");
+    localStorage.setItem("currentUserName", "");
+    this.router.navigate(['home'])
+    alert("You have been logged out");
   }
 }

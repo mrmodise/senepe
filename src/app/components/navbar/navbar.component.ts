@@ -11,17 +11,9 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private loginService: LoginService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
-  /**
-   * handles the logout process
-   */
-  public logOut() {
-      // clear local storage
-      localStorage.setItem("token", "");
-      localStorage.setItem("currentUserName", "");
-      this.router.navigate(['home'])
-      alert("You have been logged out");
+  logout(){
+    this.loginService.logOut();
   }
 }

@@ -17,8 +17,11 @@
     <a *ngIf="!loginService.isAuthenticated()" class="item" routerLink="register">
       Sign up
     </a>
-    <a class="item" routerLink="/login">
-      {{loginService.isAuthenticated()? 'Logout' : 'Login'}}
+    <a *ngIf="!loginService.isAuthenticated()" class="item" routerLink="login">
+      Login
+    </a>
+    <a class="item" *ngIf="loginService.isAuthenticated()" routerLink="login" (click)="logout()">
+      Logout
     </a>
   </div>
 </div>
