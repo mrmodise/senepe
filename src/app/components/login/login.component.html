@@ -3,7 +3,7 @@
     <div class="column">
     </div>
     <div class="column">
-      <div class="ui segment">
+      <div class="ui segment" [hidden]="loginService.isAuthenticated()">
         <div *ngIf="loginFailed">
           <div class="ui error message">
             <b>Server Error </b>: {{message}}
