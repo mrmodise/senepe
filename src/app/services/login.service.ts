@@ -28,7 +28,7 @@ export class LoginService {
    */
   public login(model): Observable<User> {
     return this.http
-      .post(this.properties.LOGIN_URL, model, {headers: this.properties.JSON_HEADERS}) // stringify payload and post to server
+      .post(this.properties.LOGIN_URL, JSON.stringify(model), {headers: this.properties.JSON_HEADERS}) // stringify payload and post to server
       .map(res => res.json()) // .json() to return the data
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
   }
