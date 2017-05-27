@@ -36,7 +36,6 @@ public class Comment {
 	}
 	
 	public Comment(Long id, String content, Photo photo, Long photoId, String userName) {
-		super();
 		commentId = id;
 		this.content = content;
 		this.photo = photo;

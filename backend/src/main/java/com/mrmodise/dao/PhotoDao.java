@@ -10,6 +10,6 @@ import com.mrmodise.model.User;
 
 @Repository
 public interface PhotoDao extends CrudRepository<Photo, Long>{
-	List<Photo> findByUser(User user);
-	Photo findByPhotoId(Long photoId);
+	//List<Photo> findByUser(User user);
+	//Photo findByPhotoId(Long photoId);
 }

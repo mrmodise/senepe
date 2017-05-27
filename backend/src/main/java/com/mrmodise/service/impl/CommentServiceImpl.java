@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public List<Comment> findByPhotoId(Long photoId) {
-		return commentDao.findByPhotoId(photoId);
+		return null;//commentDao.findByPhotoId(photoId);
 	}
 
 

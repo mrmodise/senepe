@@ -9,5 +9,5 @@ import com.mrmodise.model.Comment;
 
 @Repository
 public interface CommentDao extends CrudRepository<Comment, Long>{
-	List<Comment> findByPhotoId(Long photoId);
+	//List<Comment> findByPhotoId(Long photoId);
 }
