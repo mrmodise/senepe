@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   // populate the model properties
-  private model = {'username': '', 'password': ''};
+  private model = {username: '', password: ''};
   private currentUserName;
   // sets the login failure status
   private loginFailed = false;
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
    * Triggered when user hits submit button
    */
   private onSubmit() {
+    console.log("::: " + JSON.stringify(this.model));
     // subscribe to the login service
     this.loginService.login(this.model).subscribe(data => {
 
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
       // server returned error
       this.loginFailed = true;
       // log its message
-      this.message = error.message;
+      this.message = error.error + ": Invalid credentials";
     });
   }
 
