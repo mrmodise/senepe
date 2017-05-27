@@ -1,59 +1,113 @@
 package com.mrmodise.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "USER")
 public class User {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userId;
-	private String firstName;
-	private String email;
-	private String lastName;
-	@Column(nullable = false)
-	private String userName;
-	@Column(nullable = false)
+	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+	@SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+	private Long id;
+
+	@Column(name = "USERNAME", length = 50, unique = true)
+	@NotNull
+	@Size(min = 4, max = 50)
+	private String username;
+
+	@Column(name = "PASSWORD", length = 100)
+	@NotNull
+	@Size(min = 4, max = 100)
 	private String password;
-	@CreationTimestamp
-	private Date created;
 
-	// cascade type should be remove otherwise you will not be able to delete child photo 
-	@OneToMany(mappedBy = "user", 
-			cascade = {CascadeType.PERSIST, CascadeType.MERGE, 
-					CascadeType.REFRESH}, orphanRemoval = true)
-	@JsonManagedReference
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<Photo> photoList;
-	
-	@ManyToMany(cascade = CascadeType.REMOVE)
-	private List<Photo> likedPhotoList;
-	
-	public User() {
-		// TODO Auto-generated constructor stub
+	@Column(name = "FIRSTNAME", length = 50)
+	@NotNull
+	@Size(min = 4, max = 50)
+	private String firstname;
+
+	@Column(name = "LASTNAME", length = 50)
+	@NotNull
+	@Size(min = 4, max = 50)
+	private String lastname;
+
+	@Column(name = "EMAIL", length = 50)
+	@NotNull
+	@Size(min = 4, max = 50)
+	private String email;
+
+	@Column(name = "ENABLED")
+	@NotNull
+	private Boolean enabled;
+
+	@Column(name = "LASTPASSWORDRESETDATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	private Date lastPasswordResetDate;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "USER_AUTHORITY",
+			joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+			inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+	private List<Authority> authorities;
+
+	public Long getId() {
+		return id;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
@@ -64,52 +118,27 @@ public class User {
 		this.email = email;
 	}
 
-	public List<Photo> getLikedPhotoList() {
-		return likedPhotoList;
+	public Boolean getEnabled() {
+		return enabled;
 	}
-	public void setLikedPhotoList(List<Photo> likedPhotoList) {
-		this.likedPhotoList = likedPhotoList;
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
-	public List<Photo> getPhotoList() {
-		return photoList;
+
+	public List<Authority> getAuthorities() {
+		return authorities;
 	}
-	public void setPhotoList(List<Photo> photoList) {
-		this.photoList = photoList;
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
 	}
-	public Long getId() {
-		return userId;
+
+	public Date getLastPasswordResetDate() {
+		return lastPasswordResetDate;
 	}
-	public void setId(Long id) {
-		this.userId = id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Date getCreated() {
-		return created;
-	}
-	public void setCreated(Date created) {
-		this.created = created;
+
+	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
 }
