@@ -6,11 +6,11 @@ spring:
     platform: h2
   h2:
     console:
-      path: /console
+      path: /auth/console
       enabled: true
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
   jackson:
       serialization:
         INDENT_OUTPUT: true
