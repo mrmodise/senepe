@@ -14,13 +14,13 @@
     </a>
   </div>
   <div class="right menu">
-    <a *ngIf="!loginService.isAuthenticated()" class="item" routerLink="register">
+    <a  class="item" *ngIf="!loginService.isAuthenticated()" routerLink="register">
       Sign up
     </a>
-    <a *ngIf="!loginService.isAuthenticated()" class="item" routerLink="login">
+    <a  class="item" *ngIf="!loginService.isAuthenticated()" routerLink="login">
       Login
     </a>
-    <a class="item" *ngIf="loginService.isAuthenticated()" routerLink="login" (click)="logout()">
+    <a class="item" routerLink="login" *ngIf="loginService.isAuthenticated()" (click)="logout()">
       Logout
     </a>
   </div>
