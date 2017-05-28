@@ -7,7 +7,7 @@ import { Headers } from '@angular/http';
 export class Config{
   // URLs
   public GET_PHOTOS_URL = 'http://localhost:8088/photo/photos';
-  public POST_USER_URL = 'http://localhost:8088/user/user';
+  public POST_USER_URL = 'http://localhost:8088/auth/register';
   public PHOTO_BY_ID_URL = 'http://localhost:8088/photo/get';
   public UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
   public LOGIN_URL = 'http://localhost:8088/auth';
