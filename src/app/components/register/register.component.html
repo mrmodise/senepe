@@ -1,3 +1,40 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <div class="ui three column grid">
+    <div class="column">
+    </div>
+    <div class="column">
+      <div class="ui segment">
+        <div *ngIf="registered">
+          <div class="ui info message">
+            {{message}}
+          </div>
+        </div>
+        <br>
+        <form class="ui form" (ngSubmit)="onSubmit()">
+          <div class="field">
+            <div class="field">
+              <label>* Username</label>
+              <input type="text" name="username" placeholder="username" [(ngModel)]="user.username" required/>
+            </div>
+            <div class="field">
+              <label>* Fullname</label>
+              <input type="text" name="fullname" placeholder="fullname" [(ngModel)]="user.fullname" required/>
+            </div>
+            <div class="field">
+              <label>* Email</label>
+              <input type="email" name="email" placeholder="email" [(ngModel)]="user.email" required/>
+            </div>
+            <div class="field">
+              <label>* Password</label>
+              <input type="password" name="password" placeholder="password" [(ngModel)]="user.password" required/>
+            </div>
+
+          </div>
+          <button type="submit" class="ui primary button">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="column">
+    </div>
+  </div>
+</div>
