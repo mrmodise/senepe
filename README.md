@@ -7,5 +7,6 @@ A photo sharing Web app developed in Spring boot (backend) and Angular 4 (fronte
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
 
+Run `mvn package` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
 
 `Note` project is still under development
