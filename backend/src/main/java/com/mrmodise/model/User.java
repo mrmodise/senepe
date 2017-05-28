@@ -3,6 +3,7 @@ package com.mrmodise.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,7 @@ import javax.validation.constraints.Size;
 public class User {
 
 	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-	@SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(name = "USERNAME", length = 50, unique = true)
@@ -31,15 +30,10 @@ public class User {
 	@Size(min = 4, max = 100)
 	private String password;
 
-	@Column(name = "FIRSTNAME", length = 50)
+	@Column(name = "FULLNAME", length = 50)
 	@NotNull
 	@Size(min = 4, max = 50)
-	private String firstname;
-
-	@Column(name = "LASTNAME", length = 50)
-	@NotNull
-	@Size(min = 4, max = 50)
-	private String lastname;
+	private String fullname;
 
 	@Column(name = "EMAIL", length = 50)
 	@NotNull
@@ -83,23 +77,8 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		this.password = encoder.encode(password);
 	}
 
 	public String getEmail() {
@@ -132,5 +111,13 @@ public class User {
 
 	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
 		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 }
