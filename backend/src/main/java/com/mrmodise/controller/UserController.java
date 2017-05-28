@@ -16,69 +16,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mrmodise.model.User;
 import com.mrmodise.service.UserService;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/auth")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public User registerUser(@RequestBody User user){
-		return userService.save(user);
-		
-	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<String> login(@RequestBody Map<String, String> json) throws ServletException {
+	String message;
 
-		// set header as application/json
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<String> registerUser(@RequestBody User user){
+		// set response header as application/json
 		final HttpHeaders httpHeaders= new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-		// error messages placeholder
-		String message;
 
-		// if both username and password do not exist
-		if(json.get("username") == null || json.get("password") == null){
-			message = "{\"message\": \"Please fill in username and password\"}";
+		if(user == null){
+			// set message
+			message = "{\"message\": \"Please complete registration details\"}";
 			// write response to client
 			return new ResponseEntity<>(message, httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		// retrieve user credentials
-		String userName = json.get("username");
-		String password = json.get("password");
-
-		// retrieve single user credentials
-		User user = userService.findByUsername(userName);
-
-		// no user found
-		if (user == null){
-			message = "{\"message\": \"User not found\"}";
+		}else{
+			user.setEnabled(true);
+			user.setLastPasswordResetDate(new Date());
+			// save user details
+			userService.save(user);
+			// set message
+			message = "{\"message\": \"Server Response: User registration successful\"}";
 			// write response to client
-			return new ResponseEntity<>(message, httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(message, HttpStatus.OK);
 		}
-
-		String pwd = user.getPassword();
-
-		// password mismatch
-		if(!password.equals(pwd)){
-			message = "{\"message\": \"Invalid login. Please check your username and password\"}";
-			// write response to client - error 500
-			return new ResponseEntity<>(message, httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		// token builder
-		String res = Jwts.builder()
-				.setSubject(userName)
-				.claim("roles", "user")
-				.setIssuedAt(new Date())
-				.signWith(SignatureAlgorithm.HS256, "montsamaisabosigo")
-				.compact();
-
-		String token = String.format("{\"token\": \"%s\"}", res);
-		// return OK response
-		return new ResponseEntity<>(token, HttpStatus.OK);
 	}
 }
