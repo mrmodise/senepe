@@ -1,6 +1,8 @@
 export class User {
   public token: string;
-  public firstname: string;
-  public lastname: string;
+  public fullname: string;
+  public password: string;
   public username: string;
+  public email: string;
+  public message: string;
 }

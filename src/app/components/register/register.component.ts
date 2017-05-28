@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http} from "@angular/http";
 import {RegisterService} from "../../services/register.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-register',
@@ -9,14 +10,26 @@ import {RegisterService} from "../../services/register.service";
 })
 export class RegisterComponent implements OnInit {
 
+  private user = new User();
+  private registered = false;
+  private message;
+
   constructor(private http: Http, private registerService: RegisterService) { }
 
   ngOnInit() {
   }
 
-  private submit(user){
-    this.registerService.register(user).subscribe(data => {
+  private onSubmit(){
 
+    console.log("Data " + JSON.stringify(this.user))
+
+    this.registerService.register(this.user).subscribe(data => {
+        console.log(data)
+      this.registered = true;
+        this.message = data.message;
+
+    }, error => {
+      console.log(error)
     });
   }
 

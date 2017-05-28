@@ -32,7 +32,7 @@ export class RegisterService {
       .http
       .post(this.properties.POST_USER_URL, JSON.stringify(user), {headers: this.properties.JSON_HEADERS}) // stringify payload
       .map(res => res.json()) // map response
-      .catch(error => error.json()); // catch any error if it exists
+      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // catch any error if it exists
   }
 
 

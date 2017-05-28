@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
    * Triggered when user hits submit button
    */
   private onSubmit() {
-    console.log("::: " + JSON.stringify(this.model));
+
     // subscribe to the login service
     this.loginService.login(this.model).subscribe(data => {
 
