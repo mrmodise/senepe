@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       // server returned error
       this.loginFailed = true;
       // log its message
-      this.message = error.error + ": Invalid credentials";
+      this.message = error.message;
     });
   }
 
