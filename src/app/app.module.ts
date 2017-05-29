@@ -23,6 +23,7 @@ import {routing} from "./app.routing";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {AuthService} from "./services/auth.service";
 import { AlbumComponent } from './components/album/album.component';
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { AlbumComponent } from './components/album/album.component';
     HttpModule,
     routing
   ],
-  providers: [RegisterService, PhotoService, LoginService, AuthService],
+  providers: [RegisterService, PhotoService, LoginService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
