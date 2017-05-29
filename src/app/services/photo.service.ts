@@ -47,9 +47,9 @@ export class PhotoService {
    * @param photoId
    * @returns {Observable<R|T>}
    */
-  public getPhotoById(photoId: number): Observable<Photo> {
+  public getPhotosByUser(photoId: number): Observable<Photo> {
     return this.http
-      .post(this.properties.PHOTO_BY_ID_URL, photoId, {headers: this.properties.JSON_HEADERS}) // stringify payload
+      .post(this.properties.GET_USER_PHOTOS, photoId, {headers: this.properties.JSON_HEADERS}) // stringify payload
       .map(res => res.json()) // map response
       .catch(error => error.json()); // catch any error if it exists
   }
@@ -65,5 +65,7 @@ export class PhotoService {
       .map(res => res.toString()) // map response
       .catch(error => error.toString()); // catch any error if it exists
   }
+
+
 
 }
