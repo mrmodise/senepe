@@ -1,7 +1,10 @@
+// defaults
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+
+// custom
 import {Photo} from '../../models/photo';
 import {PhotoService} from '../../services/photo.service';
-import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 
 @Component({
@@ -9,19 +12,23 @@ import {UserService} from '../../services/user.service';
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.css']
 })
+
 export class AlbumComponent implements OnInit {
 
+  // variables initialization
   private photos: Photo[];
   private user;
   private selectedPhoto: Photo;
   private currentUser = localStorage.getItem('currentUserName');
 
+  // DIs
   constructor(private photoService: PhotoService,
               private router: Router,
               private userService: UserService) {
   }
 
   ngOnInit() {
+    //
     this.userService.getUserByName(this.currentUser).subscribe(user => {
       this.user = user.username;
 
