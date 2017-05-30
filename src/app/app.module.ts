@@ -24,6 +24,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {AuthService} from './services/auth.service';
 import { AlbumComponent } from './components/album/album.component';
 import {UserService} from './services/user.service';
+import { AddPhotoComponent } from './components/add-photo/add-photo.component';
+import {AddPhotoService} from './services/add-photo.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import {UserService} from './services/user.service';
     SidePanelComponent,
     LoginComponent,
     NotFoundComponent,
-    AlbumComponent
+    AlbumComponent,
+    AddPhotoComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import {UserService} from './services/user.service';
     HttpModule,
     routing
   ],
-  providers: [RegisterService, PhotoService, LoginService, AuthService, UserService],
+  providers: [RegisterService, PhotoService, LoginService, AuthService, UserService, AddPhotoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
