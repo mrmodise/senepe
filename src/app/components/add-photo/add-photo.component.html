@@ -1,0 +1,44 @@
+<div class="container">
+  <div *ngIf="photoAdded">
+    <div class="ui message">
+      <i class="close icon"></i>
+      <div class="header">
+        Successful!
+      </div>
+      <p>Image successfully uploaded</p>
+    </div>
+  </div>
+  <form class="ui form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <h2 class="ui dividing header">Add your photo</h2>
+    <div class="field">
+      <label>* Photo Name / Photo Title</label>
+      <div class="two fields">
+        <div class="field">
+          <input type="text" name="photoName" placeholder="Photo name" [(ngModel)]="newPhoto.photoName" required />
+        </div>
+
+        <div class="field">
+          <input type="text" name="title" placeholder="Photo title" [(ngModel)]="newPhoto.title" required />
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <div class="field">
+        <input type="text" name="description" placeholder="description" [(ngModel)]="newPhoto.description"/>
+      </div>
+    </div>
+    <div class="field">
+      <label>* Upload Photo</label>
+      <div class="two fields">
+        <div class="field">
+          <input type="file" (change) = "uploadPhotoService.fileChangeEvent($event)" />
+          <button type="button" class="ui primary button" (click) = "uploadPhotoService.upload()">Upload</button>
+        </div>
+
+      </div>
+    </div>
+    <hr>
+    <button type="submit" class="ui primary button">Submit</button>
+  </form>
+</div>
