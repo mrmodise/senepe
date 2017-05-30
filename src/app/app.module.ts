@@ -14,16 +14,16 @@ import { SidePanelComponent } from './components/side-panel/side-panel.component
 import { LoginComponent } from './components/login/login.component';
 
 // services
-import {RegisterService} from "./services/register.service";
-import {PhotoService} from "./services/photo.service";
-import {LoginService} from "./services/login.service";
+import {RegisterService} from './services/register.service';
+import {PhotoService} from './services/photo.service';
+import {LoginService} from './services/login.service';
 
 // routing
-import {routing} from "./app.routing";
+import {routing} from './app.routing';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import {AuthService} from "./services/auth.service";
+import {AuthService} from './services/auth.service';
 import { AlbumComponent } from './components/album/album.component';
-import {UserService} from "./services/user.service";
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [

@@ -1,16 +1,16 @@
 // defaults
 import {Injectable} from '@angular/core';
-import {Http, Headers} from "@angular/http";
+import {Http, Headers} from '@angular/http';
 
 // RxJS
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 
 // custom
-import {User} from "../models/user";
-import {Config} from "../config/config";
+import {User} from '../models/user';
+import {Config} from '../config/config';
 
 // router
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Injectable()
 export class LoginService {
@@ -36,13 +36,13 @@ export class LoginService {
   // for each login session we send a token
   public sendToken(token) {
     // set authorization headers
-    let headersUrl = new Headers({ 'Authorization': 'Bearer ' + token });
+    const headersUrl = new Headers({'Authorization': 'Bearer ' + token});
     // send the token details to backend
     return this
       .http
       .get(this.properties.TOKENIZE_URL, {headers: headersUrl}) // send authorization headers
       .map(res => res.json()) // .json() to return the data
-      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // errpr handling
+      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
   }
 
   /**
@@ -51,7 +51,7 @@ export class LoginService {
    */
   public isAuthenticated() {
     // if the user and token exists in the local storage, user is authenticated
-    if (localStorage.getItem("currentUserName") !== "" && localStorage.getItem("token") !== "") {
+    if (localStorage.getItem('currentUserName') !== '' && localStorage.getItem('token') !== '') {
       return true;
     } else {
       return false;
@@ -63,9 +63,9 @@ export class LoginService {
    */
   public logOut() {
     // clear local storage
-    localStorage.setItem("token", "");
-    localStorage.setItem("currentUserName", "");
-    this.router.navigate(['home'])
-    alert("You have been logged out");
+    localStorage.setItem('token', '');
+    localStorage.setItem('currentUserName', '');
+    this.router.navigate(['home']);
+    alert('You have been logged out');
   }
 }

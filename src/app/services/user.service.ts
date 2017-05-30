@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {User} from "../models/user";
-import {Http} from "@angular/http";
-import {Config} from "../config/config";
-import {Photo} from "../models/photo";
+import {Observable} from 'rxjs/Observable';
+import {User} from '../models/user';
+import {Http} from '@angular/http';
+import {Config} from '../config/config';
+import {Photo} from '../models/photo';
 
 @Injectable()
 export class UserService {

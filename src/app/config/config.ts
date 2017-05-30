@@ -1,10 +1,10 @@
-import { Headers } from '@angular/http';
+import {Headers} from '@angular/http';
 /**
  * Defines common properties in the entire application
  * @author Morebodi Modise
  * @class Config
  */
-export class Config{
+export class Config {
   // URLs
   public GET_PHOTOS_URL = 'http://localhost:8088/photo/photos';
   public POST_USER_URL = 'http://localhost:8088/auth/register';

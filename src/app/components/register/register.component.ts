@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Http} from "@angular/http";
-import {RegisterService} from "../../services/register.service";
-import {User} from "../../models/user";
+import {Component, OnInit} from '@angular/core';
+import {Http} from '@angular/http';
+import {RegisterService} from '../../services/register.service';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -14,22 +14,23 @@ export class RegisterComponent implements OnInit {
   private registered = false;
   private message;
 
-  constructor(private http: Http, private registerService: RegisterService) { }
+  constructor(private http: Http, private registerService: RegisterService) {
+  }
 
   ngOnInit() {
   }
 
-  private onSubmit(){
+  private onSubmit() {
 
-    console.log("Data " + JSON.stringify(this.user))
+    console.log('Data ' + JSON.stringify(this.user));
 
     this.registerService.register(this.user).subscribe(data => {
-        console.log(data)
+      console.log(data);
       this.registered = true;
-        this.message = data.message;
+      this.message = data.message;
 
     }, error => {
-      console.log(error)
+      console.log(error);
     });
   }
 
