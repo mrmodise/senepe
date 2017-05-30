@@ -29,12 +29,12 @@ public class PhotoServiceImpl implements PhotoService {
 
 	@Override
 	public List<Photo> findByUser(User user) {
-		return null;
+		return photoDao.findByUser(user);
 	}
 
 	@Override
 	public Photo findById(Long photoId) {
-		return null;
+		return photoDao.findByPhotoId(photoId);
 	}
 
 	@Override

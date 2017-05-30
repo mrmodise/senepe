@@ -56,6 +56,17 @@ public class User {
 			inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
 	private List<Authority> authorities;
 
+	// cascade type should be remove otherwise you will not be able to delete child photo
+	@OneToMany(mappedBy = "user",
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+					CascadeType.REFRESH}, orphanRemoval = true)
+	@JsonManagedReference
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private List<Photo> photoList;
+
+	@ManyToMany(cascade = CascadeType.REMOVE)
+	private List<Photo> likedPhotoList;
+
 	public Long getId() {
 		return id;
 	}

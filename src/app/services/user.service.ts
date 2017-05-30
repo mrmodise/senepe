@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../models/user';
-import {Http} from '@angular/http';
+import {Http, Headers} from '@angular/http';
 import {Config} from '../config/config';
 import {Photo} from '../models/photo';
 
@@ -9,6 +9,7 @@ import {Photo} from '../models/photo';
 export class UserService {
   // make use of custom configuration class
   properties: Config = new Config();
+  private token = localStorage.getItem("token");
 
   constructor(private http: Http) {
   }
@@ -19,9 +20,12 @@ export class UserService {
    * @returns {Observable<R|T>}
    */
   public getUserByName(user: string): Observable<User> {
+    // set authorization headers
+    const headersUrl: Headers = new Headers({'Authorization': 'Bearer ' + this.token});
+
     return this
       .http
-      .post(this.properties.USER_BY_NAME_URL, JSON.stringify(user), {})
+      .post(this.properties.USER_BY_NAME_URL, JSON.stringify(user), {headers: headersUrl})
       .map(res => res.json())
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed'));
   }

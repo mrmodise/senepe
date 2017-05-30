@@ -36,9 +36,9 @@ public class Photo {
 	@CreationTimestamp
 	private Date created;
 
-	/*@ManyToOne
+	@ManyToOne
 	@JsonBackReference
-	private User user;*/
+	private User user;
 
 	private int likes;
 
