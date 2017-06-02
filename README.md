@@ -11,4 +11,6 @@ Run `mvn package` to execute the back-end code. REST API launches on port 8088. 
 
 `Note` project is still under development. Updated everyday `:)`
 
-Completed modules: `registration` and `login`.
+Completed modules: `registration`, `login` and `photo uploading`.
+
+More refactoring to be done.....
