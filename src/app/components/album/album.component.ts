@@ -29,14 +29,14 @@ export class AlbumComponent implements OnInit {
 
   ngOnInit() {
     //
-    this.userService.getUserByName(this.currentUser).subscribe(user => {
+   /* this.userService.getUserByName(this.currentUser).subscribe(user => {
       this.user = user.username;
 
       this.photoService.getPhotosByUser(this.user).subscribe(photos => {
         console.log(photos);
 
       }, error => console.log(error))
-    }, error => console.log(error));
+    }, error => console.log(error));*/
   }
 
   onSelect(photo: Photo) {
