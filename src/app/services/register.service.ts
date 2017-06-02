@@ -17,7 +17,7 @@ import {Config} from '../config/config';
 export class RegisterService {
 
   // make use of custom configuration class
-  properties: Config = new Config();
+  config = new Config();
 
   // inject the http instance
   constructor(private http: Http) {}
@@ -30,7 +30,7 @@ export class RegisterService {
   public register(user: User): Observable<User> {
     return this
       .http
-      .post(this.properties.POST_USER_URL, JSON.stringify(user), {headers: this.properties.JSON_HEADERS}) // stringify payload
+      .post(this.config.POST_USER_URL, JSON.stringify(user), {headers: this.config.JSON_HEADERS}) // stringify payload
       .map(res => res.json()) // map response
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // catch any error if it exists
   }

@@ -8,7 +8,7 @@ import {Photo} from '../models/photo';
 @Injectable()
 export class UserService {
   // make use of custom configuration class
-  properties: Config = new Config();
+  config = new Config();
   private token = localStorage.getItem("token");
 
   constructor(private http: Http) {
@@ -25,13 +25,13 @@ export class UserService {
 
     return this
       .http
-      .post(this.properties.USER_BY_NAME_URL, JSON.stringify(user), {headers: headersUrl})
+      .post(this.config.USER_BY_NAME_URL, JSON.stringify(user), {headers: headersUrl})
       .map(res => res.json())
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed'));
   }
 
   public getPhotosByUser(user: User): Observable<Photo> {
-    return this.http.post(this.properties.GET_USER_PHOTOS, JSON.stringify(user), {})
+    return this.http.post(this.config.GET_USER_PHOTOS, JSON.stringify(user), {})
       .map(res => res.json())
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed'));
   }

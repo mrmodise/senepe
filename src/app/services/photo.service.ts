@@ -21,7 +21,7 @@ import 'rxjs/Rx';
 export class PhotoService {
 
   // make use of custom configuration class
-  properties: Config = new Config();
+  config = new Config();
 
   // inject the http instance
   constructor(private http: Http) {
@@ -37,7 +37,7 @@ export class PhotoService {
       .interval(10000)
       .switchMap(() =>
         this.http
-          .get(this.properties.GET_PHOTOS_URL, {headers: this.properties.JSON_HEADERS}) // stringify payload
+          .get(this.config.GET_PHOTOS_URL, {headers: this.config.JSON_HEADERS}) // stringify payload
           .map(res => res.json()) // map response
           .catch(error => error.json())); // catch any error if it exists
   }
@@ -49,7 +49,7 @@ export class PhotoService {
    */
   public getPhotosByUser(photoId: number): Observable<Photo> {
     return this.http
-      .post(this.properties.GET_USER_PHOTOS, photoId, {headers: this.properties.JSON_HEADERS}) // stringify payload
+      .post(this.config.GET_USER_PHOTOS, photoId, {headers: this.config.JSON_HEADERS}) // stringify payload
       .map(res => res.json()) // map response
       .catch(error => error.json()); // catch any error if it exists
   }
@@ -61,7 +61,7 @@ export class PhotoService {
    */
   public updatePhoto(photo: Photo): Observable<Photo> {
     return this.http
-      .post(this.properties.UPDATE_PHOTO_URL, photo, {headers: this.properties.JSON_HEADERS}) // stringify payload
+      .post(this.config.UPDATE_PHOTO_URL, photo, {headers: this.config.JSON_HEADERS}) // stringify payload
       .map(res => res.toString()) // map response
       .catch(error => error.toString()); // catch any error if it exists
   }

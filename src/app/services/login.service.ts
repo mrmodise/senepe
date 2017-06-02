@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
 export class LoginService {
 
   // make use of custom configuration class
-  properties: Config = new Config();
+  config = new Config();
 
   constructor(private http: Http, private router: Router) {
   }
@@ -28,7 +28,7 @@ export class LoginService {
    */
   public login(model): Observable<User> {
     return this.http
-      .post(this.properties.LOGIN_URL, JSON.stringify(model), {headers: this.properties.JSON_HEADERS}) // stringify payload and post to server
+      .post(this.config.LOGIN_URL, JSON.stringify(model), {headers: this.config.JSON_HEADERS}) // stringify payload and post to server
       .map(res => res.json()) // .json() to return the data
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
   }
@@ -40,7 +40,7 @@ export class LoginService {
     // send the token details to backend
     return this
       .http
-      .get(this.properties.TOKENIZE_URL, {headers: headersUrl}) // send authorization headers
+      .get(this.config.TOKENIZE_URL, {headers: headersUrl}) // send authorization headers
       .map(res => res.json()) // .json() to return the data
       .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
   }
