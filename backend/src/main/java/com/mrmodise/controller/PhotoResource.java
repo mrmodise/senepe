@@ -11,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mrmodise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,7 @@ import com.mrmodise.model.User;
 import com.mrmodise.service.PhotoService;
 
 /**
- * 
+ *
  * @author mrmodise
  *
  */
@@ -38,6 +39,9 @@ public class PhotoResource {
 
 	@Autowired
 	private PhotoService photoService;
+
+    @Autowired
+    private UserService userService;
 
 	@RequestMapping(value = "/photo/upload", method = RequestMethod.POST)
 	public String upload(HttpServletRequest request, HttpServletResponse response) {
@@ -62,11 +66,6 @@ public class PhotoResource {
 	public Photo addPhoto(@RequestBody Photo photo) {
 		photo.setImageName(imageName);
 		return photoService.save(photo);
-	}
-
-	@RequestMapping(value = "/photo/user", method = RequestMethod.POST)
-	public List<Photo> getPhotoByUser(@RequestBody User user) {
-		return photoService.findByUser(user);
 	}
 
 	@RequestMapping(value = "/photo/photoId", method = RequestMethod.POST)
@@ -98,7 +97,7 @@ public class PhotoResource {
 				throw new Exception("Image delete failed " + e.getMessage());
 			}
 		}
-		
+
 		// delete the photo details from the database
 		photoService.deleteById(photo.getId());
 
