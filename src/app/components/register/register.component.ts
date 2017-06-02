@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   private user = new User();
   private registered = false;
   private message;
+  private error = false;
 
   constructor(private http: Http, private registerService: RegisterService) {
   }
@@ -31,6 +32,8 @@ export class RegisterComponent implements OnInit {
 
     }, error => {
       console.log(error);
+      this.error = true;
+      this.message = error.message;
     });
   }
 

@@ -28,9 +28,11 @@ public class UserController {
 		final HttpHeaders httpHeaders= new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
-		if(user == null){
+		System.out.print(user.getUsername());
+
+		if(user.getUsername() == null || user.getPassword() == null){
 			// write response to client
-			return ResponseEntity.badRequest().body("{\"message\": \"Please complete registration details\"}");
+			return ResponseEntity.badRequest().body("{\"message\": \"Server Response: Please complete registration details\"}");
 		}else{
 			user.setEnabled(true);
 			user.setLastPasswordResetDate(new Date());

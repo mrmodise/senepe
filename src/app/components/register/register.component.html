@@ -9,6 +9,11 @@
             {{message}}
           </div>
         </div>
+        <div *ngIf="error">
+          <div class="ui warning message">
+            {{message}}
+          </div>
+        </div>
         <br>
         <form class="ui form" (ngSubmit)="onSubmit()">
           <div class="field">
