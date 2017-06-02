@@ -1,20 +1,18 @@
 package com.mrmodise.controller;
 
-import java.util.Date;
-import java.util.Map;
-
-import javax.servlet.ServletException;
-
-import com.sun.net.httpserver.Authenticator;
+import com.mrmodise.model.User;
+import com.mrmodise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mrmodise.model.User;
-import com.mrmodise.service.UserService;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/auth")
@@ -31,19 +29,15 @@ public class UserController {
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
 		if(user == null){
-			// set message
-			message = "{\"message\": \"Please complete registration details\"}";
 			// write response to client
-			return new ResponseEntity<>(message, httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+			return ResponseEntity.badRequest().body("{\"message\": \"Please complete registration details\"}");
 		}else{
 			user.setEnabled(true);
 			user.setLastPasswordResetDate(new Date());
 			// save user details
 			userService.save(user);
-			// set message
-			message = "{\"message\": \"Server Response: User registration successful\"}";
 			// write response to client
-			return new ResponseEntity<>(message, HttpStatus.OK);
+			return ResponseEntity.ok("{\"message\": \"Server Response: User registration was successful\"}");
 		}
 	}
 }
