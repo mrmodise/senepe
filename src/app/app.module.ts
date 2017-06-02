@@ -26,6 +26,7 @@ import { AlbumComponent } from './components/album/album.component';
 import {UserService} from './services/user.service';
 import { AddPhotoComponent } from './components/add-photo/add-photo.component';
 import {AddPhotoService} from './services/add-photo.service';
+import {UploadPhotoService} from './services/upload-photo.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import {AddPhotoService} from './services/add-photo.service';
     HttpModule,
     routing
   ],
-  providers: [RegisterService, PhotoService, LoginService, AuthService, UserService, AddPhotoService],
+  providers: [RegisterService, PhotoService, LoginService, AuthService, UserService, AddPhotoService, UploadPhotoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
