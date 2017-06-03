@@ -30,8 +30,8 @@ export class HttpClientService {
     return this
       .http
       .get(url, {headers: headers})
-      .map(res => res.json())
-      .catch(error => Observable.throw(error.json() || 'Server connection failed!'));;
+      .map(res => res.json()) // .json() to return the data
+      .catch(error => Observable.throw(error.json() || 'Server connection failed!')); // error handlin
   }
 
 }
