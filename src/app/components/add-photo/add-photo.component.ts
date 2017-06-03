@@ -28,12 +28,9 @@ export class AddPhotoComponent implements OnInit {
 
   onSubmit() {
 
-      this.newPhoto.user = this.currentUserName;
-
-    console.log(">> " + JSON.stringify(this.newPhoto));
-      this.addPhotoService.sendPhoto(this.newPhoto).subscribe(photo => {
-        this.photoAdded = true;
-        this.newPhoto = new Photo();
-      }, error => console.log(error));
+    this.addPhotoService.sendPhoto(this.newPhoto).subscribe(photo => {
+      this.photoAdded = true;
+      this.newPhoto = new Photo();
+    }, error => console.log(error.message));
   }
 }
