@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mrmodise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +46,7 @@ public class PhotoResource {
     private UserService userService;
 
 	@RequestMapping(value = "/photo/upload", method = RequestMethod.POST)
-	public String upload(HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity upload(HttpServletRequest request, HttpServletResponse response) {
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -58,14 +60,24 @@ public class PhotoResource {
 			System.out.println(path);
 		} catch (IOException e) {
 			e.printStackTrace();
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
-		return "Upload image successful!";
+		return ResponseEntity.ok("Upload image successful!");
 	}
 
 	@RequestMapping(value = "/photo/add", method = RequestMethod.POST)
-	public Photo addPhoto(@RequestBody Photo photo) {
+	public ResponseEntity addPhoto(@RequestBody Photo photo, Principal principal) {
 		photo.setImageName(imageName);
-		return photoService.save(photo);
+		//photo.setUser();
+		User user = userService.findByUsername(principal.getName());
+		photo.setUser(user);
+		System.out.print("Logged in user" + principal.getName());
+		if(photo.getPhotoName() != null){
+			photoService.save(photo);
+			return ResponseEntity.ok("{\"message\": \"Server Response: Photo successfully added\"");
+		}else{
+			return ResponseEntity.badRequest().body("{\"message\": \"Server Response: Photo was not successfully added\"}");
+		}
 	}
 
 	@RequestMapping(value = "/photo/photoId", method = RequestMethod.POST)
@@ -75,7 +87,7 @@ public class PhotoResource {
 
 	@RequestMapping(value = "/photo/update", method = RequestMethod.POST)
 	public Photo updatePhoto(@RequestBody Photo photo) {
-		Photo currentPhoto = photoService.findById(photo.getId());
+		Photo currentPhoto = photoService.findById(photo.getPhotoId());
 		currentPhoto.setLikes(photo.getLikes());
 		return photoService.save(currentPhoto);
 	}
@@ -99,7 +111,7 @@ public class PhotoResource {
 		}
 
 		// delete the photo details from the database
-		photoService.deleteById(photo.getId());
+		photoService.deleteById(photo.getPhotoId());
 
 		return "Image deletion successful";
 	}

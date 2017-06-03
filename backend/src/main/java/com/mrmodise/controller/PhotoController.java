@@ -10,7 +10,7 @@ import com.mrmodise.model.Photo;
 import com.mrmodise.service.PhotoService;
 
 @RestController
-@RequestMapping("/photo")
+@RequestMapping("/auth")
 public class PhotoController {
 
 	@Autowired

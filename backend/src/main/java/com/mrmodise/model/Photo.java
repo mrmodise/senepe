@@ -50,12 +50,12 @@ public class Photo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getId() {
+	public Long getPhotoId() {
 		return photoId;
 	}
 
-	public void setId(Long id) {
-		photoId = id;
+	public void setPhotoId(Long photoId) {
+		this.photoId = photoId;
 	}
 
 	public String getPhotoName() {
@@ -98,13 +98,13 @@ public class Photo {
 		this.created = created;
 	}
 
-	/*public User getUser() {
+	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}*/
+	}
 
 	public int getLikes() {
 		return likes;
@@ -113,13 +113,4 @@ public class Photo {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-
-	/*public List<Comment> getCommentList() {
-		return commentList;
-	}
-
-	public void setCommentList(List<Comment> commentList) {
-		this.commentList = commentList;
-	}*/
-
 }
