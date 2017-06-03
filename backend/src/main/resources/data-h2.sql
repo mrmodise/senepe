@@ -26,4 +26,4 @@ INSERT INTO PHOTO (PHOTO_ID, CREATED, DESCRIPTION, IMAGE_NAME, LIKES, PHOTO_NAME
 VALUES (1, PARSEDATETIME('06-06-2017', 'dd-MM-yyyy'), 'This is a description test', 'contact-bg.jpg', 0, 'morebodi', 'morebodi pic', 1);
 
 INSERT INTO PHOTO (PHOTO_ID, CREATED, DESCRIPTION, IMAGE_NAME, LIKES, PHOTO_NAME, TITLE, USER_ID)
-VALUES (1, PARSEDATETIME('06-06-2017', 'dd-MM-yyyy'), 'This is a description test', 'blog-img-2.jpg', 0, 'MODISE', 'MODISE pic', 1);
+VALUES (2, PARSEDATETIME('06-06-2017', 'dd-MM-yyyy'), 'This is a description test', 'blog-img-2.jpg', 0, 'MODISE', 'MODISE pic', 1);
