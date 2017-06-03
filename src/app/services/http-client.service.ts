@@ -3,10 +3,10 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 
 /**
- * Custom post method to handle all Http POSTS in the app
- * @param url
- * @param data
- * @returns {Observable<R|T>}
+ * Custom Http handler
+ * @author Morebodi Modise
+ * @class HttpClientService
+ * @date June 2017
  */
 
 @Injectable()
@@ -14,6 +14,12 @@ export class HttpClientService {
 
   constructor(private http: Http) { }
 
+  /**
+   * Custom post method to handle all Http POSTS in the app
+   * @param url
+   * @param data
+   * @returns {Observable<R|T>}
+   */
   public post(url, data, headers) {
     return this
       .http
