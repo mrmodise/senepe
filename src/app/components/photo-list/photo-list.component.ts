@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Photo} from '../../models/photo';
 import {PhotoService} from '../../services/photo.service';
-import {Router} from '@angular/router';
-import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-photo-list',
@@ -11,7 +9,15 @@ import {UserService} from '../../services/user.service';
 })
 export class PhotoListComponent implements OnInit {
 
+  photos: Photo[];
+
+  constructor(private photoService: PhotoService){}
+
   ngOnInit() {
+
+    this.photoService.getAllPhotos().subscribe(photos => {
+      this.photos = photos;
+    }, error => console.log(error));
 
   }
 
