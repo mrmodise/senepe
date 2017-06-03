@@ -3,5 +3,4 @@ export class Photo {
   public likes: number;
   public title: string;
   public imageName: string;
-  public user: string;
 }
