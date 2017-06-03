@@ -3,25 +3,25 @@
     <div class="column">
     </div>
     <div class="column">
-      <div class="ui segment" [hidden]="loginService.isAuthenticated()">
+      <div class="ui segment" [hidden]="loginService.isAuthenticated()" novalidate>
         <div *ngIf="loginFailed">
           <div class="ui error message">
             {{message}}
           </div>
         </div>
         <br>
-        <form class="ui form" (ngSubmit)="onSubmit()" [hidden]="loginService.isAuthenticated()">
+        <form class="ui form" (ngSubmit)="onSubmit()" [formGroup] = "loginForm" [hidden]="loginService.isAuthenticated()">
           <div class="field">
             <div class="field">
               <label>* Username</label>
-              <input type="text" name="username" placeholder="username" [(ngModel)]="model.username" required/>
+              <input formControlName="username"/>
             </div>
             <div class="field">
               <label>* Password</label>
-              <input type="password" name="password" placeholder="password" [(ngModel)]="model.password" required/>
+              <input formControlName="password"/>
             </div>
           </div>
-          <button type="submit" class="ui primary button">Submit</button>
+          <button type="submit" class="ui primary button" [disabled]="loginForm.invalid">Submit</button>
         </form>
       </div>
       <div [hidden]="!loginService.isAuthenticated()">

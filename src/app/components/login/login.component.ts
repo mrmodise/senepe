@@ -5,7 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../services/login.service';
 
 // router
-import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -14,42 +14,44 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  // populate the model properties
-  private model = {username: '', password: ''};
-  private currentUserName;
-  // sets the login failure status
   private loginFailed = false;
-  // logs server error messages
+  private currentUserName;
   private message;
+  loginForm: FormGroup;
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService,
+              private fb: FormBuilder) {
+    this.createForm();
   }
 
   ngOnInit() {
-    // initialize username from local storage
-    this.currentUserName = localStorage.getItem('currentUserName');
+    // get logged in user's name
+    this.currentUserName = this.getLoggedInUser();
+  }
+
+  private createForm(){
+    // group the form elements using the form builder
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   /**
    * Triggered when user hits submit button
    */
   private onSubmit() {
-
     // subscribe to the login service
-    this.loginService.login(this.model).subscribe(data => {
-
+    this.loginService.login(this.loginForm.value).subscribe(user => {
         // login successful, save token to local storage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('currentUserName', this.model.username);
-        this.loginFailed = false;
-
-        //console.log("token " + JSON.stringify(this.parseJwt(localStorage.getItem('token'))))
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('currentUserName', this.loginForm.get('username').value);
+        this.loginForm.reset();
       },
       error => {
+        // login attempt failed
         console.log(error);
-        // server returned error
         this.loginFailed = true;
-        // log its message
         this.message = error.message;
       });
   }
