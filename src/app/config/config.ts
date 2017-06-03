@@ -5,8 +5,11 @@ import {Headers} from '@angular/http';
  * @class Config
  */
 export class Config {
+  // retrieve token from local storage
+  private token = localStorage.getItem("token");
+
   // URLs
-  public GET_PHOTOS_URL = 'http://localhost:8088/photo/photos';
+  public GET_PHOTOS_URL = 'http://localhost:8088/auth/allPhotos';
   public POST_USER_URL = 'http://localhost:8088/auth/register';
   public GET_USER_PHOTOS = 'http://localhost:8088/rest/photo/user';
   public UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
@@ -18,5 +21,8 @@ export class Config {
 
   // headers
   public JSON_HEADERS = new Headers({'Content-Type': 'application/json'});
+
+  // set authorization headers
+  public AUTH_HEADERS: Headers = new Headers({'Content-Type': 'application/json', 'Authorization': this.token});
 
 }
