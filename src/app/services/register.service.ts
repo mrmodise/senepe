@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 // custom
 import {User} from '../models/user';
 import {Config} from '../config/config';
+import {HttpClientService} from "./http-client.service";
 
 /**
  * Handles all logic related to registration
@@ -20,19 +21,17 @@ export class RegisterService {
   config = new Config();
 
   // inject the http instance
-  constructor(private http: Http) {}
+  constructor(private httpClient: HttpClientService) {}
 
   /**
    * Pings the server to save registration information
    * @param user
-   * @returns {Observable<R|T>}
+   * @returns {Observable<User>}
    */
   public register(user: User): Observable<User> {
     return this
-      .http
-      .post(this.config.POST_USER_URL, JSON.stringify(user), {headers: this.config.JSON_HEADERS}) // stringify payload
-      .map(res => res.json()) // map response
-      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // catch any error if it exists
+      .httpClient
+      .post(this.config.POST_USER_URL, user, this.config.JSON_HEADERS);
   }
 
 

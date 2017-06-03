@@ -11,6 +11,7 @@ import {Config} from '../config/config';
 
 // router
 import {Router} from '@angular/router';
+import {HttpClientService} from "./http-client.service";
 
 @Injectable()
 export class LoginService {
@@ -18,7 +19,7 @@ export class LoginService {
   // make use of custom configuration class
   config = new Config();
 
-  constructor(private http: Http, private router: Router) {
+  constructor(private httpClient: HttpClientService, private router: Router) {
   }
 
   /**
@@ -27,22 +28,9 @@ export class LoginService {
    * @returns {Observable<User>}
    */
   public login(model): Observable<User> {
-    return this.http
-      .post(this.config.LOGIN_URL, JSON.stringify(model), {headers: this.config.JSON_HEADERS}) // stringify payload and post to server
-      .map(res => res.json()) // .json() to return the data
-      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
-  }
-
-  // for each login session we send a token
-  public sendToken(token) {
-    // set authorization headers
-    const headersUrl = new Headers({'Authorization': 'Bearer ' + token});
-    // send the token details to backend
     return this
-      .http
-      .get(this.config.TOKENIZE_URL, {headers: headersUrl}) // send authorization headers
-      .map(res => res.json()) // .json() to return the data
-      .catch(error => Observable.throw(error.json() || 'Connection To Server Failed')); // error handling
+      .httpClient
+      .post(this.config.LOGIN_URL, model, this.config.JSON_HEADERS);
   }
 
   /**

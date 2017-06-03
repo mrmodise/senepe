@@ -1,6 +1,6 @@
 // defaults
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
 // custom
@@ -9,6 +9,7 @@ import {Config} from '../config/config';
 
 // observable
 import 'rxjs/Rx';
+import {HttpClientService} from "./http-client.service";
 
 /**
  * Handles all logic related to photos
@@ -24,22 +25,17 @@ export class PhotoService {
   config = new Config();
 
   // inject the http instance
-  constructor(private http: Http) {
+  constructor(private httpClient: HttpClientService) {
   }
 
   /**
-   * Pings the server for all photos avaibles
-   * @returns {Observable<R|T>}
+   * Pings the server for all available photos
+   * @returns {Observable<Photo[]>}
    */
-  public getAllPhotos(): Observable<Photo> {
-    // Observable to return all photos every 10 seconds.
-    return Observable
-      .interval(10000)
-      .switchMap(() =>
-        this.http
-          .get(this.config.GET_PHOTOS_URL, {headers: this.config.JSON_HEADERS}) // stringify payload
-          .map(res => res.json()) // map response
-          .catch(error => error.json())); // catch any error if it exists
+  public getAllPhotos(): Observable<Photo[]> {
+    return this
+      .httpClient
+      .get(this.config.GET_PHOTOS_URL, this.config.AUTH_HEADERS);
   }
 
   /**
@@ -48,10 +44,9 @@ export class PhotoService {
    * @returns {Observable<R|T>}
    */
   public getPhotosByUser(photoId: number): Observable<Photo> {
-    return this.http
-      .post(this.config.GET_USER_PHOTOS, photoId, {headers: this.config.JSON_HEADERS}) // stringify payload
-      .map(res => res.json()) // map response
-      .catch(error => error.json()); // catch any error if it exists
+    return this
+      .httpClient
+      .post(this.config.GET_USER_PHOTOS, photoId, this.config.JSON_HEADERS);
   }
 
   /**
@@ -60,12 +55,7 @@ export class PhotoService {
    * @returns {Observable<R|T>}
    */
   public updatePhoto(photo: Photo): Observable<Photo> {
-    return this.http
-      .post(this.config.UPDATE_PHOTO_URL, photo, {headers: this.config.JSON_HEADERS}) // stringify payload
-      .map(res => res.toString()) // map response
-      .catch(error => error.toString()); // catch any error if it exists
+    return this.httpClient
+      .post(this.config.UPDATE_PHOTO_URL, photo, {headers: this.config.JSON_HEADERS});
   }
-
-
-
 }
