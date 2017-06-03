@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data.token);
         localStorage.setItem('currentUserName', this.model.username);
         this.loginFailed = false;
+
+        //console.log("token " + JSON.stringify(this.parseJwt(localStorage.getItem('token'))))
       },
       error => {
         console.log(error);
@@ -52,6 +54,11 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  /*parseJwt(token){
+    var base64URL = token.split('.')[1];
+    var base64 = base64URL.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }*/
   /**
    * Returns the currently logged in user
    * @returns {string|null}
