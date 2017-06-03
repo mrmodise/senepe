@@ -3,14 +3,14 @@
     <div class="column">
     </div>
     <div class="column">
-      <div class="ui segment" [hidden]="loginService.isAuthenticated()" novalidate>
+      <div class="ui segment" [hidden]="loginService.isAuthenticated()">
         <div *ngIf="loginFailed">
           <div class="ui error message">
             {{message}}
           </div>
         </div>
         <br>
-        <form class="ui form" (ngSubmit)="onSubmit()" [formGroup] = "loginForm" [hidden]="loginService.isAuthenticated()">
+        <form class="ui form" (ngSubmit)="onSubmit()" [formGroup] = "loginForm" [hidden]="loginService.isAuthenticated()" novalidate>
           <div class="field">
             <div class="field">
               <label>* Username</label>
