@@ -14,11 +14,11 @@
           <div class="field">
             <div class="field">
               <label>* Username</label>
-              <input formControlName="username"/>
+              <input maxlength="16" formControlName="username"/>
             </div>
             <div class="field">
               <label>* Password</label>
-              <input formControlName="password"/>
+              <input type="password" maxlength="16" formControlName="password"/>
             </div>
           </div>
           <button type="submit" class="ui primary button" [disabled]="loginForm.invalid">Submit</button>
