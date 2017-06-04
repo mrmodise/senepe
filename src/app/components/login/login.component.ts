@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // get logged in user's name
-    this.currentUserName = this.getLoggedInUser();
   }
 
   private createForm(){
@@ -46,6 +44,7 @@ export class LoginComponent implements OnInit {
         // login successful, save token to local storage
         localStorage.setItem('token', user.token);
         localStorage.setItem('currentUserName', this.loginForm.get('username').value);
+        this.currentUserName = this.loginForm.get('username').value;
         this.loginForm.reset();
       },
       error => {
@@ -65,7 +64,7 @@ export class LoginComponent implements OnInit {
    * Returns the currently logged in user
    * @returns {string|null}
    */
-  public getLoggedInUser() {
+  public getLoggedInUser(): string {
     return localStorage.getItem('currentUserName');
   }
 
