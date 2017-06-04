@@ -20,7 +20,7 @@ export class HttpClientService {
    * @param data
    * @returns {Observable<R|T>}
    */
-  public post(url, data, headers) {
+  public post(url, data, headers): any {
     return this
       .http
       .post(url, JSON.stringify(data), {headers: headers}) // stringify payload and post to server
@@ -33,7 +33,7 @@ export class HttpClientService {
    * @param url
    * @returns {Observable<R|T>}
    */
-  public get(url, headers) {
+  public get(url, headers): any {
     return this
       .http
       .get(url, {headers: headers})
