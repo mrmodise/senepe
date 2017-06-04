@@ -11,7 +11,7 @@ export class UploadPhotoService {
     this.filesToUpload = [];
   }
 
-  upload(){
+  public upload(){
     this.makeFileRequest(this.config.FILE_REQUEST_URL, [], this.filesToUpload).then((result => {
         console.log(result);
       }), (error) => {
@@ -20,11 +20,11 @@ export class UploadPhotoService {
     );
   }
 
-  fileChangeEvent(fileInput: any){
+  public fileChangeEvent(fileInput: any){
     this.filesToUpload = <Array<File>> fileInput.target.files;
   }
 
-  makeFileRequest(url: string, params: Array<string>, files: Array<File>){
+  private makeFileRequest(url: string, params: Array<string>, files: Array<File>){
     return new Promise((resolve, reject) => {
       var formData: any = new FormData();
       var xhr = new XMLHttpRequest();
@@ -41,7 +41,7 @@ export class UploadPhotoService {
             reject(xhr.response);
           }
         }
-      }
+      };
 
       xhr.open('POST', url, true);
       xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
