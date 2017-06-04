@@ -4,6 +4,7 @@ import {User} from '../../models/user';
 import {Photo} from '../../models/photo';
 import {AddPhotoService} from "../../services/add-photo.service";
 import {UploadPhotoService} from "../../services/upload-photo.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-add-photo',
@@ -12,25 +13,43 @@ import {UploadPhotoService} from "../../services/upload-photo.service";
 })
 export class AddPhotoComponent implements OnInit {
 
-  // retrieve loggedin user from local storage
-  private currentUserName = localStorage.getItem('currentUserName');
-  private token = localStorage.getItem('token');
-  newPhoto: Photo = new Photo();
-  private photoAdded: boolean = false;
+  addPhotoForm: FormGroup;
+  newPhoto: Photo;
+  private photoAdded = false;
+  private message;
 
   constructor(private userService: UserService,
               private addPhotoService: AddPhotoService,
-              private uploadPhotoService: UploadPhotoService) {
+              private uploadPhotoService: UploadPhotoService,
+              private fb: FormBuilder) {
+    this.createForm();
   }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-
-    this.addPhotoService.sendPhoto(this.newPhoto).subscribe(photo => {
+  /**
+   * triggered when the user hits the submit button
+   */
+  private onSubmit() {
+    this.newPhoto = this.addPhotoForm.value;
+    this.addPhotoService.sendPhoto(this.newPhoto).subscribe(message => {
       this.photoAdded = true;
       this.newPhoto = new Photo();
+      this.message = message;
     }, error => console.log(error.message));
   }
+
+  /**
+   * using the form build, create form properties
+   */
+  private createForm(){
+    this.addPhotoForm = this.fb.group({
+      photoName: ['', Validators.required],
+      title: ['', Validators.required],
+      description: ['']
+    })
+  }
+
+
 }

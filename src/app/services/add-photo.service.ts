@@ -15,9 +15,9 @@ export class AddPhotoService {
   /**
    * Pings server with request to save a photo
    * @param photo
-   * @returns {Observable<Photo>}
+   * @returns {Observable<string>}
    */
-  public sendPhoto(photo: Photo): Observable<Photo> {
+  public sendPhoto(photo: Photo): Observable<string> {
     return this
       .httpClient
       .post(this.config.ADD_PHOTO_URL, photo, this.config.AUTH_HEADERS);
