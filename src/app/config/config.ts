@@ -23,6 +23,6 @@ export class Config {
   public JSON_HEADERS = new Headers({'Content-Type': 'application/json'});
 
   // set authorization headers
-  public AUTH_HEADERS: Headers = new Headers({'Content-Type': 'application/json', 'Authorization': this.token});
+  public AUTH_HEADERS = new Headers({'Content-Type': 'application/json', 'Authorization': this.token});
 
 }
