@@ -54,6 +54,6 @@ export class LoginService {
     localStorage.setItem('token', '');
     localStorage.setItem('currentUserName', '');
     this.router.navigate(['home']);
-    alert('You have been logged out');
+    //alert('You have been logged out');
   }
 }
