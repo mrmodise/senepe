@@ -74,7 +74,7 @@ public class PhotoResource {
 		System.out.print("Logged in user" + principal.getName());
 		if(photo.getPhotoName() != null){
 			photoService.save(photo);
-			return ResponseEntity.ok("{\"message\": \"Server Response: Photo successfully added\"");
+			return ResponseEntity.ok("{\"message\": \"Server Response: Photo successfully added\"}");
 		}else{
 			return ResponseEntity.badRequest().body("{\"message\": \"Server Response: Photo was not successfully added\"}");
 		}

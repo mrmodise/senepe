@@ -26,9 +26,9 @@ public class Photo {
 	private Long photoId;
 
 	private String photoName;
-	
+
 	private String title;
-	
+
 	private String description;
 
 	private String imageName;
@@ -112,5 +112,19 @@ public class Photo {
 
 	public void setLikes(int likes) {
 		this.likes = likes;
+	}
+
+	@Override
+	public String toString() {
+		return "Photo{" +
+				"photoId=" + photoId +
+				", photoName='" + photoName + '\'' +
+				", title='" + title + '\'' +
+				", description='" + description + '\'' +
+				", imageName='" + imageName + '\'' +
+				", created=" + created +
+				", user=" + user +
+				", likes=" + likes +
+				'}';
 	}
 }
