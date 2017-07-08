@@ -7,6 +7,9 @@ A photo sharing Web app developed in Spring boot (backend) and Angular 4 (fronte
 Clone the project to your preferred location and ``npm install`` to install dependencies. The project was generated using ``angular CLI``, as such, providing ``ng serve`` should run the project.
 
 ### Tests
+```
+Run ng test to execute all tests. Currently all 20 tests should pass
+```
 Am busy finishing off the unit tests for all components and services. So far, these are completed:
 
 - AppComponent
