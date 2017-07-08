@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AlbumComponent } from './album.component';
+import {HttpModule} from '@angular/http';
+import {PhotoService} from '../../services/photo.service';
+import {HttpClientService} from '../../services/http-client.service';
 import {RouterTestingModule} from '@angular/router/testing';
-import {AppModule} from '../../app.module';
+import {UserService} from '../../services/user.service';
 
 describe('AlbumComponent', () => {
   let component: AlbumComponent;
@@ -10,7 +12,9 @@ describe('AlbumComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule ]
+      declarations: [AlbumComponent],
+      providers: [PhotoService, HttpClientService, UserService],
+      imports: [HttpModule, RouterTestingModule]
     })
     .compileComponents();
   }));
@@ -21,7 +25,7 @@ describe('AlbumComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create AlbumComponent', () => {
     expect(component).toBeTruthy();
   });
 });
