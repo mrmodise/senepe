@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {AppModule} from '../../app.module';
 import { HomeComponent } from './home.component';
+import {PhotoListComponent} from '../photo-list/photo-list.component';
+import {SidePanelComponent} from '../side-panel/side-panel.component';
+import {PhotoService} from '../../services/photo.service';
+import {HttpClientService} from '../../services/http-client.service';
+import {HttpModule} from '@angular/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -9,7 +12,9 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule ]
+      declarations: [PhotoListComponent, SidePanelComponent, HomeComponent],
+      providers: [PhotoService,HttpClientService],
+      imports: [HttpModule]
     })
     .compileComponents();
   }));
@@ -20,7 +25,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 });
