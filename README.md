@@ -10,7 +10,7 @@ Clone the project to your preferred location and ``npm install`` to install depe
 Am busy finishing off the unit tests for all components and services. So far, these are completed:
 
 - AppComponent
-- AddPhotoComponent (WIP - work in progress)
+- AddPhotoComponent
 
 ### Summary 
 
