@@ -19,7 +19,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it (`should render 'Senepe' title in h2 tag`, async(() => {
+  it (`should render 'Senepe' text in h2 tag`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

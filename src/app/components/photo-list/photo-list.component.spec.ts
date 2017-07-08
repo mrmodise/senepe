@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PhotoListComponent } from './photo-list.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppModule} from '../../app.module';
 
 describe('PhotoListComponent', () => {
   let component: PhotoListComponent;
@@ -8,7 +9,7 @@ describe('PhotoListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PhotoListComponent ]
+      imports: [AppModule, RouterTestingModule ]
     })
     .compileComponents();
   }));
