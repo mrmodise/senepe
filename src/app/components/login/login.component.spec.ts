@@ -43,7 +43,7 @@ describe('LoginComponent', () => {
   }));
 
  it('loginFailed should be true if error occurred', async(() => {
-    updateForm(username, password);
+    updateForm(blankUser.username, blankUser.password);
     component.onSubmit();
     expect(component.loginFailed).toBeFalsy();
   }));
