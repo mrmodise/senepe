@@ -21,7 +21,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 Run `mvn package` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
 
-`Note` project is still under development. Updated everyday `:)`
+`Note` project is still under development. Updated weekly `:)`
 
 Completed modules: `registration`, `login` and `photo uploading`.
 
