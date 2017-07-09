@@ -1,4 +1,4 @@
-[![Packagist](badges/java-v8-red.svg)]()  [![Packagist](badges/angular-v4-orange.svg)]() [![Packagist](badges/orm.svg)]()
+[![Packagist](badges/java-v8-red.svg)]()  [![Packagist](badges/angular-v4-orange.svg)]() [![Packagist](/badges/orm.svg)]()
 
 ### Senepe
 A photo sharing Web app developed in Spring boot (backend) and Angular 4 (frontend). 
