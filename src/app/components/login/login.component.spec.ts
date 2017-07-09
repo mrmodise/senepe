@@ -33,6 +33,13 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   }));
 
+  it(`should render '* Username' on label tag`, (() => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('label').textContent).toEqual('* Username');
+  }));
+
   it('should have default properties', fakeAsync(() => {
     expect(component.loginForm.value).toEqual(blankUser);
   }));
