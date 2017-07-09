@@ -1,4 +1,4 @@
-[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?style=plastic)]()  [![Packagist](https://img.shields.io/badge/java-v8-red.svg)]() [![Packagist](https://img.shields.io/badge/angular-v4-orange.svg)]()
+[![Packagist](badges/java-v8-red.svg)]()  [![Packagist](badges/angular-v4-orange.svg)]() [![Packagist](badges/orm.svg)]()
 
 ### Senepe
 A photo sharing Web app developed in Spring boot (backend) and Angular 4 (frontend). 
@@ -28,7 +28,7 @@ Completed modules: `registration`, `login` and `photo uploading`.
 
 More refactoring to be done.....
 
-### Licence
+### License
 ```
 The MIT License (MIT)
 
