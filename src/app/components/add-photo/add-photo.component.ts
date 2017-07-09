@@ -14,7 +14,7 @@ export class AddPhotoComponent implements OnInit {
 
   addPhotoForm: FormGroup;
   newPhoto: Photo;
-  private photoAdded = false;
+  photoAdded = false;
   private message;
 
   constructor(private userService: UserService,
@@ -30,13 +30,16 @@ export class AddPhotoComponent implements OnInit {
   /**
    * triggered when the user hits the submit button
    */
-  private onSubmit() {
+  public onSubmit() {
     this.newPhoto = this.addPhotoForm.value;
     this.addPhotoService.sendPhoto(this.newPhoto).subscribe(message => {
       this.photoAdded = true;
       this.newPhoto = new Photo();
       this.message = message;
-    }, error => console.log(error.message));
+    }, error => {
+      console.log(error.message);
+      this.photoAdded = false;
+    });
   }
 
   /**

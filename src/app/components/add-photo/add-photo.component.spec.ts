@@ -1,17 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddPhotoComponent } from './add-photo.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {AppModule} from '../../app.module';
+import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {AddPhotoComponent} from './add-photo.component';
+import {UserService} from "../../services/user.service";
+import {AddPhotoService} from "../../services/add-photo.service";
+import {UploadPhotoService} from "../../services/upload-photo.service";
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientService} from "../../services/http-client.service";
+import {HttpModule} from "@angular/http";
 
 describe('AddPhotoComponent', () => {
   let component: AddPhotoComponent;
   let fixture: ComponentFixture<AddPhotoComponent>;
+  let blankForm = {photoName: '', title: '', description: ''};
+  let populatedForm = {photoName: 'Rekz', title: 'Rekz photo', description: 'This is Rekz photo'};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule ]
+      declarations: [AddPhotoComponent],
+      providers: [UserService, AddPhotoService, UploadPhotoService, HttpClientService],
+      imports: [ReactiveFormsModule, HttpModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,16 +28,39 @@ describe('AddPhotoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create add photo form', () => {
+  it('should create AddPhotoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it (`should render 'Add your photo' text in h2 tag`, async(() => {
+  it(`should render 'Add your photo' text in h2 tag`, () => {
     const fixture = TestBed.createComponent(AddPhotoComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Add your photo');
+    expect(compiled.querySelector('h2').textContent).toEqual('Add your photo');
+  });
+
+  it('should have default properties', fakeAsync(() => {
+    expect(component.addPhotoForm.value).toEqual(blankForm);
   }));
 
+  it('should initialize form fields', fakeAsync(() => {
+      updateFormAttributes('Rekz','Rekz photo', 'This is Rekz photo');
+      expect(component.addPhotoForm.value).toEqual(populatedForm);
+  }));
+
+  it('photoAdded should be false if error occurred', async(() => {
+    updateFormAttributes(blankForm.photoName, blankForm.title, blankForm.description);
+    component.onSubmit();
+    expect(component.photoAdded).toBeFalsy();
+  }));
+
+  /**
+   *  create reusable function for a dry spec.
+   */
+  function updateFormAttributes(photoName, title, description) {
+    component.addPhotoForm.controls['photoName'].setValue(photoName);
+    component.addPhotoForm.controls['title'].setValue(title);
+    component.addPhotoForm.controls['description'].setValue(description);
+  }
 
 });
