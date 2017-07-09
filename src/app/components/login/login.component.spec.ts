@@ -1,6 +1,6 @@
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import {HttpModule} from '@angular/http';
+import {Http, HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {HttpClientService} from '../../services/http-client.service';
@@ -10,14 +10,14 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let username = 'test';
-  let password = 'password';
-  let populatedUser = {username: password, password: password};
+  let password = 'test';
+  let populatedUser = {username: username, password: password};
   let blankUser = {username: '', password: ''};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [LoginService, HttpClientService],
+      providers: [LoginService, HttpClientService, Http],
       imports: [HttpModule, ReactiveFormsModule, RouterTestingModule ]
     })
     .compileComponents();
@@ -42,10 +42,11 @@ describe('LoginComponent', () => {
     expect(component.loginForm.value).toEqual(populatedUser);
   }));
 
- /* it('loginFailed should be true if error occurred', fakeAsync(() => {
+  //TODO: to refactor this test to work as per expectation
+ /*it('loginFailed should be true if error occurred', fakeAsync(() => {
     updateForm(username, password);
     component.onSubmit();
-    expect(component.loginFailed).toEqual(true);
+    expect(component.loginFailed).toThrowError();
   }));*/
 
   /**
