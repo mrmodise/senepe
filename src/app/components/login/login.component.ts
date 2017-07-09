@@ -14,9 +14,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-  private loginFailed = false;
-  private currentUserName;
-  private message;
+  loginFailed = false;
+  currentUserName;
+  message;
   loginForm: FormGroup;
 
   constructor(private loginService: LoginService,
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   /**
    * Triggered when user hits submit button
    */
-  private onSubmit() {
+  public onSubmit() {
     // subscribe to the login service
     this.loginService.login(this.loginForm.value).subscribe(user => {
         // login successful, save token to local storage

@@ -1,6 +1,6 @@
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import {Http, HttpModule} from '@angular/http';
+import { HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {HttpClientService} from '../../services/http-client.service';
@@ -17,7 +17,7 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [LoginService, HttpClientService, Http],
+      providers: [LoginService, HttpClientService],
       imports: [HttpModule, ReactiveFormsModule, RouterTestingModule ]
     })
     .compileComponents();
@@ -42,12 +42,11 @@ describe('LoginComponent', () => {
     expect(component.loginForm.value).toEqual(populatedUser);
   }));
 
-  //TODO: to refactor this test to work as per expectation
- /*it('loginFailed should be true if error occurred', fakeAsync(() => {
+ it('loginFailed should be true if error occurred', async(() => {
     updateForm(username, password);
     component.onSubmit();
-    expect(component.loginFailed).toThrowError();
-  }));*/
+    expect(component.loginFailed).toBeFalsy();
+  }));
 
   /**
    *  create reusable function for a dry spec.
