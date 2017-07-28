@@ -9,7 +9,7 @@ import {Config} from '../config/config';
 
 // observable
 import 'rxjs/Rx';
-import {HttpClientService} from "./http-client.service";
+import {HttpClientService} from './http-client.service';
 
 /**
  * Handles all logic related to photos

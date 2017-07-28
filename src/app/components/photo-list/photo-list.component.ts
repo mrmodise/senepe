@@ -11,7 +11,8 @@ export class PhotoListComponent implements OnInit {
 
   photos: Photo[];
 
-  constructor(private photoService: PhotoService){}
+  constructor(private photoService: PhotoService) {
+  }
 
   ngOnInit() {
 
@@ -19,6 +20,10 @@ export class PhotoListComponent implements OnInit {
       this.photos = photos;
     }, error => console.log(error));
 
+  }
+
+  onSelect(photo) {
+    console.log('test');
   }
 
 }

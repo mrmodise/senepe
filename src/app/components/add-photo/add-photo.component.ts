@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {Photo} from '../../models/photo';
-import {AddPhotoService} from "../../services/add-photo.service";
-import {UploadPhotoService} from "../../services/upload-photo.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AddPhotoService} from '../../services/add-photo.service';
+import {UploadPhotoService} from '../../services/upload-photo.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-photo',
@@ -45,7 +45,7 @@ export class AddPhotoComponent implements OnInit {
   /**
    * using the form build, create form properties
    */
-  private createForm(){
+  private createForm() {
     this.addPhotoForm = this.fb.group({
       photoName: ['', Validators.required],
       title: ['', Validators.required],
@@ -53,5 +53,8 @@ export class AddPhotoComponent implements OnInit {
     })
   }
 
+  uploadPhoto() {
+    this.uploadPhotoService.upload()
+  }
 
 }

@@ -10,10 +10,10 @@ import {User} from '../../models/user';
 })
 export class RegisterComponent implements OnInit {
 
-  private user = new User();
-  private registered = false;
-  private message;
-  private error = false;
+  user = new User();
+  registered = false;
+  message;
+  error = false;
 
   constructor(private http: Http, private registerService: RegisterService) {
   }
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onSubmit() {
+  onSubmit() {
 
     console.log('Data ' + JSON.stringify(this.user));
 

@@ -6,7 +6,7 @@ import {Headers} from '@angular/http';
  */
 export class Config {
   // retrieve token from local storage
-  private token = localStorage.getItem("token");
+  private token = localStorage.getItem('token');
 
   // URLs
   public GET_PHOTOS_URL = 'http://localhost:8088/auth/allPhotos';

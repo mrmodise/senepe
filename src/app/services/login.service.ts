@@ -11,7 +11,7 @@ import {Config} from '../config/config';
 
 // router
 import {Router} from '@angular/router';
-import {HttpClientService} from "./http-client.service";
+import {HttpClientService} from './http-client.service';
 
 @Injectable()
 export class LoginService {
@@ -54,6 +54,6 @@ export class LoginService {
     localStorage.setItem('token', '');
     localStorage.setItem('currentUserName', '');
     this.router.navigate(['home']);
-    //alert('You have been logged out');
+    // alert('You have been logged out');
   }
 }

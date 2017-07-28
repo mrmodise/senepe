@@ -1,12 +1,12 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {TestBed, inject} from '@angular/core/testing';
 import {AppModule} from '../app.module';
 import {RouterTestingModule} from '@angular/router/testing';
-import { UserService } from './user.service';
+import {UserService} from './user.service';
 
 describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule ]
+      imports: [AppModule, RouterTestingModule]
     });
   });
 

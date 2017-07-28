@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   currentUserName;
   message;
   loginForm: FormGroup;
+  isLoggedIn = false;
 
   constructor(private loginService: LoginService,
               private fb: FormBuilder) {
@@ -25,9 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoggedIn = this.loginService.isAuthenticated();
   }
 
-  private createForm(){
+  private createForm() {
     // group the form elements using the form builder
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
