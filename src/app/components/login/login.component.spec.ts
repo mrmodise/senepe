@@ -4,15 +4,15 @@ import { HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {HttpClientService} from '../../services/http-client.service';
-import {RouterTestingModule} from "@angular/router/testing";
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let username = 'test';
-  let password = 'test';
-  let populatedUser = {username: username, password: password};
-  let blankUser = {username: '', password: ''};
+  const username = 'test';
+  const password = 'test';
+  const populatedUser = {username: username, password: password};
+  const blankUser = {username: '', password: ''};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,7 +34,6 @@ describe('LoginComponent', () => {
   }));
 
   it(`should render '* Username' on label tag`, (() => {
-    const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('label').textContent).toEqual('* Username');

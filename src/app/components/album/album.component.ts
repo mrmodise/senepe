@@ -16,10 +16,10 @@ import {UserService} from '../../services/user.service';
 export class AlbumComponent implements OnInit {
 
   // variables initialization
-  private photos: Photo[];
-  private user;
-  private selectedPhoto: Photo;
-  private currentUser = localStorage.getItem('currentUserName');
+  photos: Photo[];
+  user;
+  selectedPhoto: Photo;
+  currentUser = localStorage.getItem('currentUserName');
 
   // DIs
   constructor(private photoService: PhotoService,

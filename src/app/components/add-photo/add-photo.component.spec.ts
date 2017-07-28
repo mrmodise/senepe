@@ -1,17 +1,17 @@
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import {AddPhotoComponent} from './add-photo.component';
-import {UserService} from "../../services/user.service";
-import {AddPhotoService} from "../../services/add-photo.service";
-import {UploadPhotoService} from "../../services/upload-photo.service";
-import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientService} from "../../services/http-client.service";
-import {HttpModule} from "@angular/http";
+import {UserService} from '../../services/user.service';
+import {AddPhotoService} from '../../services/add-photo.service';
+import {UploadPhotoService} from '../../services/upload-photo.service';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientService} from '../../services/http-client.service';
+import {HttpModule} from '@angular/http';
 
 describe('AddPhotoComponent', () => {
   let component: AddPhotoComponent;
   let fixture: ComponentFixture<AddPhotoComponent>;
-  let blankForm = {photoName: '', title: '', description: ''};
-  let populatedForm = {photoName: 'Rekz', title: 'Rekz photo', description: 'This is Rekz photo'};
+  const blankForm = {photoName: '', title: '', description: ''};
+  const populatedForm = {photoName: 'Rekz', title: 'Rekz photo', description: 'This is Rekz photo'};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,6 @@ describe('AddPhotoComponent', () => {
   });
 
   it(`should render 'Add your photo' text in h2 tag`, () => {
-    const fixture = TestBed.createComponent(AddPhotoComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toEqual('Add your photo');
@@ -44,8 +43,8 @@ describe('AddPhotoComponent', () => {
   }));
 
   it('should initialize form fields', fakeAsync(() => {
-      updateFormAttributes('Rekz','Rekz photo', 'This is Rekz photo');
-      expect(component.addPhotoForm.value).toEqual(populatedForm);
+    updateFormAttributes('Rekz', 'Rekz photo', 'This is Rekz photo');
+    expect(component.addPhotoForm.value).toEqual(populatedForm);
   }));
 
   it('photoAdded should be false if error occurred', async(() => {

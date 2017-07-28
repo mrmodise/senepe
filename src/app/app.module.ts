@@ -27,7 +27,7 @@ import {UserService} from './services/user.service';
 import {AddPhotoComponent} from './components/add-photo/add-photo.component';
 import {AddPhotoService} from './services/add-photo.service';
 import {UploadPhotoService} from './services/upload-photo.service';
-import {HttpClientService} from "./services/http-client.service";
+import {HttpClientService} from './services/http-client.service';
 
 @NgModule({
   declarations: [
@@ -42,13 +42,8 @@ import {HttpClientService} from "./services/http-client.service";
     AlbumComponent,
     AddPhotoComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    routing
-  ],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, routing],
+  // tslint:disable-next-line:max-line-length
   providers: [RegisterService, PhotoService, LoginService, HttpClientService, AuthService, UserService, AddPhotoService, UploadPhotoService],
   bootstrap: [AppComponent]
 })

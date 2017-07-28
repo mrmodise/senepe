@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Photo} from '../models/photo';
 import {Config} from '../config/config';
-import {HttpClientService} from "./http-client.service";
+import {HttpClientService} from './http-client.service';
 
 @Injectable()
 export class AddPhotoService {

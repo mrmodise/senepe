@@ -15,7 +15,7 @@ export class AddPhotoComponent implements OnInit {
   addPhotoForm: FormGroup;
   newPhoto: Photo;
   photoAdded = false;
-  private message;
+  message;
 
   constructor(private userService: UserService,
               private addPhotoService: AddPhotoService,
