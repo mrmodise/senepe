@@ -19,29 +19,20 @@ export class AlbumComponent implements OnInit {
   photos: Photo[];
   user;
   selectedPhoto: Photo;
+  parentRouter: Router;
   currentUser = localStorage.getItem('currentUserName');
 
-  // DIs
   constructor(private photoService: PhotoService,
               private router: Router,
               private userService: UserService) {
   }
 
   ngOnInit() {
-    //
-   /* this.userService.getUserByName(this.currentUser).subscribe(user => {
-      this.user = user.username;
-
-      this.photoService.getPhotosByUser(this.user).subscribe(photos => {
-        console.log(photos);
-
-      }, error => console.log(error))
-    }, error => console.log(error));*/
   }
 
   onSelect(photo: Photo) {
     this.selectedPhoto = photo;
-    this.router.navigate(['/image-details'], this.selectedPhoto.photoId);
+    this.parentRouter.navigate(['/image-details', this.selectedPhoto.photoId]);
   }
 
 }
