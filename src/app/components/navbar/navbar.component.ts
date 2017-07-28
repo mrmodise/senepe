@@ -9,10 +9,13 @@ import {LoginService} from '../../services/login.service';
 })
 export class NavbarComponent implements OnInit {
 
+  isLoggedIn: boolean;
+
   constructor(private router: Router, private loginService: LoginService) {
   }
 
   ngOnInit() {
+    this.isLoggedIn = this.loginService.isAuthenticated()
   }
 
   logout() {

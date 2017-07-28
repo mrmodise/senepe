@@ -5,7 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../services/login.service';
 
 // router
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',

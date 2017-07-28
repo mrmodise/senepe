@@ -4,7 +4,7 @@
       <img src="resources/static/pic/senepe_logo.png" height="10%" width="100%" alt="logo">
     </a>
     <a class="item" routerLink="/home">
-      <h2>Senepe</h2>
+      <h2 id="badge">Senepe</h2>
     </a>
     <a class="item" routerLink="/home">
       Home
@@ -14,13 +14,13 @@
     </a>
   </div>
   <div class="right menu">
-    <a  class="item" *ngIf="!loginService.isAuthenticated()" routerLink="register">
+    <a  class="item" *ngIf="isLoggedIn" routerLink="register">
       Sign up
     </a>
-    <a  class="item" *ngIf="!loginService.isAuthenticated()" routerLink="login">
+    <a  class="item" *ngIf="isLoggedIn" routerLink="login">
       Login
     </a>
-    <a class="item" routerLink="login" *ngIf="loginService.isAuthenticated()" (click)="logout()">
+    <a class="item" routerLink="login" *ngIf="isLoggedIn" (click)="logout()">
       Logout
     </a>
   </div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Config} from '../config/config';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class UploadPhotoService {
     this.filesToUpload = [];
   }
 
-  public upload(){
+  public upload() {
     this.makeFileRequest(this.config.FILE_REQUEST_URL, [], this.filesToUpload).then((result => {
         console.log(result);
       }), (error) => {
@@ -20,24 +20,24 @@ export class UploadPhotoService {
     );
   }
 
-  public fileChangeEvent(fileInput: any){
+  public fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>> fileInput.target.files;
   }
 
-  private makeFileRequest(url: string, params: Array<string>, files: Array<File>){
+  private makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
     return new Promise((resolve, reject) => {
-      var formData: any = new FormData();
-      var xhr = new XMLHttpRequest();
+      const formData: any = new FormData();
+      const xhr = new XMLHttpRequest();
 
-      for(var i = 0; i < files.length; i++){
+      for (let i = 0; i < files.length; i++) {
         formData.append('upload[]', files[i], files[i].name);
       }
 
-      xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4){
-          if (xhr.status == 200){
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
             alert('Upload successful');
-          }else{
+          } else {
             reject(xhr.response);
           }
         }
