@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
 
-    this.registerService.register(this.user).subscribe(data => {
+    this.registerService.register(this.registerForm.value).subscribe(data => {
       this.registered = true;
       this.message = data.message;
 
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   private createForm(): void{
     this.registerForm = this.fb.group({
         username: ['', Validators.required],
-        fullName: ['', Validators.required],
+        fullname: ['', Validators.required],
         email: ['', Validators.required],
         password: ['', Validators.required]
     });
