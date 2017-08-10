@@ -3,14 +3,14 @@
     <div class="column">
     </div>
     <div class="column">
-      <div class="ui segment" [hidden]="!isLoggedIn">
+      <div class="ui segment" [hidden]="isLoggedIn">
         <div *ngIf="loginFailed">
           <div class="ui error message">
             {{message}}
           </div>
         </div>
         <br>
-        <form class="ui form" (ngSubmit)="onSubmit()" [formGroup] = "loginForm" [hidden]="!isLoggedIn" novalidate>
+        <form class="ui form" (ngSubmit)="onSubmit()" [formGroup] = "loginForm" novalidate>
           <div class="field">
             <div class="field">
               <label>* Username</label>
@@ -21,10 +21,10 @@
               <input type="password" maxlength="16" formControlName="password"/>
             </div>
           </div>
-          <button type="submit" class="ui primary button" [disabled]="loginForm.invalid">Submit</button>
+          <button class="ui primary button" [disabled]="loginForm.invalid">Submit</button>
         </form>
       </div>
-      <div [hidden]="isLoggedIn">
+      <div [hidden]="!isLoggedIn">
         <p>Logged in successfully</p>
         <h1>Welcome back {{currentUserName}}</h1>
       </div>

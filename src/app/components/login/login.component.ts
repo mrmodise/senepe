@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.loginService.isAuthenticated();
+    console.log(`Username & token: is ${this.isLoggedIn}`)
   }
 
   private createForm() {

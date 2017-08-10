@@ -10,6 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   templateUrl: './add-photo.component.html',
   styleUrls: ['./add-photo.component.css']
 })
+
 export class AddPhotoComponent implements OnInit {
 
   addPhotoForm: FormGroup;
@@ -30,7 +31,7 @@ export class AddPhotoComponent implements OnInit {
   /**
    * triggered when the user hits the submit button
    */
-  public onSubmit() {
+  public onSubmit(): void {
     this.newPhoto = this.addPhotoForm.value;
     this.addPhotoService.sendPhoto(this.newPhoto).subscribe(message => {
       this.photoAdded = true;
@@ -45,16 +46,16 @@ export class AddPhotoComponent implements OnInit {
   /**
    * using the form build, create form properties
    */
-  private createForm() {
+  private createForm(): void {
     this.addPhotoForm = this.fb.group({
       photoName: ['', Validators.required],
       title: ['', Validators.required],
       description: ['']
-    })
+    });
   }
 
-  uploadPhoto() {
-    this.uploadPhotoService.upload()
+  uploadPhoto(): void {
+    this.uploadPhotoService.upload();
   }
 
 }

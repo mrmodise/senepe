@@ -7,18 +7,20 @@ import {LoginService} from '../../services/login.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
 
-  isLoggedIn: boolean;
+  isLoggedIn = false;
 
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router,
+              private loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.loginService.isAuthenticated()
+    this.isLoggedIn = this.loginService.isAuthenticated();
   }
 
-  logout() {
+  logout(): void {
     this.loginService.logOut();
   }
 }
