@@ -15,27 +15,27 @@
           </div>
         </div>
         <br>
-        <form class="ui form" (ngSubmit)="onSubmit()">
+        <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="registerForm" novalidate>
           <div class="field">
             <div class="field">
               <label>* Username</label>
-              <input type="text" name="username" placeholder="username" [(ngModel)]="user.username" required/>
+              <input name="username" placeholder="username" formControlName="username" required/>
             </div>
             <div class="field">
               <label>* Fullname</label>
-              <input type="text" name="fullname" placeholder="fullname" [(ngModel)]="user.fullname" required/>
+              <input name="fullName" placeholder="full name" formControlName="fullName" required/>
             </div>
             <div class="field">
               <label>* Email</label>
-              <input type="email" name="email" placeholder="email" [(ngModel)]="user.email" required/>
+              <input type="email" name="email" placeholder="email" formControlName="email" required/>
             </div>
             <div class="field">
               <label>* Password</label>
-              <input type="password" name="password" placeholder="password" [(ngModel)]="user.password" required/>
+              <input type="password" name="password" placeholder="password" formControlName="password" required/>
             </div>
 
           </div>
-          <button type="submit" class="ui primary button">Submit</button>
+          <button class="ui primary button"  [disabled]="registerForm.invalid">Submit</button>
         </form>
       </div>
     </div>
