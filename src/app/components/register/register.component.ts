@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Http} from '@angular/http';
 import {RegisterService} from '../../services/register.service';
 import {User} from '../../models/user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -11,14 +10,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  user = new User();
+  user: User;
   registered = false;
   message: string;
   error = false;
   registerForm: FormGroup;
 
-  constructor(private http: Http,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
               private registerService: RegisterService) {
   }
 
