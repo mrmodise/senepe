@@ -15,7 +15,7 @@ export class AuthService implements CanActivate {
    * Ensures that only authenticated users access secured routes
    * @returns {boolean}
    */
-  canActivate() {
+  canActivate(): boolean {
     return this.loginService.isAuthenticated();
   }
 }
