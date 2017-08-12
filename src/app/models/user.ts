@@ -1,9 +1,12 @@
 export class User {
-  public token: string;
-  public fullname: string;
-  public password: string;
-  public username: string;
   public email: string;
-  public message: string;
   public role: string;
+  public message: string;
+  public fullname: string;
+
+  constructor(public token: string,
+              public username: string,
+              public password?: string) {
+
+  }
 }
