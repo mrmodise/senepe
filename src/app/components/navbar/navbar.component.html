@@ -14,7 +14,7 @@
     </a>
   </div>
   <div class="right menu">
-    <a  class="item" *ngIf="!isLoggedIn" routerLink="register">
+    <a  class="item" *ngIf="!isLoggedIn" (change)="loginStatus(true)" routerLink="register">
       Sign up
     </a>
     <a  class="item" *ngIf="!isLoggedIn" routerLink="login">

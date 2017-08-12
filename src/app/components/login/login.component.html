@@ -24,7 +24,7 @@
           <button class="ui primary button" [disabled]="loginForm.invalid">Submit</button>
         </form>
       </div>
-      <div [hidden]="!isLoggedIn">
+      <div [hidden]="!isLoggedIn" >
         <p>Logged in successfully</p>
         <h1>Welcome back {{currentUserName}}</h1>
       </div>

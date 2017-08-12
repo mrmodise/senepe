@@ -1,11 +1,12 @@
 // defaults
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 // custom
 import {LoginService} from '../../services/login.service';
 
 // router
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,9 @@ export class LoginComponent implements OnInit {
   currentUserName;
   message;
   loginForm: FormGroup;
-  isLoggedIn = false;
+  isLoggedIn: boolean = false;
+  user: User;
+  @Output() userLoggedIn = new EventEmitter<boolean>();
 
   constructor(private loginService: LoginService,
               private fb: FormBuilder) {
@@ -26,8 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.loginService.isAuthenticated();
-    console.log(`Username & token: is ${this.isLoggedIn}`)
   }
 
   private createForm() {
@@ -43,11 +44,19 @@ export class LoginComponent implements OnInit {
    */
   public onSubmit() {
     // subscribe to the login service
-    this.loginService.login(this.loginForm.value).subscribe(user => {
+    this.loginService.login(this.loginForm.value).subscribe(userData => {
         // login successful, save token to local storage
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('currentUserName', this.loginForm.get('username').value);
-        this.currentUserName = this.loginForm.get('username').value;
+        this.user = new User(userData.token, this.loginForm.get('username').value);
+        this.setUserSession(this.user);
+
+        this.isLoggedIn = true;
+
+        localStorage.setItem('isLoggedIn', 'true');
+
+        this.userLoggedIn.emit(true);
+
+        this.currentUserName = this.user.username;
+
         this.loginForm.reset();
       },
       error => {
@@ -58,17 +67,13 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  /*parseJwt(token){
-    var base64URL = token.split('.')[1];
-    var base64 = base64URL.replace('-', '+').replace('_', '/');
-    return JSON.parse(window.atob(base64));
-  }*/
-  /**
-   * Returns the currently logged in user
-   * @returns {string|null}
-   */
-  public getLoggedInUser(): string {
-    return localStorage.getItem('currentUserName');
+  checkLogin(): boolean{
+    return this.loginService.isAuthenticated();
+  }
+
+  setUserSession(user: User): void{
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("currentUserName", user.username);
   }
 
 }
