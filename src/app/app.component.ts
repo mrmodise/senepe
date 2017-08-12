@@ -18,10 +18,4 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
 
   }
-
-
- /* loginStatus(value): void{
-    console.log(`login status has changed  ${value}`);
-
-  }*/
 }
