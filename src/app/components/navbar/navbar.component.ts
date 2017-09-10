@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginService} from '../../services/login.service';
 
@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   isLoggedIn = false;
   @Input() userLoggedIn: boolean;
+  color = 'lightgrey';
 
   constructor(private router: Router,
               private loginService: LoginService) {

@@ -6,21 +6,21 @@
     <a class="item" routerLink="/home">
       <h2 id="badge">Senepe</h2>
     </a>
-    <a appHighlight class="item" routerLink="/home">
+    <a [navBarHover]="color" class="item" routerLink="/home">
       Home
     </a>
-    <a appHighlight class="item" routerLink="/album">
+    <a [navBarHover]="color" class="item" routerLink="/album">
       Album
     </a>
   </div>
   <div class="right menu">
-    <a appHighlight  class="item" *ngIf="!isLoggedIn" (change)="loginStatus(true)" routerLink="register">
+    <a [navBarHover]="color" class="item" *ngIf="!isLoggedIn" (change)="loginStatus(true)" routerLink="register">
       Sign up
     </a>
-    <a appHighlight [class.active]="active"  class="item" *ngIf="!isLoggedIn" routerLink="login">
+    <a [navBarHover]="color" [class.active]="active" class="item" *ngIf="!isLoggedIn" routerLink="login">
       Login
     </a>
-    <a appHighlight class="item" routerLink="login" *ngIf="isLoggedIn" (click)="logout()">
+    <a [navBarHover]="color" class="item" routerLink="login" *ngIf="isLoggedIn" (click)="logout()">
       Logout
     </a>
   </div>
