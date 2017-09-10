@@ -23,7 +23,7 @@ To execute e2e tests: ```ng e2e```. WIP
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
 
-Run `mvn package` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
+Run `mvn package` to package the back-end code. ``java -jar /target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
 
 `Note` project is still under development. Updated weekly `:)`
 
