@@ -6,21 +6,21 @@
     <a class="item" routerLink="/home">
       <h2 id="badge">Senepe</h2>
     </a>
-    <a class="item" routerLink="/home">
+    <a appHighlight class="item" routerLink="/home">
       Home
     </a>
-    <a class="item" routerLink="/album">
+    <a appHighlight class="item" routerLink="/album">
       Album
     </a>
   </div>
   <div class="right menu">
-    <a  class="item" *ngIf="!isLoggedIn" (change)="loginStatus(true)" routerLink="register">
+    <a appHighlight  class="item" *ngIf="!isLoggedIn" (change)="loginStatus(true)" routerLink="register">
       Sign up
     </a>
-    <a  class="item" *ngIf="!isLoggedIn" routerLink="login">
+    <a appHighlight [class.active]="active"  class="item" *ngIf="!isLoggedIn" routerLink="login">
       Login
     </a>
-    <a class="item" routerLink="login" *ngIf="isLoggedIn" (click)="logout()">
+    <a appHighlight class="item" routerLink="login" *ngIf="isLoggedIn" (click)="logout()">
       Logout
     </a>
   </div>

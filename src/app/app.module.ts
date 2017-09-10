@@ -28,6 +28,7 @@ import {AddPhotoComponent} from './components/add-photo/add-photo.component';
 import {AddPhotoService} from './services/add-photo.service';
 import {UploadPhotoService} from './services/upload-photo.service';
 import {HttpClientService} from './services/http-client.service';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {HttpClientService} from './services/http-client.service';
     LoginComponent,
     NotFoundComponent,
     AlbumComponent,
-    AddPhotoComponent
+    AddPhotoComponent,
+    HighlightDirective
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, routing],
   // tslint:disable-next-line:max-line-length
