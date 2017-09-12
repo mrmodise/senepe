@@ -20,7 +20,7 @@ export class AddPhotoComponent implements OnInit {
 
   constructor(private userService: UserService,
               private addPhotoService: AddPhotoService,
-              private uploadPhotoService: UploadPhotoService,
+              public uploadPhotoService: UploadPhotoService,
               private fb: FormBuilder) {
     this.createForm();
   }
