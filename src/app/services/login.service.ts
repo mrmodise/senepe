@@ -27,7 +27,7 @@ export class LoginService {
    * @param model
    * @returns {Observable<User>}
    */
-  public login(model): Observable<User> {
+  login(model): Observable<User> {
     return this
       .httpClient
       .post(this.config.LOGIN_URL, model, this.config.JSON_HEADERS);
@@ -37,9 +37,9 @@ export class LoginService {
    * Checks if user is authenticated
    * @returns {boolean}
    */
-  public isAuthenticated() {
+  isAuthenticated() {
     // if the user and token exists in the local storage, user is authenticated
-    if (localStorage.getItem('currentUserName') !== '' && localStorage.getItem('token') !== '') {
+    if ((localStorage.getItem('currentUserName') !== '') && (localStorage.getItem('token') !== '')) {
       return true;
     } else {
       return false;
@@ -49,7 +49,7 @@ export class LoginService {
   /**
    * handles the logout process
    */
-  public logOut() {
+  logOut() {
     // clear local storage
     localStorage.setItem('token', '');
     localStorage.setItem('currentUserName', '');
