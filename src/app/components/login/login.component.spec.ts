@@ -33,10 +33,17 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   }));
 
-  it(`should render '* Username' on label tag`, (() => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('label').textContent).toEqual('* Username');
+  it('should create login form', (() => {
+    component.ngOnInit();
+  }));
+
+  it('should be invalid when empty', (() => {
+    expect(component.loginForm.valid).toBeFalsy();
+  }));
+
+  it('email field should be valid', (() => {
+    const email = component.loginForm.controls['username'];
+    expect(email.valid).toBeFalsy();
   }));
 
   it('should have default properties', fakeAsync(() => {
