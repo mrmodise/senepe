@@ -14,11 +14,19 @@
           <div class="field">
             <div class="field">
               <label>* Username</label>
-              <input  formControlName="username"/>
+              <input (ngModelChange)="validateLoginUserName()" (blur)="validateLoginUserName()"
+                     name="username" formControlName="username"/>
+              <div class="error" *ngIf="!isLoginUserNameValid">
+                Username length is too short or missing
+              </div>
             </div>
             <div class="field">
               <label>* Password</label>
-              <input type="password" formControlName="password"/>
+              <input type="password" (ngModelChange)="validateLoginPassword()" (blur)="validateLoginPassword()"
+                     name="password" formControlName="password"/>
+              <div class="error" *ngIf="!isLoginPasswordValid">
+                Password length is too short or missing
+              </div>
             </div>
           </div>
           <button class="ui primary button" [disabled]="loginForm.invalid">Submit</button>
