@@ -19,21 +19,32 @@
           <div class="field">
             <div class="field">
               <label>* Username</label>
-              <input name="username" placeholder="username" formControlName="username" required/>
+              <input name="username" (ngModelChange)="validateUserName()" (blur)="validateUserName()"
+                     placeholder="username" formControlName="username"/>
+              <div class="error" *ngIf="!isUserNameValid">
+                Username should be 6 or more characters
+              </div>
             </div>
             <div class="field">
-              <label>* Fullname</label>
-              <input name="fullName" placeholder="full name" formControlName="fullname" required/>
+              <label>* Full name</label>
+              <input name="fullName" placeholder="full name" formControlName="fullName" required/>
             </div>
             <div class="field">
               <label>* Email</label>
-              <input type="email" name="email" placeholder="email" formControlName="email" required/>
+              <input type="email" (ngModelChange)="validateEmail()" (blur)="validateEmail()"
+                     name="email" placeholder="email" formControlName="email"/>
+              <div class="error" *ngIf="!isEmailValid">
+                Incorrect email format
+              </div>
             </div>
             <div class="field">
               <label>* Password</label>
-              <input type="password" name="password" placeholder="password" formControlName="password" required/>
+              <input type="password" name="password" (ngModelChange)="validatePassword()"
+                     (blur)="validatePassword()" placeholder="password" formControlName="password"/>
+              <div class="error" *ngIf="!isPasswordValid">
+                Password should be 8 or more characters
+              </div>
             </div>
-
           </div>
           <button class="ui primary button"  [disabled]="registerForm.invalid">Submit</button>
         </form>
