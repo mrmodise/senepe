@@ -37,7 +37,7 @@ export class LoginService {
    * Checks if user is authenticated
    * @returns {boolean}
    */
-  isAuthenticated() {
+  isAuthenticated(): boolean {
     let userName = localStorage.getItem('currentUserName');
     let token = localStorage.getItem('token');
 
@@ -52,7 +52,7 @@ export class LoginService {
   /**
    * handles the logout process
    */
-  logOut() {
+  logOut(): void {
     // clear local storage
     localStorage.setItem('token', '');
     localStorage.setItem('currentUserName', '');
