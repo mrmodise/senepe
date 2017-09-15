@@ -65,6 +65,7 @@ export class RegisterComponent implements OnInit {
 
   /**
    * validates username length
+   * @returns {boolean}
    */
   validateUserName(): boolean {
     if (this.registerForm.controls['username'].valid) {
@@ -76,6 +77,7 @@ export class RegisterComponent implements OnInit {
 
   /**
    * validates email format
+   * @returns {boolean}
    */
   validateEmail(): boolean {
     if (this.registerForm.controls['email'].valid) {
@@ -87,6 +89,7 @@ export class RegisterComponent implements OnInit {
 
   /**
    * validates password length
+   * @returns {boolean}
    */
   validatePassword(): boolean {
     if (this.registerForm.controls['password'].valid) {
