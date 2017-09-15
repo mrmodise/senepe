@@ -38,8 +38,11 @@ export class LoginService {
    * @returns {boolean}
    */
   isAuthenticated() {
-    // if the user and token exists in the local storage, user is authenticated
-    if ((localStorage.getItem('currentUserName') !== '') && (localStorage.getItem('token') !== '')) {
+    let userName = localStorage.getItem('currentUserName');
+    let token = localStorage.getItem('token');
+
+    if ((userName !== '' && userName !== null) && (token !== '' && token !== null)) {
+      // if the user and token exists in the local storage, user is authenticated
       return true;
     } else {
       return false;
