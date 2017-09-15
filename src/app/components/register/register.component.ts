@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
   /**
    * validates username length
    */
-  validateUserName() {
+  validateUserName(): boolean {
     if (this.registerForm.controls['username'].valid) {
       return this.isUserNameValid = true;
     } else {
@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit {
   /**
    * validates email format
    */
-  validateEmail() {
+  validateEmail(): boolean {
     if (this.registerForm.controls['email'].valid) {
       return this.isEmailValid = true;
     } else {
@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
   /**
    * validates password length
    */
-  validatePassword() {
+  validatePassword(): boolean {
     if (this.registerForm.controls['password'].valid) {
       return this.isPasswordValid = true;
     } else {
