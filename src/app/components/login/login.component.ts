@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoggedIn: boolean = false;
   user: User;
-  @Output() userLoggedIn = new EventEmitter<boolean>();
+  isLoginUserNameValid = true;
+  isLoginPasswordValid = true;
 
   constructor(private loginService: LoginService,
               private fb: FormBuilder) {
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  private createForm() {
+  createForm() {
     // group the form elements using the form builder
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(8)]],
@@ -40,9 +41,9 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Triggered when user hits submit button
+   * submit user credentials to the server
    */
-  public onSubmit() {
+  onSubmit() {
     // subscribe to the login service
     this.loginService.login(this.loginForm.value).subscribe(userData => {
         // login successful, save token to local storage
@@ -53,8 +54,6 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('isLoggedIn', 'true');
 
-        this.userLoggedIn.emit(true);
-
         this.currentUserName = this.user.username;
 
         this.loginForm.reset();
@@ -63,17 +62,40 @@ export class LoginComponent implements OnInit {
         // login attempt failed
         console.log(error);
         this.loginFailed = true;
-        this.message = error.message;
+        this.message = error.message || 'Something went wrong';
       });
   }
 
-  checkLogin(): boolean{
-    return this.loginService.isAuthenticated();
+  /**
+   * validates username field
+   * @returns {boolean}
+   */
+  validateLoginUserName(): boolean {
+    if(this.loginForm.controls['username'].valid){
+      return this.isLoginUserNameValid = true;
+    }else {
+      return this.isLoginUserNameValid = false;
+    }
   }
 
-  setUserSession(user: User): void{
-      localStorage.setItem("token", user.token);
-      localStorage.setItem("currentUserName", user.username);
+  /**
+   * validates password field
+   * @returns {boolean}
+   */
+  validateLoginPassword(): boolean {
+    if(this.loginForm.controls['password'].valid){
+      return this.isLoginPasswordValid = true;
+    }else {
+      return this.isLoginPasswordValid = false;
+    }
   }
 
+  /**
+   * sets currently logged in user session
+   * @param {User} user
+   */
+  setUserSession(user: User): void {
+    localStorage.setItem('token', user.token);
+    localStorage.setItem('currentUserName', user.username);
+  }
 }
