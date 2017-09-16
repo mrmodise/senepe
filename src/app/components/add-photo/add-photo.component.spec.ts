@@ -32,10 +32,10 @@ describe('AddPhotoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should render 'Add your photo' text in h2 tag`, () => {
+  it(`should render title in h2 tag`, () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toEqual('Add your photo');
+    expect(compiled.querySelector('h2').textContent).toEqual('Uploading your favorite photos has never been this easy');
   });
 
   it('should have default properties', fakeAsync(() => {
