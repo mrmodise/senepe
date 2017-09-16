@@ -13,11 +13,17 @@
       <label>* Photo Name / Photo Title</label>
       <div class="two fields">
         <div class="field">
-          <input formControlName="photoName" placeholder="Photo name" />
+          <input formControlName="photoName" (blur)="validatePhotoName()" placeholder="Photo name" />
+          <div class="error" *ngIf="!isPhotoNameValid">
+            Required
+          </div>
         </div>
 
         <div class="field">
-          <input placeholder="Photo title" formControlName="title"/>
+          <input placeholder="Photo title" (blur)="validatePhotoTitle()" formControlName="title"/>
+          <div class="error" *ngIf="!isPhotoTitleValid">
+            Required
+          </div>
         </div>
       </div>
     </div>
@@ -31,14 +37,14 @@
       <label>* Upload Photo</label>
       <div class="two fields">
         <div class="field">
-          <input type="file" (change) = "uploadPhotoService.fileChangeEvent($event)" />
-          <button type="button" class="ui primary button" (click) = "uploadPhoto()">Upload</button>
+          <input type="file" (change) = "submitPhoto($event)" />
+          <button type="button"  [disabled]="!isUploaded" class="ui primary button" (click) = "uploadPhoto()">Upload</button>
         </div>
-
       </div>
     </div>
     <hr>
-    <button type="submit" class="ui primary button" [disabled]="addPhotoForm.invalid">Submit</button>
+    <pre>{{isUploaded}}</pre>
+    <button type="submit" class="ui primary button" [disabled]="addPhotoForm.invalid || !isUploaded">Submit</button>
   </form>
     </div>
   </div>

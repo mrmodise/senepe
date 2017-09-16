@@ -5,7 +5,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 // custom imports
 import {AddPhotoService} from '../../services/add-photo.service';
 import {UploadPhotoService} from '../../services/upload-photo.service';
-import {UserService} from '../../services/user.service';
 import {Photo} from '../../models/photo';
 
 @Component({
@@ -20,9 +19,11 @@ export class AddPhotoComponent implements OnInit {
   newPhoto: Photo;
   photoAdded = false;
   message;
+  isPhotoNameValid = true;
+  isPhotoTitleValid = true;
+  isUploaded = false;
 
-  constructor(private userService: UserService,
-              private addPhotoService: AddPhotoService,
+  constructor(private addPhotoService: AddPhotoService,
               public uploadPhotoService: UploadPhotoService,
               private fb: FormBuilder) {
 
@@ -30,6 +31,15 @@ export class AddPhotoComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+  }
+
+  submitPhoto(e){
+    // do not submit if validations are not met
+    if (!this.validatePhotoName()) return;
+    if (!this.validatePhotoTitle()) return;
+
+    this.isUploaded = true;
+    this.uploadPhotoService.fileChangeEvent(e)
   }
 
   /**
@@ -56,6 +66,30 @@ export class AddPhotoComponent implements OnInit {
       title: ['', Validators.required],
       description: ['']
     });
+  }
+
+  /**
+   * validates the photo name field
+   * @returns {boolean}
+   */
+  validatePhotoName(): boolean {
+    if(this.addPhotoForm.controls['photoName'].valid){
+      return this.isPhotoNameValid = true;
+    }else {
+      return this.isPhotoNameValid = false;
+    }
+  }
+
+  /**
+   * validates the photo title name field
+   * @returns {boolean}
+   */
+  validatePhotoTitle(): boolean {
+    if(this.addPhotoForm.controls['title'].valid){
+      return this.isPhotoTitleValid = true;
+    }else {
+      return this.isPhotoTitleValid = false;
+    }
   }
 
   /**
