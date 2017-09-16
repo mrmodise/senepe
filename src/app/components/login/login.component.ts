@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private fb: FormBuilder) {
-    this.createForm();
   }
 
   ngOnInit() {
+    this.createForm();
   }
 
   createForm() {
@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
    * submit user credentials to the server
    */
   onSubmit() {
+    if (!this.validateLoginUserName()) return;
+    if (!this.validateLoginPassword()) return;
     // subscribe to the login service
     this.loginService.login(this.loginForm.value).subscribe(userData => {
         // login successful, save token to local storage
