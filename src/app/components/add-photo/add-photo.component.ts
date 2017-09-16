@@ -1,9 +1,12 @@
+// internal imports
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {Photo} from '../../models/photo';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+// custom imports
 import {AddPhotoService} from '../../services/add-photo.service';
 import {UploadPhotoService} from '../../services/upload-photo.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../services/user.service';
+import {Photo} from '../../models/photo';
 
 @Component({
   selector: 'app-add-photo',
@@ -22,16 +25,17 @@ export class AddPhotoComponent implements OnInit {
               private addPhotoService: AddPhotoService,
               public uploadPhotoService: UploadPhotoService,
               private fb: FormBuilder) {
-    this.createForm();
+
   }
 
   ngOnInit() {
+    this.createForm();
   }
 
   /**
-   * triggered when the user hits the submit button
+   * submits add photo details to the server
    */
-  public onSubmit(): void {
+  onSubmit(): void {
     this.newPhoto = this.addPhotoForm.value;
     this.addPhotoService.sendPhoto(this.newPhoto).subscribe(message => {
       this.photoAdded = true;
@@ -44,9 +48,9 @@ export class AddPhotoComponent implements OnInit {
   }
 
   /**
-   * using the form build, create form properties
+   * creates the form and its properties
    */
-  private createForm(): void {
+  createForm(): void {
     this.addPhotoForm = this.fb.group({
       photoName: ['', Validators.required],
       title: ['', Validators.required],
@@ -54,6 +58,9 @@ export class AddPhotoComponent implements OnInit {
     });
   }
 
+  /**
+   * sends uploaded photo to server
+   */
   uploadPhoto(): void {
     this.uploadPhotoService.upload();
   }
