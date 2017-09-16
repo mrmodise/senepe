@@ -1,4 +1,4 @@
-import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
