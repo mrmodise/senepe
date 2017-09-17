@@ -32,9 +32,13 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
-  createForm() {
+  /**
+   * creates the form using form builder
+   * @returns {FormGroup}
+   */
+  createForm(): FormGroup {
     // group the form elements using the form builder
-    this.loginForm = this.fb.group({
+    return this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
@@ -43,9 +47,11 @@ export class LoginComponent implements OnInit {
   /**
    * submit user credentials to the server
    */
-  onSubmit() {
+  onSubmit(): void {
+    // validation checks before submit
     if (!this.validateLoginUserName()) return;
     if (!this.validateLoginPassword()) return;
+
     // subscribe to the login service
     this.loginService.login(this.loginForm.value).subscribe(userData => {
         // login successful, save token to local storage
