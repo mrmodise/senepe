@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
    * instantiates form model
    * @returns {FormGroup}
    */
-  private createForm(): FormGroup {
+  createForm(): FormGroup {
     return this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(6)]],
       fullname: [''],
