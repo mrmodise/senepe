@@ -24,29 +24,35 @@ describe('LoginComponent', () => {
   }));
 
   beforeEach(() => {
+    // create component and test fixture
     fixture = TestBed.createComponent(LoginComponent);
+    // get test component from the fixture
     component = fixture.componentInstance;
+    // trigger lifecycle function to create form
+    component.ngOnInit();
+    // watch changes in the fixture
     fixture.detectChanges();
   });
 
-  ///// FORM
+  // COMPONENT tests
   it('should create LoginComponent', (() => {
     expect(component).toBeTruthy();
   }));
 
+  // FORM tests
   it('should create login form', (() => {
-    component.ngOnInit();
+    expect(component.createForm()).toBeTruthy();
   }));
 
-  it('should be invalid when form is empty', (() => {
+  it('should be invalid when login form is empty', (() => {
     expect(component.loginForm.valid).toBeFalsy();
   }));
 
-  it('should have default empty properties', (() => {
+  it('login form should have default empty properties', (() => {
     expect(component.loginForm.value).toEqual(blankUser);
   }));
 
-  it('should initialize form fields', (() => {
+  it('should initialize login form fields', (() => {
     updateForm(username, password);
     expect(component.loginForm.value).toEqual(populatedUser);
   }));
@@ -57,7 +63,7 @@ describe('LoginComponent', () => {
     expect(component.loginFailed).toBeFalsy();
   }));
 
-  ///// USERNAME
+  // USERNAME field tests
   it('username field should be invalid', (() => {
     const username = component.loginForm.controls['username'];
     expect(username.valid).toBeFalsy();
@@ -72,7 +78,7 @@ describe('LoginComponent', () => {
     expect(component.validateLoginUserName()).toBeTruthy();
   }));
 
-  ///// PASSWORD
+  // PASSWORD tests
   it('password field should be invalid', (() => {
     const password = component.loginForm.controls['password'];
     expect(password.valid).toBeFalsy();
@@ -83,7 +89,7 @@ describe('LoginComponent', () => {
   }));
 
   it('isLoginPasswordValid should be true if password is not empty', (() => {
-    setPassword('password')
+    setPassword('password');
     expect(component.validateLoginPassword()).toBeTruthy();
   }));
 
@@ -107,8 +113,8 @@ describe('LoginComponent', () => {
   }
 
   /**
-   * reusable function for username dry spec
-   * @param userName
+   * reusable function for password dry spec
+   * @param password
    */
   function setPassword(password){
     component.loginForm.controls['password'].setValue(password);
