@@ -64,6 +64,12 @@ describe('AddPhotoComponent', () => {
     expect(photoName.valid).toBeFalsy();
   }));
 
+  it('photo name should be required', (() => {
+    const photoName = component.addPhotoForm.controls['photoName'];
+    const errors = photoName.errors || {};
+    expect(errors['required']).toBeTruthy();
+  }));
+
   it('isPhotoNameValid should be false if photo name is empty', (() => {
     expect(component.validatePhotoName()).toBeFalsy();
   }));
@@ -79,6 +85,12 @@ describe('AddPhotoComponent', () => {
     expect(photoTitle.valid).toBeFalsy();
   }));
 
+  it('photo title should be required', (() => {
+    const photoTitle = component.addPhotoForm.controls['title'];
+    const errors = photoTitle.errors || {};
+    expect(errors['required']).toBeTruthy();
+  }));
+
   it('isPhotoTitleValid should be false if photo name is empty', (() => {
     expect(component.validatePhotoTitle()).toBeFalsy();
   }));
@@ -92,6 +104,12 @@ describe('AddPhotoComponent', () => {
   it('photo description should be valid', (() => {
     const photoDescription = component.addPhotoForm.controls['description'];
     expect(photoDescription.valid).toBeTruthy();
+  }));
+
+  it('photo description should not be required', (() => {
+    const photoDescription = component.addPhotoForm.controls['description'];
+    const errors = photoDescription.errors || {};
+    expect(errors['required']).toBeFalsy();
   }));
 
   /**
