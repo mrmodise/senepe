@@ -1,23 +1,35 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import {LoginComponent} from './login.component';
-import {HttpModule} from '@angular/http';
+import {BaseRequestOptions, Http, HttpModule, ResponseOptions} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {HttpClientService} from '../../services/http-client.service';
 import {RouterTestingModule} from '@angular/router/testing';
+import {MockBackend} from '@angular/http/testing';
+import {User} from '../../models/user';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  const username = 'test';
-  const password = 'test';
+  const username = 'tester1';
+  const password = 'tester123';
   const populatedUser = {username: username, password: password};
   const blankUser = {username: '', password: ''};
+  let backend: MockBackend;
+  let service: LoginService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [LoginService, HttpClientService],
+      providers: [LoginService,
+        HttpClientService,
+        MockBackend,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          userFactory: (backend, options) => new Http(backend, options),
+          deps: [MockBackend, BaseRequestOptions]
+        }],
       imports: [HttpModule, ReactiveFormsModule, RouterTestingModule]
     })
       .compileComponents();
@@ -30,6 +42,10 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     // trigger lifecycle function to create form
     component.ngOnInit();
+    // initialize the backend
+    backend = TestBed.get(MockBackend);
+    // initialize the user service
+    service = TestBed.get(LoginService);
     // watch changes in the fixture
     fixture.detectChanges();
   });
@@ -120,7 +136,7 @@ describe('LoginComponent', () => {
   }));
 
   // FORM submission
-  it('submitting form should emit a JWT user token', (() => {
+  it('submitting form should emit a JWT user token', fakeAsync(() => {
     expect(component.loginForm.valid).toBeFalsy();
 
     setUserName('tester1');
@@ -128,12 +144,17 @@ describe('LoginComponent', () => {
 
     expect(component.loginForm.valid).toBeTruthy();
 
-    //let token: string;
+    let token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0ZXIxIiwiYXVkaWVuY2UiOiJ3ZWIiLCJjcmVhdGVkIjoxNTA1NTU2NTQ3MDgyLCJleHAiOjE1MDYxNjEzNDd9.HPRcfzEVYTJu3YsWTzRNqfyte7Zy0j_QOPKlmtccuOplAv1oRpdLs04T_JmvDE1ItdH2wsqlIXQPV2iXfpyOIA';
+    let response = {
+      'user': new User(token, username)
+    };
 
-    // Subscribe to the Observable and store the user in a local variable
-
-
-    //component.onSubmit();
+    // when the request subscribes for results on a connection, return a fake responses
+    backend.connections.subscribe(connection => {
+      connection.mockRespond(new Response(<ResponseOptions>{
+        body: JSON.stringify(response)
+      }));
+    });
 
   }));
 
