@@ -33,11 +33,11 @@ export class AddPhotoComponent implements OnInit {
     this.createForm();
   }
 
-  submitPhoto(e){
-    // do not submit if validations are not met
-    if (!this.validatePhotoName()) return;
-    if (!this.validatePhotoTitle()) return;
-
+  /**
+   * uploads photo to server
+   * @param e
+   */
+  submitPhoto(e): void {
     this.isUploaded = true;
     this.uploadPhotoService.fileChangeEvent(e)
   }
@@ -46,6 +46,10 @@ export class AddPhotoComponent implements OnInit {
    * submits add photo details to the server
    */
   onSubmit(): void {
+    // do not submit if validations are not met
+    if (!this.validatePhotoName()) return;
+    if (!this.validatePhotoTitle()) return;
+
     this.newPhoto = this.addPhotoForm.value;
     this.addPhotoService.sendPhoto(this.newPhoto).subscribe(message => {
       this.photoAdded = true;
@@ -59,9 +63,10 @@ export class AddPhotoComponent implements OnInit {
 
   /**
    * creates the form and its properties
+   * @returns {FormGroup}
    */
-  createForm(): void {
-    this.addPhotoForm = this.fb.group({
+  createForm(): FormGroup {
+    return this.addPhotoForm = this.fb.group({
       photoName: ['', Validators.required],
       title: ['', Validators.required],
       description: ['']
