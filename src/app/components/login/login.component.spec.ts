@@ -163,7 +163,7 @@ describe('LoginComponent', () => {
    * @param userName
    * @param userPassword
    */
-  function updateForm(userName, userPassword) {
+  function updateForm(userName: string, userPassword: string) {
     component.loginForm.controls['username'].setValue(userName);
     component.loginForm.controls['password'].setValue(userPassword);
   }
@@ -172,7 +172,7 @@ describe('LoginComponent', () => {
    * reusable function for username dry spec
    * @param userName
    */
-  function setUserName(userName) {
+  function setUserName(userName: string) {
     component.loginForm.controls['username'].setValue(userName);
   }
 
@@ -180,7 +180,7 @@ describe('LoginComponent', () => {
    * reusable function for password dry spec
    * @param password
    */
-  function setPassword(password) {
+  function setPassword(password: string) {
     component.loginForm.controls['password'].setValue(password);
   }
 });
