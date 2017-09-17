@@ -79,9 +79,9 @@ export class LoginComponent implements OnInit {
    * @returns {boolean}
    */
   validateLoginUserName(): boolean {
-    if(this.loginForm.controls['username'].valid){
+    if (this.loginForm.controls['username'].valid) {
       return this.isLoginUserNameValid = true;
-    }else {
+    } else {
       return this.isLoginUserNameValid = false;
     }
   }
@@ -91,9 +91,9 @@ export class LoginComponent implements OnInit {
    * @returns {boolean}
    */
   validateLoginPassword(): boolean {
-    if(this.loginForm.controls['password'].valid){
+    if (this.loginForm.controls['password'].valid) {
       return this.isLoginPasswordValid = true;
-    }else {
+    } else {
       return this.isLoginPasswordValid = false;
     }
   }

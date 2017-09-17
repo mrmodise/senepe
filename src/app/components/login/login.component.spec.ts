@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import { LoginComponent } from './login.component';
-import { HttpModule} from '@angular/http';
+import {LoginComponent} from './login.component';
+import {HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {HttpClientService} from '../../services/http-client.service';
@@ -18,9 +18,9 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       providers: [LoginService, HttpClientService],
-      imports: [HttpModule, ReactiveFormsModule, RouterTestingModule ]
+      imports: [HttpModule, ReactiveFormsModule, RouterTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -69,11 +69,11 @@ describe('LoginComponent', () => {
     expect(username.valid).toBeFalsy();
   }));
 
-  it('isLoginUserNameValid should be false if username empty', (() => {
+  it('isLoginUserNameValid should be false if username is empty', (() => {
     expect(component.validateLoginUserName()).toBeFalsy();
   }));
 
-  it('isLoginUserNameValid should be true if username is not empty', (() => {
+  it('isLoginUserNameValid should be true if username is provided', (() => {
     setUserName('Malibongwe');
     expect(component.validateLoginUserName()).toBeTruthy();
   }));
@@ -108,7 +108,7 @@ describe('LoginComponent', () => {
    * reusable function for username dry spec
    * @param userName
    */
-  function setUserName(userName){
+  function setUserName(userName) {
     component.loginForm.controls['username'].setValue(userName);
   }
 
@@ -116,7 +116,7 @@ describe('LoginComponent', () => {
    * reusable function for password dry spec
    * @param password
    */
-  function setPassword(password){
+  function setPassword(password) {
     component.loginForm.controls['password'].setValue(password);
   }
 });
