@@ -39,7 +39,7 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   }));
 
-  // FORM tests
+  // GENERAL FORM tests
   it('should create login form', (() => {
     expect(component.createForm()).toBeTruthy();
   }));
@@ -64,9 +64,22 @@ describe('LoginComponent', () => {
   }));
 
   // USERNAME field tests
-  it('username field should be invalid', (() => {
+  it('username should be invalid', (() => {
     const username = component.loginForm.controls['username'];
     expect(username.valid).toBeFalsy();
+  }));
+
+  it('username should be required', (() => {
+    const username = component.loginForm.controls['username'];
+    const errors = username.errors || {};
+    expect(errors['required']).toBeTruthy();
+  }));
+
+  it('username should be more than 6 characters', (() => {
+    const username = component.loginForm.controls['username'];
+    setUserName('test');
+    const errors = username.errors || {};
+    expect(errors['minlength']).toBeTruthy();
   }));
 
   it('isLoginUserNameValid should be false if username is empty', (() => {
@@ -79,9 +92,22 @@ describe('LoginComponent', () => {
   }));
 
   // PASSWORD tests
-  it('password field should be invalid', (() => {
+  it('password should be invalid', (() => {
     const password = component.loginForm.controls['password'];
     expect(password.valid).toBeFalsy();
+  }));
+
+  it('password should be required', (() => {
+    const password = component.loginForm.controls['password'];
+    const errors = password.errors || {};
+    expect(errors['required']).toBeTruthy();
+  }));
+
+  it('password should be more than 8 characters', (() => {
+    const password = component.loginForm.controls['password'];
+    setPassword('test');
+    const errors = password.errors || {};
+    expect(errors['minlength']).toBeTruthy();
   }));
 
   it('isLoginPasswordValid should be false if password empty', (() => {
@@ -93,6 +119,23 @@ describe('LoginComponent', () => {
     expect(component.validateLoginPassword()).toBeTruthy();
   }));
 
+  // FORM submission
+  it('submitting form should emit a JWT user token', (() => {
+    expect(component.loginForm.valid).toBeFalsy();
+
+    setUserName('tester1');
+    setPassword('tester123');
+
+    expect(component.loginForm.valid).toBeTruthy();
+
+    //let token: string;
+
+    // Subscribe to the Observable and store the user in a local variable
+
+
+    //component.onSubmit();
+
+  }));
 
   /**
    * reusable function for a dry spec.
