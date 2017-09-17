@@ -33,18 +33,13 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
 
     // additional safety checks
-    if(!this.validateEmail()) {
-      return;
-    } else if (!this.validatePassword()){
-      return;
-    }else if (!this.validateUserName()){
-      return;
-    }
+    if (!this.validateEmail()) return;
+    else if (!this.validatePassword()) return;
+    else if (!this.validateUserName()) return;
 
     this.registerService.register(this.registerForm.value).subscribe(data => {
       this.registered = true;
-      this.message = data.message;
-
+      this.message = data.message || '';
     }, error => {
       this.error = true;
       this.message = error.message || 'Something went wrong';
@@ -53,9 +48,10 @@ export class RegisterComponent implements OnInit {
 
   /**
    * instantiates form model
+   * @returns {FormGroup}
    */
-  private createForm(): void {
-    this.registerForm = this.fb.group({
+  private createForm(): FormGroup {
+    return this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(6)]],
       fullname: [''],
       email: ['', [Validators.required, Validators.pattern('[^@]*@[^@]*')]],
@@ -98,5 +94,4 @@ export class RegisterComponent implements OnInit {
       return this.isPasswordValid = false;
     }
   }
-
 }
