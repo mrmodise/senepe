@@ -1,5 +1,5 @@
 // defaults
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 // custom
 import {LoginService} from '../../services/login.service';
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginForm.value).subscribe(userData => {
         // login successful, save token to local storage
         this.user = new User(userData.token, this.loginForm.get('username').value);
-        this.setUserSession(this.user);
+        LoginComponent.setUserSession(this.user);
 
         this.isLoggedIn = true;
 
@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
    * sets currently logged in user session
    * @param {User} user
    */
-  setUserSession(user: User): void {
+  static setUserSession(user: User) {
     localStorage.setItem('token', user.token);
     localStorage.setItem('currentUserName', user.username);
   }
