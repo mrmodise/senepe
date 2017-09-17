@@ -17,10 +17,15 @@ describe('RegisterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
+    component.ngOnInit();
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create register component', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create invalid register form', (() => {
+    expect(component.registerForm.valid).toBeFalsy();
+  }));
 });
