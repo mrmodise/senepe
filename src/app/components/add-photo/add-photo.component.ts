@@ -39,7 +39,7 @@ export class AddPhotoComponent implements OnInit {
    */
   submitPhoto(e): void {
     this.isUploaded = true;
-    this.uploadPhotoService.fileChangeEvent(e)
+    this.uploadPhotoService.fileChangeEvent(e);
   }
 
   /**
@@ -78,9 +78,9 @@ export class AddPhotoComponent implements OnInit {
    * @returns {boolean}
    */
   validatePhotoName(): boolean {
-    if(this.addPhotoForm.controls['photoName'].valid){
+    if (this.addPhotoForm.controls['photoName'].valid) {
       return this.isPhotoNameValid = true;
-    }else {
+    } else {
       return this.isPhotoNameValid = false;
     }
   }
@@ -90,9 +90,9 @@ export class AddPhotoComponent implements OnInit {
    * @returns {boolean}
    */
   validatePhotoTitle(): boolean {
-    if(this.addPhotoForm.controls['title'].valid){
+    if (this.addPhotoForm.controls['title'].valid) {
       return this.isPhotoTitleValid = true;
-    }else {
+    } else {
       return this.isPhotoTitleValid = false;
     }
   }
