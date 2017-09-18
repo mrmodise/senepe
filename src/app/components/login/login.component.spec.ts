@@ -11,9 +11,8 @@ import {User} from '../../models/user';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  const username = 'tester1';
-  const password = 'tester123';
-  const populatedUser = {username: username, password: password};
+  let username, password;
+  const populatedUser = {username: 'tester1', password: 'tester123'};
   const blankUser = {username: '', password: ''};
   let backend: MockBackend;
   let service: LoginService;
@@ -48,6 +47,9 @@ describe('LoginComponent', () => {
     service = TestBed.get(LoginService);
     // watch changes in the fixture
     fixture.detectChanges();
+
+    username = component.loginForm.controls['username'];
+    password = component.loginForm.controls['password'];
   });
 
   // COMPONENT tests
@@ -69,7 +71,7 @@ describe('LoginComponent', () => {
   }));
 
   it('should initialize login form fields', (() => {
-    updateForm(username, password);
+    updateForm('tester1', 'tester123');
     expect(component.loginForm.value).toEqual(populatedUser);
   }));
 
@@ -81,20 +83,17 @@ describe('LoginComponent', () => {
 
   // USERNAME field tests
   it('username should be invalid', (() => {
-    const usernameInvalid = component.loginForm.controls['username'];
-    expect(usernameInvalid.valid).toBeFalsy();
+    expect(username.valid).toBeFalsy();
   }));
 
   it('username should be required', (() => {
-    const usernameRequired = component.loginForm.controls['username'];
-    const errors = usernameRequired.errors || {};
+    const errors = username.errors || {};
     expect(errors['required']).toBeTruthy();
   }));
 
   it('username should be more than 6 characters', (() => {
-    const username6 = component.loginForm.controls['username'];
     setUserName('test');
-    const errors = username6.errors || {};
+    const errors = username.errors || {};
     expect(errors['minlength']).toBeTruthy();
   }));
 
@@ -109,13 +108,11 @@ describe('LoginComponent', () => {
 
   // PASSWORD tests
   it('password should be invalid', (() => {
-    const passwordInvalid = component.loginForm.controls['password'];
-    expect(passwordInvalid.valid).toBeFalsy();
+    expect(password.valid).toBeFalsy();
   }));
 
   it('password should be required', (() => {
-    const passwordRequired = component.loginForm.controls['password'];
-    const errors = passwordRequired.errors || {};
+    const errors = password.errors || {};
     expect(errors['required']).toBeTruthy();
   }));
 
