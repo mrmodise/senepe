@@ -117,9 +117,8 @@ describe('LoginComponent', () => {
   }));
 
   it('password should be more than 8 characters', (() => {
-    const password8 = component.loginForm.controls['password'];
     setPassword('test');
-    const errors = password8.errors || {};
+    const errors = password.errors || {};
     expect(errors['minlength']).toBeTruthy();
   }));
 
@@ -177,7 +176,7 @@ describe('LoginComponent', () => {
    * reusable function for password dry spec
    * @param password
    */
-  function setPassword(passWord: string) {
-    component.loginForm.controls['password'].setValue(passWord);
+  function setPassword(userPassword: string) {
+    component.loginForm.controls['password'].setValue(userPassword);
   }
 });
