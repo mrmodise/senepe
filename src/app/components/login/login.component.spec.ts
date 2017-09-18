@@ -81,20 +81,20 @@ describe('LoginComponent', () => {
 
   // USERNAME field tests
   it('username should be invalid', (() => {
-    const username = component.loginForm.controls['username'];
-    expect(username.valid).toBeFalsy();
+    const usernameInvalid = component.loginForm.controls['username'];
+    expect(usernameInvalid.valid).toBeFalsy();
   }));
 
   it('username should be required', (() => {
-    const username = component.loginForm.controls['username'];
-    const errors = username.errors || {};
+    const usernameRequired = component.loginForm.controls['username'];
+    const errors = usernameRequired.errors || {};
     expect(errors['required']).toBeTruthy();
   }));
 
   it('username should be more than 6 characters', (() => {
-    const username = component.loginForm.controls['username'];
+    const username6 = component.loginForm.controls['username'];
     setUserName('test');
-    const errors = username.errors || {};
+    const errors = username6.errors || {};
     expect(errors['minlength']).toBeTruthy();
   }));
 
@@ -109,20 +109,20 @@ describe('LoginComponent', () => {
 
   // PASSWORD tests
   it('password should be invalid', (() => {
-    const password = component.loginForm.controls['password'];
-    expect(password.valid).toBeFalsy();
+    const passwordInvalid = component.loginForm.controls['password'];
+    expect(passwordInvalid.valid).toBeFalsy();
   }));
 
   it('password should be required', (() => {
-    const password = component.loginForm.controls['password'];
-    const errors = password.errors || {};
+    const passwordRequired = component.loginForm.controls['password'];
+    const errors = passwordRequired.errors || {};
     expect(errors['required']).toBeTruthy();
   }));
 
   it('password should be more than 8 characters', (() => {
-    const password = component.loginForm.controls['password'];
+    const password8 = component.loginForm.controls['password'];
     setPassword('test');
-    const errors = password.errors || {};
+    const errors = password8.errors || {};
     expect(errors['minlength']).toBeTruthy();
   }));
 
@@ -144,8 +144,8 @@ describe('LoginComponent', () => {
 
     expect(component.loginForm.valid).toBeTruthy();
 
-    let token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0ZXIxIiwiYXVkaWVuY2UiOiJ3ZWIiLCJjcmVhdGVkIjoxNTA1NTU2NTQ3MDgyLCJleHAiOjE1MDYxNjEzNDd9.HPRcfzEVYTJu3YsWTzRNqfyte7Zy0j_QOPKlmtccuOplAv1oRpdLs04T_JmvDE1ItdH2wsqlIXQPV2iXfpyOIA';
-    let response = {
+    const token = 'eyJhbGciOiJIUzUxMiJ9';
+    const response = {
       'user': new User(token, username)
     };
 
@@ -180,7 +180,7 @@ describe('LoginComponent', () => {
    * reusable function for password dry spec
    * @param password
    */
-  function setPassword(password: string) {
-    component.loginForm.controls['password'].setValue(password);
+  function setPassword(passWord: string) {
+    component.loginForm.controls['password'].setValue(passWord);
   }
 });
