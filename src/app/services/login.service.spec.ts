@@ -10,7 +10,13 @@ describe('LoginService', () => {
     });
   });
 
-  it('should ...', inject([LoginService], (service: LoginService) => {
-    expect(service).toBeTruthy();
+  it('should return false if user is not authenticated', inject([LoginService], (service: LoginService) => {
+    expect(service.isAuthenticated()).toBeFalsy();
   }));
+
+
+
+
+
+
 });

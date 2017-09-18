@@ -16,9 +16,6 @@ import {HttpClientService} from './http-client.service';
 @Injectable()
 export class RegisterService {
 
-  // make use of custom configuration class
-  config = new Config();
-
   // inject the http instance
   constructor(private httpClient: HttpClientService) {}
 
@@ -30,7 +27,7 @@ export class RegisterService {
   public register(user: User): Observable<User> {
     return this
       .httpClient
-      .post(this.config.POST_USER_URL, user, this.config.JSON_HEADERS);
+      .post(Config.POST_USER_URL, user, Config.JSON_HEADERS);
   }
 
 

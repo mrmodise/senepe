@@ -7,16 +7,18 @@ import {HttpClientService} from './http-client.service';
 
 @Injectable()
 export class UserService {
-  // make use of custom configuration class
-  config = new Config();
-  private token = localStorage.getItem('token');
 
   constructor(private httpClient: HttpClientService) {}
 
+  /**
+   *
+   * @param {User} user
+   * @returns {Observable<Photo[]>}
+   */
   public getPhotosByUser(user: User): Observable<Photo[]> {
     return this
       .httpClient
-      .post(this.config.GET_USER_PHOTOS, user, this.config.AUTH_HEADERS);
+      .post(Config.GET_USER_PHOTOS, user, Config.AUTH_HEADERS);
   }
 
 }

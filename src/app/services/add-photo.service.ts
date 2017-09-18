@@ -7,9 +7,6 @@ import {HttpClientService} from './http-client.service';
 @Injectable()
 export class AddPhotoService {
 
-  // common configurations
-  config = new Config();
-
   constructor(private httpClient: HttpClientService) {}
 
   /**
@@ -20,7 +17,7 @@ export class AddPhotoService {
   public sendPhoto(photo: Photo): Observable<string> {
     return this
       .httpClient
-      .post(this.config.ADD_PHOTO_URL, photo, this.config.AUTH_HEADERS);
+      .post(Config.ADD_PHOTO_URL, photo, Config.AUTH_HEADERS);
   }
 
 }

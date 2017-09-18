@@ -1,6 +1,5 @@
 // defaults
 import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
 // custom
@@ -21,9 +20,6 @@ import {HttpClientService} from './http-client.service';
 @Injectable()
 export class PhotoService {
 
-  // make use of custom configuration class
-  config = new Config();
-
   // inject the http instance
   constructor(private httpClient: HttpClientService) {
   }
@@ -35,27 +31,27 @@ export class PhotoService {
   public getAllPhotos(): Observable<Photo[]> {
     return this
       .httpClient
-      .get(this.config.GET_PHOTOS_URL, this.config.AUTH_HEADERS);
+      .get(Config.GET_PHOTOS_URL, Config.AUTH_HEADERS);
   }
 
   /**
    * Pings the server for a single photo
    * @param photoId
-   * @returns {Observable<R|T>}
+   * @returns {Observable<Photo>}
    */
   public getPhotosByUser(photoId: number): Observable<Photo> {
     return this
       .httpClient
-      .post(this.config.GET_USER_PHOTOS, photoId, this.config.JSON_HEADERS);
+      .post(Config.GET_USER_PHOTOS, photoId, Config.JSON_HEADERS);
   }
 
   /**
    * Pings the server to request updating a photo
    * @param photo
-   * @returns {Observable<R|T>}
+   * @returns {Observable<Photo>}
    */
   public updatePhoto(photo: Photo): Observable<Photo> {
     return this.httpClient
-      .post(this.config.UPDATE_PHOTO_URL, photo, {headers: this.config.JSON_HEADERS});
+      .post(Config.UPDATE_PHOTO_URL, photo, {headers: Config.JSON_HEADERS});
   }
 }

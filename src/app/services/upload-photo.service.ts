@@ -5,14 +5,13 @@ import {Config} from '../config/config';
 export class UploadPhotoService {
 
   filesToUpload: Array<File>;
-  config = new Config();
 
   constructor() {
     this.filesToUpload = [];
   }
 
   public upload() {
-    this.makeFileRequest(this.config.FILE_REQUEST_URL, [], this.filesToUpload).then((result => {
+    this.makeFileRequest(Config.FILE_REQUEST_URL, [], this.filesToUpload).then((result => {
         console.log(result);
       }), (error) => {
         console.error(error);

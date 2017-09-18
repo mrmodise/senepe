@@ -1,6 +1,5 @@
 // defaults
 import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
 
 // RxJS
 import {Observable} from 'rxjs/Observable';
@@ -16,30 +15,13 @@ import {HttpClientService} from './http-client.service';
 @Injectable()
 export class LoginService {
 
-  // make use of custom configuration class
-  config = new Config();
-
-  constructor(private httpClient: HttpClientService, private router: Router) {
-  }
-
-  /**
-   * Pings the server for a login request
-   * @param model
-   * @returns {Observable<User>}
-   */
-  login(model): Observable<User> {
-    return this
-      .httpClient
-      .post(this.config.LOGIN_URL, model, this.config.JSON_HEADERS);
-  }
-
   /**
    * Checks if user is authenticated
    * @returns {boolean}
    */
-  isAuthenticated(): boolean {
-    let userName = localStorage.getItem('currentUserName');
-    let token = localStorage.getItem('token');
+  static isAuthenticated(): boolean {
+    const userName = localStorage.getItem('currentUserName');
+    const token = localStorage.getItem('token');
 
     if ((userName !== '' && userName !== null) && (token !== '' && token !== null)) {
       // if the user and token exists in the local storage, user is authenticated
@@ -49,10 +31,25 @@ export class LoginService {
     }
   }
 
+  constructor(private httpClient: HttpClientService, private router: Router) {
+  }
+
+
+  /**
+   * Pings the server for a login request
+   * @param model
+   * @returns {Observable<User>}
+   */
+  login(model): Observable<User> {
+    return this
+      .httpClient
+      .post(Config.LOGIN_URL, model, Config.JSON_HEADERS);
+  }
+
   /**
    * handles the logout process
    */
-  logOut(): void {
+  logOut() {
     // clear local storage
     localStorage.setItem('token', '');
     localStorage.setItem('currentUserName', '');

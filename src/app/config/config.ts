@@ -5,24 +5,21 @@ import {Headers} from '@angular/http';
  * @class Config
  */
 export class Config {
-  // retrieve token from local storage
-  private token = localStorage.getItem('token');
-
   // URLs
-  public GET_PHOTOS_URL = 'http://localhost:8088/auth/allPhotos';
-  public POST_USER_URL = 'http://localhost:8088/auth/register';
-  public GET_USER_PHOTOS = 'http://localhost:8088/rest/photo/user';
-  public UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
-  public LOGIN_URL = 'http://localhost:8088/auth';
-  public TOKENIZE_URL = 'http://localhost:8088/rest/user/users';
-  public USER_BY_NAME_URL = 'http://localhost:8088/rest/photo/user';
-  public ADD_PHOTO_URL = 'http://localhost:8088/rest/photo/add';
-  public FILE_REQUEST_URL = 'http://localhost:8088/rest/photo/upload';
-
+  public static LOGIN_URL = 'http://localhost:8088/auth';
   // headers
-  public JSON_HEADERS = new Headers({'Content-Type': 'application/json'});
-
+  public static JSON_HEADERS = new Headers({'Content-Type': 'application/json'});
+  public static GET_PHOTOS_URL = 'http://localhost:8088/auth/allPhotos';
+  public static POST_USER_URL = 'http://localhost:8088/auth/register';
+  public static GET_USER_PHOTOS = 'http://localhost:8088/rest/photo/user';
+  public static ADD_PHOTO_URL = 'http://localhost:8088/rest/photo/add';
+  public static FILE_REQUEST_URL = 'http://localhost:8088/rest/photo/upload';
+  // retrieve token from local storage
+  public static token = localStorage.getItem('token');
   // set authorization headers
-  public AUTH_HEADERS = new Headers({'Content-Type': 'application/json', 'Authorization': this.token});
+  public static AUTH_HEADERS = new Headers({'Content-Type': 'application/json', 'Authorization': Config.token});
+  public static UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
+  public static TOKENIZE_URL = 'http://localhost:8088/rest/user/users';
+  public static USER_BY_NAME_URL = 'http://localhost:8088/rest/photo/user';
 
 }
