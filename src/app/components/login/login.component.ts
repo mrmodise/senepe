@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   currentUserName;
   message;
   loginForm: FormGroup;
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   user: User;
   isLoginUserNameValid = true;
   isLoginPasswordValid = true;
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginForm.value).subscribe(userData => {
         // login successful, save token to local storage
         this.user = new User(userData.token, this.loginForm.get('username').value);
-        LoginComponent.setUserSession(this.user);
+        this.setUserSession(this.user);
 
         this.isLoggedIn = true;
 
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
    * sets currently logged in user session
    * @param {User} user
    */
-  static setUserSession(user: User) {
+  setUserSession(user: User) {
     localStorage.setItem('token', user.token);
     localStorage.setItem('currentUserName', user.username);
   }
