@@ -23,7 +23,7 @@ export class LoginService {
   login(model): Observable<any> {
     return this
       .http
-      .post(Config.LOGIN_URL, JSON.stringify(model), this.getOptions())
+      .post(Config.LOGIN_URL, JSON.stringify(model), Config.getOptions())
       .map(res => res.json());
   }
 
@@ -52,17 +52,5 @@ export class LoginService {
     } else {
       return false;
     }
-  }
-
-  /**
-   * retrieve headers
-   * @returns {RequestOptions}
-   */
-  private getOptions(): RequestOptions {
-    const headers: Headers = new Headers();
-    headers.append('content-type', 'application/json; charset=utf-8');
-    const opts = new RequestOptions({headers: headers});
-    opts.headers = headers;
-    return opts;
   }
 }
