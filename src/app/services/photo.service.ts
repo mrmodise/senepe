@@ -31,7 +31,7 @@ export class PhotoService {
   public getAllPhotos(): Observable<Photo[]> {
     return this
       .httpClient
-      .get(Config.GET_PHOTOS_URL, Config.AUTH_HEADERS);
+      .get(Config.GET_PHOTOS_URL, Config.getAuthOptions());
   }
 
   /**
@@ -42,7 +42,7 @@ export class PhotoService {
   public getPhotosByUser(photoId: number): Observable<Photo> {
     return this
       .httpClient
-      .post(Config.GET_USER_PHOTOS, photoId, Config.JSON_HEADERS);
+      .post(Config.GET_USER_PHOTOS, photoId, Config.getOptions());
   }
 
   /**
