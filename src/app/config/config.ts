@@ -1,4 +1,5 @@
-import {Headers} from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
+
 /**
  * Defines common properties in the entire application
  * @author Morebodi Modise
@@ -21,5 +22,26 @@ export class Config {
   public static UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
   public static TOKENIZE_URL = 'http://localhost:8088/rest/user/users';
   public static USER_BY_NAME_URL = 'http://localhost:8088/rest/photo/user';
+
+  /**
+   * retrieve headers
+   * @returns {RequestOptions}
+   */
+  static getOptions(): RequestOptions {
+    const headers: Headers = new Headers();
+    headers.append('content-type', 'application/json; charset=utf-8');
+    const opts = new RequestOptions({headers: headers});
+    opts.headers = headers;
+    return opts;
+  }
+
+  static getAuthOptions(): RequestOptions {
+    const headers: Headers = new Headers();
+    headers.append('content-type', 'application/json; charset=utf-8');
+    headers.append( 'Authorization', Config.token);
+    const opts = new RequestOptions({headers: headers});
+    opts.headers = headers;
+    return opts;
+  }
 
 }
