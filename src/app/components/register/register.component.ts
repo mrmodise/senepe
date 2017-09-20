@@ -33,9 +33,13 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
 
     // additional safety checks
-    if (!this.validateEmail()) return;
-    else if (!this.validatePassword()) return;
-    else if (!this.validateUserName()) return;
+    if (!this.validateEmail()) {
+      return;
+    } else if (!this.validatePassword()) {
+      return;
+    } else if (!this.validateUserName()) {
+      return;
+    }
 
     this.registerService.register(this.registerForm.value).subscribe(data => {
       this.registered = true;
