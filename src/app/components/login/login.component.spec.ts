@@ -1,10 +1,13 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import {LoginComponent} from './login.component';
-import {HttpModule} from '@angular/http';
+import {BaseRequestOptions, Http, HttpModule, RequestMethod, Response, ResponseOptions} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {HttpClientService} from '../../services/http-client.service';
 import {RouterTestingModule} from '@angular/router/testing';
+import {MockBackend, MockConnection} from '@angular/http/testing';
+import {User} from '../../models/user';
+import {Config} from '../../config/config';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -12,11 +15,22 @@ describe('LoginComponent', () => {
   let username, password;
   const populatedUser = {username: 'tester1', password: 'tester123'};
   const blankUser = {username: '', password: ''};
+  let loginService: LoginService;
+  let mockBackend: MockBackend;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [LoginService, HttpClientService],
+      providers: [LoginService,
+        HttpClientService,
+        MockBackend,
+        LoginService,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          useFactory: (backend, options) => new Http(backend, options),
+          deps: [MockBackend, BaseRequestOptions]
+        }],
       imports: [HttpModule, ReactiveFormsModule, RouterTestingModule]
     })
       .compileComponents()
@@ -27,6 +41,8 @@ describe('LoginComponent', () => {
         component = fixture.componentInstance;
         // trigger lifecycle function to create form
         component.ngOnInit();
+        loginService = TestBed.get(LoginService);
+        mockBackend = TestBed.get(MockBackend);
         // watch changes in the fixture
         fixture.detectChanges();
         // username and password from the login form
@@ -115,6 +131,27 @@ describe('LoginComponent', () => {
   }));
 
   // FORM submission
+  it('should log user in', fakeAsync(() => {
+    mockBackend.connections.subscribe((c: MockConnection) => {
+      const options = new ResponseOptions({body: JSON.stringify({username: 'tester1', token: 'test'})});
+      c.mockRespond(new Response(options));
+
+      expect(c.request.url).toEqual(Config.LOGIN_URL);
+      expect(c.request.method).toEqual(RequestMethod.Post);
+    });
+
+    loginService.login({username: 'tester1', password: 'tester123'}).subscribe(data => {
+      component.isLoggedIn = true;
+      component.setUserSession(new User('test', 'tester1'));
+      component.currentUserName = data.username;
+
+      expect(data.token).toEqual('test');
+    });
+
+    expect(component.currentUserName).toEqual('tester1');
+    expect(component.loginFailed).toBeFalsy();
+    expect(component.message).toBeFalsy();
+  }));
 
   /**
    * reusable function for a dry spec.
@@ -136,7 +173,7 @@ describe('LoginComponent', () => {
 
   /**
    * reusable function for password dry spec
-   * @param password
+   * @param userPassword
    */
   function setPassword(userPassword: string) {
     component.loginForm.controls['password'].setValue(userPassword);
