@@ -32,19 +32,33 @@ describe('PhotoService', () => {
 
   it('should return a list of photos', (() => {
 
-    const photos = ['photo.png', 'photo-name.png', 'ostma.png'];
+    const photos = [{
+      created: '2017-06-06',
+      description: 'This is a description test',
+      imageName: 'contact-bg.jpg',
+      likes: 0,
+      photoId: 1,
+      photoName: 'morebodi',
+      title: 'morebodi pic'
+    }, {
+      created: '2017-06-06',
+      description: 'This is a description test',
+      imageName: 'contact-bg2.jpg',
+      likes: 0,
+      photoId: 2,
+      photoName: 'morebodi',
+      title: 'pic frame'
+    }];
 
     mockBackend.connections.subscribe((connection: MockConnection) => {
-      const options = new ResponseOptions({body: photos});
-
+      const options = new ResponseOptions({body: JSON.stringify(photos)});
       connection.mockRespond(new Response(options));
-
       expect(connection.request.url).toEqual(Config.GET_PHOTOS_URL);
       expect(connection.request.method).toEqual(RequestMethod.Get);
     });
 
     photoService.getAllPhotos().subscribe(p => {
-      expect(p).toBe(photos);
+      expect(JSON.stringify(p)).toEqual(JSON.stringify(photos));
     });
   }));
 });
