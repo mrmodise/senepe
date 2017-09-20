@@ -47,8 +47,8 @@ export class AddPhotoComponent implements OnInit {
    */
   onSubmit(): void {
     // do not submit if validations are not met
-    if (!this.validatePhotoName()) return;
-    if (!this.validatePhotoTitle()) return;
+    if (!this.validatePhotoName()) { return; }
+    if (!this.validatePhotoTitle()) { return; }
 
     this.newPhoto = this.addPhotoForm.value;
     this.addPhotoService.sendPhoto(this.newPhoto).subscribe(message => {
