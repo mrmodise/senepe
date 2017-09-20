@@ -30,7 +30,7 @@ describe('PhotoService', () => {
     mockBackend = backend;
   }));
 
-  it('should return a list of photos', inject([PhotoService], (service: PhotoService) => {
+  it('should return a list of photos', (() => {
 
     const photos = ['photo.png', 'photo-name.png', 'ostma.png'];
 
