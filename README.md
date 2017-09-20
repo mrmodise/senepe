@@ -1,20 +1,25 @@
 [![Packagist](badges/java-v8-red.png)]()  [![Packagist](badges/angular-v4-orange.png)]() [![Badges](badges/orm.png)]()
 
 ### Senepe
-A photo sharing Web app developed in Spring boot (backend) and Angular 4 (frontend). 
+Senepe is a photo sharing Web application. The user can browse through a list of photos upon landing on the site. 
+In the case the user wishes to share pictures, the user can register and login to do so. The aim of this project is to demonstrate Angular fundamentals as well as good programming standards. The back-end is developed in Spring boot (backend) and Angular 4 (frontend). 
 
 ### Setup
-Clone the project to your preferred location and ``npm install`` to install dependencies. The project was generated using ``angular CLI``, as such, providing ``ng serve`` should run the project.
+Clone the project to your preferred location and ``yarn install`` to install dependencies. The project was generated using ``angular CLI``, as such, providing ``ng serve`` should run the project.
 
 ### Unit Tests
 ```
-Run ng test to execute all tests. Currently all 20 tests should pass
+Run ng test to execute all tests. Currently all 63 tests should pass
 ```
 Am busy finishing off the unit tests for all components and services. So far, these are "completed":
 
-- AppComponent
 - LoginComponent
+- RegisterComponent
 - AddPhotoComponent
+- PhotoListComponent
+- AppComponent
+- LoginService
+- PhotoService
 
 ### End-to-end Tests
 To execute e2e tests: ```ng e2e```. WIP
