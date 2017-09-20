@@ -1,12 +1,10 @@
-import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {LoginComponent} from './login.component';
-import {BaseRequestOptions, Http, HttpModule, ResponseOptions} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {HttpClientService} from '../../services/http-client.service';
 import {RouterTestingModule} from '@angular/router/testing';
-import {MockBackend} from '@angular/http/testing';
-import {User} from '../../models/user';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,43 +12,28 @@ describe('LoginComponent', () => {
   let username, password;
   const populatedUser = {username: 'tester1', password: 'tester123'};
   const blankUser = {username: '', password: ''};
-  let backend: MockBackend;
-  let service: LoginService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [LoginService,
-        HttpClientService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          userFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        }],
+      providers: [LoginService, HttpClientService],
       imports: [HttpModule, ReactiveFormsModule, RouterTestingModule]
     })
-      .compileComponents();
+      .compileComponents()
+      .then(() => {
+        // create component and test fixture
+        fixture = TestBed.createComponent(LoginComponent);
+        // get test component from the fixture
+        component = fixture.componentInstance;
+        // trigger lifecycle function to create form
+        component.ngOnInit();
+        // watch changes in the fixture
+        fixture.detectChanges();
+        // username and password from the login form
+        username = component.loginForm.controls['username'];
+        password = component.loginForm.controls['password'];
+      });
   }));
-
-  beforeEach(() => {
-    // create component and test fixture
-    fixture = TestBed.createComponent(LoginComponent);
-    // get test component from the fixture
-    component = fixture.componentInstance;
-    // trigger lifecycle function to create form
-    component.ngOnInit();
-    // initialize the backend
-    backend = TestBed.get(MockBackend);
-    // initialize the user service
-    service = TestBed.get(LoginService);
-    // watch changes in the fixture
-    fixture.detectChanges();
-
-    username = component.loginForm.controls['username'];
-    password = component.loginForm.controls['password'];
-  });
 
   // COMPONENT tests
   it('should create LoginComponent', (() => {
@@ -132,27 +115,6 @@ describe('LoginComponent', () => {
   }));
 
   // FORM submission
-  it('submitting form should emit a JWT user token', fakeAsync(() => {
-    expect(component.loginForm.valid).toBeFalsy();
-
-    setUserName('tester1');
-    setPassword('tester123');
-
-    expect(component.loginForm.valid).toBeTruthy();
-
-    const token = 'eyJhbGciOiJIUzUxMiJ9';
-    const response = {
-      'user': new User(token, username)
-    };
-
-    // when the request subscribes for results on a connection, return a fake responses
-    backend.connections.subscribe(connection => {
-      connection.mockRespond(new Response(<ResponseOptions>{
-        body: JSON.stringify(response)
-      }));
-    });
-
-  }));
 
   /**
    * reusable function for a dry spec.
