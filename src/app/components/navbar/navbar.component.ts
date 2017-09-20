@@ -15,18 +15,18 @@ export class NavbarComponent implements OnInit, OnChanges {
   color = 'lightgrey';
 
   constructor(private router: Router,
-              private loginService: LoginService) {
+              public loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.isLoggedIn = typeof localStorage.getItem('isLoggedIn') !== 'undefined'  ? Boolean(localStorage.getItem('isLoggedIn')) : false;
+    this.isLoggedIn = typeof localStorage.getItem('isLoggedIn') !== 'undefined' ? Boolean(localStorage.getItem('isLoggedIn')) : false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(`The changes are ${changes}`)
+    console.log(`The changes are ${changes}`);
   }
 
-  loginStatus(value): void{
+  loginStatus(value): void {
     console.log(`login status has changed  ${value}`);
   }
 

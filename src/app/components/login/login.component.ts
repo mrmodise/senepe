@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
    */
   onSubmit(): void {
     // validation checks before submit
-    if (!this.validateLoginUserName()) return;
-    if (!this.validateLoginPassword()) return;
+    if (!this.validateLoginUserName()) { return; }
+    if (!this.validateLoginPassword()) { return; }
 
     // subscribe to the login service
     this.loginService.login(this.loginForm.value).subscribe(userData => {

@@ -6,12 +6,12 @@ import {LoginService} from './services/login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   @Input() userLoggedIn: boolean;
 
 
-  constructor(private loginService: LoginService){
+  constructor(private loginService: LoginService) {
 
   }
 
