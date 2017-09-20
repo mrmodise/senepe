@@ -47,10 +47,7 @@ export class LoginService {
     const token = localStorage.getItem('token');
 
     if ((userName !== '' && userName !== null) && (token !== '' && token !== null)) {
-      // if the user and token exists in the local storage, user is authenticated
       return true;
-    } else {
-      return false;
     }
   }
 }
