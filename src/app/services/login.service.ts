@@ -7,7 +7,7 @@ import {User} from '../models/user';
 import {Config} from '../config/config';
 // router
 import {Router} from '@angular/router';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import {Http} from '@angular/http';
 
 @Injectable()
 export class LoginService {
