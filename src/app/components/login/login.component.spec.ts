@@ -8,6 +8,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import {User} from '../../models/user';
 import {Config} from '../../config/config';
+import {By} from '@angular/platform-browser';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -151,6 +152,20 @@ describe('LoginComponent', () => {
     expect(component.currentUserName).toEqual('tester1');
     expect(component.loginFailed).toBeFalsy();
     expect(component.message).toBeFalsy();
+  }));
+
+  it('should display Logged in successfully', (() => {
+    component.isLoggedIn = true;
+    const pText = fixture.debugElement.query(By.css('p'));
+    const text = pText.nativeElement;
+    expect(text.textContent).toEqual('Logged in successfully');
+  }));
+
+  it('should welcome logged in user', (() => {
+    component.isLoggedIn = true;
+    const h1Text = fixture.debugElement.query(By.css('h1'));
+    const welcomeText = h1Text.nativeElement;
+    expect(welcomeText.textContent).toEqual('Welcome back ');
   }));
 
   /**
