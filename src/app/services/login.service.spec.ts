@@ -1,9 +1,9 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 import {AppModule} from '../app.module';
 import {RouterTestingModule} from '@angular/router/testing';
-import { LoginService } from './login.service';
+import {LoginService} from './login.service';
 import {MockBackend, MockConnection} from '@angular/http/testing';
-import {BaseRequestOptions, Http, Response, RequestMethod, ResponseOptions} from '@angular/http';
+import {BaseRequestOptions, Http, RequestMethod, Response, ResponseOptions} from '@angular/http';
 import {Config} from '../config/config';
 
 describe('LoginService', () => {
@@ -12,7 +12,7 @@ describe('LoginService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule ],
+      imports: [AppModule, RouterTestingModule],
       providers: [
         MockBackend,
         LoginService,
@@ -31,8 +31,12 @@ describe('LoginService', () => {
     mockBackend = backend;
   }));
 
+  it('should create login service', (() => {
+    expect(loginService).toBeTruthy();
+  }));
+
   it('should return false if user is not authenticated', (() => {
-   // expect(loginService.isAuthenticated()).toBeFalsy();
+    // expect(loginService.isAuthenticated()).toBeFalsy();
   }));
 
   it('should return JWT token when logged in', (() => {

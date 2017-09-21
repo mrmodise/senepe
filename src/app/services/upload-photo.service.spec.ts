@@ -10,7 +10,7 @@ describe('UploadPhotoService', () => {
     });
   });
 
-  it('should ...', inject([UploadPhotoService], (service: UploadPhotoService) => {
+  it('should create upload-photo service', inject([UploadPhotoService], (service: UploadPhotoService) => {
     expect(service).toBeTruthy();
   }));
 });

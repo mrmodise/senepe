@@ -10,7 +10,7 @@ describe('HttpClientService', () => {
     });
   });
 
-  it('should ...', inject([HttpClientService], (service: HttpClientService) => {
+  it('should create http-client service', inject([HttpClientService], (service: HttpClientService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -30,6 +30,10 @@ describe('PhotoService', () => {
     mockBackend = backend;
   }));
 
+  it('should create photo service', (() => {
+    expect(photoService).toBeTruthy();
+  }));
+
   it('should return a list of photos', (() => {
 
     const photos = [{
