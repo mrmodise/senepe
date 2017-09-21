@@ -20,7 +20,7 @@ describe('SidePanelComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create SidePanelComponent', () => {
     expect(component).toBeTruthy();
   });
 });
