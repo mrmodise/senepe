@@ -6,21 +6,21 @@
     <a class="item" routerLink="/home">
       <h2 id="badge">Senepe</h2>
     </a>
-    <a [navBarHover]="color" class="item" routerLink="/home">
+    <a [appNavBarHover]="color" class="item" routerLink="/home">
       Home
     </a>
-    <a [navBarHover]="color" class="item" routerLink="/album">
+    <a [appNavBarHover]="color" class="item" routerLink="/album">
       Album
     </a>
   </div>
   <div class="right menu">
-    <a [navBarHover]="color" class="item" routerLinkActive="active" *ngIf="!loginService.isAuthenticated()" (change)="loginStatus(true)" routerLink="register">
+    <a [appNavBarHover]="color" class="item" routerLinkActive="active" *ngIf="!loginService.isAuthenticated()" (change)="loginStatus(true)" routerLink="register">
       Sign up
     </a>
-    <a [navBarHover]="color" routerLinkActive="active" class="item" *ngIf="!loginService.isAuthenticated()" routerLink="login">
+    <a [appNavBarHover]="color" routerLinkActive="active" class="item" *ngIf="!loginService.isAuthenticated()" routerLink="login">
       Login
     </a>
-    <a [navBarHover]="color" routerLinkActive="active" *ngIf="loginService.isAuthenticated()" class="item" routerLink="login" (click)="logout()">
+    <a [appNavBarHover]="color" routerLinkActive="active" *ngIf="loginService.isAuthenticated()" class="item" routerLink="login" (click)="logout()">
       Logout
     </a>
   </div>

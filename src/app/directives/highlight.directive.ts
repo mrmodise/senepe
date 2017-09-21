@@ -1,24 +1,30 @@
 import {Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 @Directive({
-  selector: '[navBarHover]'
+  selector: '[appNavBarHover]'
 })
 export class HighlightDirective {
 
-  @Input('navBarHover') highlightColor: string;
+  @Input() appNavBarHover: string;
 
   constructor(private el?: ElementRef) {
   }
 
-  @HostListener('mouseenter') onMouseEnter(){
-    this.highlight(this.highlightColor || 'grey');
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.highlight(this.appNavBarHover || 'grey');
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
+  @HostListener('mouseleave')
+  onMouseLeave() {
     this.highlight(null);
   }
 
-  highlight(color: string){
+  /**
+   * highlights DOM element to the specified color
+   * @param {string} color
+   */
+  highlight(color: string) {
     this.el.nativeElement.style.backgroundColor = color;
   }
 
