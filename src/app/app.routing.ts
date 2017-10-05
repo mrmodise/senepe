@@ -13,32 +13,16 @@ import {AddPhotoComponent} from 'app/components/add-photo/add-photo.component';
 // define routes
 const routes: Routes = [
 
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'album',
-    component: AlbumComponent,
-    canActivate: [AuthService]
-  },
-  {
-    path: 'add-photo',
-    component: AddPhotoComponent
-  },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: 'home', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'album', component: AlbumComponent, canActivate: [AuthService]},
+  {path: 'add-photo', component: AddPhotoComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 
 // export to use in app.module
 export const AdminRouting: ModuleWithProviders = RouterModule.forRoot(routes);
+
+

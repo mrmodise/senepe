@@ -44,7 +44,7 @@ import {store} from './store/store';
     AddPhotoComponent,
     HighlightDirective
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, AdminRouting, NgReduxModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, NgReduxModule, AdminRouting],
   // tslint:disable-next-line:max-line-length
   providers: [RegisterService, PhotoService, LoginService, HttpClientService, AuthService, UserService, AddPhotoService, UploadPhotoService],
   bootstrap: [AppComponent]
