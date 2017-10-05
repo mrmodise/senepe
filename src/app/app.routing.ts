@@ -1,7 +1,6 @@
 // defaults
 import {RouterModule, Routes} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
-
 // custom
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
@@ -13,11 +12,7 @@ import {AddPhotoComponent} from 'app/components/add-photo/add-photo.component';
 
 // define routes
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
+
   {
     path: 'home',
     component: HomeComponent
@@ -46,4 +41,4 @@ const routes: Routes = [
 ];
 
 // export to use in app.module
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+export const AdminRouting: ModuleWithProviders = RouterModule.forRoot(routes);
