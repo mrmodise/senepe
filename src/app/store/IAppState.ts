@@ -1,3 +1,5 @@
+import {Photo} from '../models/photo';
+
 export interface IAppState {
-  type?: string;
+  photos: Array<Photo>;
 }

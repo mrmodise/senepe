@@ -28,8 +28,7 @@ import {UploadPhotoService} from './services/upload-photo.service';
 import {HttpClientService} from './services/http-client.service';
 import {HighlightDirective} from './directives/highlight.directive';
 import {IAppState} from './store/IAppState';
-import {createLogger} from './store/redux.logger';
-import {rootReducer} from './store/reducers';
+import {store} from './store/store';
 
 @NgModule({
   declarations: [
@@ -52,6 +51,6 @@ import {rootReducer} from './store/reducers';
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, {}, [createLogger()]);
+    ngRedux.provideStore(store);
   }
 }
