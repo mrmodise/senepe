@@ -4,13 +4,23 @@
 Senepe is a photo sharing Web application. The user can browse through a list of photos upon landing on the site. 
 In the case the user wishes to share pictures, the user can register and login to do so. The aim of this project is to demonstrate Angular fundamentals as well as good programming standards. The back-end is developed in Spring boot (backend) and Angular 4 (frontend). 
 
+### Requirements
+1. Internet connection
+2. Editor (WebStorm/Visual Studio Code) - ensure Editor is correctly configured to avoid linting issues.
+3. Angular CLI should be installed (https://cli.angular.io)
+4. NodeJS/npm should be installed (https://nodejs.org)
+5. Knowledge of Terminal or CMD usage
+
 ### Setup
-Clone the project to your preferred location and ``yarn install`` to install dependencies. The project was generated using ``angular CLI``, as such, providing ``ng serve`` should run the project.
+
+- ```git clone https://github.com/mrmodise/senepe.git```
+- ``yarn install`` to install dependencies. 
+
+The project was generated using ``angular CLI``, as such, providing ``ng serve -o`` should compile the project and open ln.
 
 ### Unit Tests
-```
-Run ng test to execute all tests. Currently all 63 tests should pass
-```
+```ng test``` to execute all unit tests. Currently all 60+ tests should execute.
+
 Am busy finishing off the unit tests for all components and services. So far, these are "completed":
 
 - LoginComponent
@@ -26,9 +36,9 @@ To execute e2e tests: ```ng e2e```. WIP
 
 ### Summary 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+Run `ng serve -o` for a dev server. App will open at `http://localhost:4200/`. 
 
-Run `mvn package` to package the back-end code. ``java -jar /target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
+Run `mvn package` to package the back-end code. ``java -jar target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
 
 `Note` project is still under development. Updated weekly `:)`
 
