@@ -20,8 +20,8 @@ export class Config {
   // set authorization headers
   public static AUTH_HEADERS = new Headers({'Content-Type': 'application/json', 'Authorization': Config.token});
   public static UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
-  public static TOKENIZE_URL = 'http://localhost:8088/rest/user/users';
-  public static USER_BY_NAME_URL = 'http://localhost:8088/rest/photo/user';
+  // public static TOKENIZE_URL = 'http://localhost:8088/rest/user/users';
+  // public static USER_BY_NAME_URL = 'http://localhost:8088/rest/photo/user';
 
   /**
    * retrieve headers
@@ -38,7 +38,7 @@ export class Config {
   static getAuthOptions(): RequestOptions {
     const headers: Headers = new Headers();
     headers.append('content-type', 'application/json; charset=utf-8');
-    headers.append( 'Authorization', Config.token);
+    headers.append('Authorization', Config.token);
     const opts = new RequestOptions({headers: headers});
     opts.headers = headers;
     return opts;
