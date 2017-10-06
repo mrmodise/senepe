@@ -1,7 +1,6 @@
 // defaults
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-
 // custom
 import {User} from '../models/user';
 import {Config} from '../config/config';

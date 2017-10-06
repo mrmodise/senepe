@@ -1,11 +1,9 @@
 // defaults
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-
 // custom
 import {Photo} from '../models/photo';
 import {Config} from '../config/config';
-
 // observable
 import 'rxjs/Rx';
 import {HttpClientService} from './http-client.service';

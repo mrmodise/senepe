@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -19,7 +19,8 @@ export class HttpClientService {
    * Custom post method to handle all Http POSTS in the app
    * @param url
    * @param data
-   * @returns {Observable<R|T>}
+   * @param headers
+   * @returns {Observable<any>}
    */
   public post(url, data, headers): any {
     return this
@@ -32,7 +33,8 @@ export class HttpClientService {
   /**
    *  Custom post method to handle all Http GET in the app
    * @param url
-   * @returns {Observable<R|T>}
+   * @param headers
+   * @returns {Observable<any>}
    */
   public get(url, headers): any {
     return this
