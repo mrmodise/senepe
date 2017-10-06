@@ -29,6 +29,7 @@ import {HttpClientService} from './services/http-client.service';
 import {HighlightDirective} from './directives/highlight.directive';
 import {IAppState} from './store/IAppState';
 import {store} from './store/store';
+import {PhotoActions} from './store/photos.action';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,17 @@ import {store} from './store/store';
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, NgReduxModule, AdminRouting],
   // tslint:disable-next-line:max-line-length
-  providers: [RegisterService, PhotoService, LoginService, HttpClientService, AuthService, UserService, AddPhotoService, UploadPhotoService],
+  providers: [
+    RegisterService,
+    PhotoService,
+    LoginService,
+    HttpClientService,
+    AuthService,
+    UserService,
+    AddPhotoService,
+    PhotoActions,
+    UploadPhotoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

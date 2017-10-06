@@ -12,7 +12,6 @@ import {AddPhotoComponent} from 'app/components/add-photo/add-photo.component';
 
 // define routes
 const routes: Routes = [
-
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
