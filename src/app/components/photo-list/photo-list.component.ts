@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Photo} from '../../models/photo';
-import {PhotoService} from '../../services/photo.service';
+import {select} from '@angular-redux/store';
+import {Observable} from 'rxjs/Observable';
+import {PhotoActions} from '../../store/photos.action';
 
 @Component({
   selector: 'app-photo-list',
@@ -9,17 +11,13 @@ import {PhotoService} from '../../services/photo.service';
 })
 export class PhotoListComponent implements OnInit {
 
-  photos: Photo[];
+  @select('photos') photos$: Observable<Photo>;
 
-  constructor(private photoService: PhotoService) {
+  constructor(private photoActions: PhotoActions) {
   }
 
   ngOnInit() {
-
-    this.photoService.getAllPhotos().subscribe(photos => {
-      this.photos = photos;
-    }, error => console.log(error));
-
+    this.photoActions.getPhotos();
   }
 
   onSelect(photo) {

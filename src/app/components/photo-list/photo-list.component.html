@@ -1,6 +1,6 @@
 <div class='photo-list'>
   <!-- <div *ngFor="#user of users"> -->
-  <div *ngFor="let photo of photos">
+  <div *ngFor="let photo of photos$ | async">
     <div class="ui grid">
 
       <div class='two wide column'>
