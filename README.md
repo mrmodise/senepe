@@ -18,6 +18,9 @@ In the case the user wishes to share pictures, the user can register and login t
 
 The project was generated using ``angular CLI``, as such, providing ``ng serve -o`` should compile the project and open ln.
 
+### State Management
+Although this is an overkill for such a small application ``:)``, state is managed with Redux (https://github.com/angular-redux/store). Currently, this is a Work-in-progress (WIP).
+
 ### Unit Tests
 ```ng test``` to execute all unit tests. Currently all 60+ tests should execute.
 
@@ -38,7 +41,7 @@ To execute e2e tests: ```ng e2e```. WIP
 
 Run `ng serve -o` for a dev server. App will open at `http://localhost:4200/`. 
 
-Run `mvn package` to package the back-end code. ``java -jar target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
+For back-end code `cd backend` and `mvn package` to package the back-end code. ``java -jar target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
 
 `Note` project is still under development. Updated weekly `:)`
 
