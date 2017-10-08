@@ -1,8 +1,15 @@
-export class User {
-  public email: string;
-  public role: string;
-  public message: string;
-  public fullname: string;
+export interface IUser {
+  email: string,
+  role: string,
+  message: string,
+  fullName: string
+}
+
+export class User implements IUser {
+  email: string;
+  role: string;
+  message: string;
+  fullName: string;
 
   constructor(public token: string,
               public username: string,
