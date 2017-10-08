@@ -19,7 +19,7 @@ describe('ImageCommentsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create ImageComment component', () => {
     expect(component).toBeTruthy();
   });
 });

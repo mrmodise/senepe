@@ -30,9 +30,9 @@
         <span class="author">{{user.username}}</span>
       </div>
       <div class="fourteen wide column">
-        <form class="ui form" (ngSubmit)="onSubmit()" #commentForm="ngForm">
+        <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="commentForm" novalidate>
           <div class="field">
-            <textarea name="words" [(ngModel)]="newComment.content" #words id="words" placeholder="add a comment"
+            <textarea name="words" formControlName="newComment.content" #words id="words" placeholder="add a comment"
                       cols="30" rows="10"></textarea>
           </div>
           <button type="submit" class="ui blue button">Comment</button>

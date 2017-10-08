@@ -4,6 +4,7 @@ import {User} from '../../models/user';
 import {PhotoService} from '../../services/photo.service';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Params} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-image-detail',
@@ -15,13 +16,18 @@ export class ImageDetailComponent implements OnInit {
   like: string;
   user: User;
   photoId: number;
+  commentForm: FormGroup;
 
   constructor(private photoService: PhotoService,
               private userService: UserService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
+
+    this.createForm();
+
     const loggedInUser = localStorage.getItem('currentUserName');
 
     // retrieve list of parameters
@@ -42,6 +48,16 @@ export class ImageDetailComponent implements OnInit {
         }
       });
 
+    });
+  }
+
+  /**
+   *
+   * @returns {FormGroup}
+   */
+  createForm(): FormGroup {
+    return this.commentForm = this.fb.group({
+      words: ['', Validators.required]
     });
   }
 

@@ -12,5 +12,4 @@ export class ImageCommentsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
