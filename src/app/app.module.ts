@@ -30,6 +30,7 @@ import {HighlightDirective} from './directives/highlight.directive';
 import {IAppState} from './store/IAppState';
 import {store} from './store/store';
 import {PhotoActions} from './store/photos.action';
+import {ImageDetailComponent} from './components/image-detail/image-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {PhotoActions} from './store/photos.action';
     NotFoundComponent,
     AlbumComponent,
     AddPhotoComponent,
-    HighlightDirective
+    HighlightDirective,
+    ImageDetailComponent
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, NgReduxModule, AdminRouting],
   // tslint:disable-next-line:max-line-length
