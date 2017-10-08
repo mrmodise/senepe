@@ -3,7 +3,6 @@ import {IAppState} from './IAppState';
 import {Injectable} from '@angular/core';
 import {PhotoService} from '../services/photo.service';
 
-export const STORE_PHOTOS = 'photos/SAVE';
 export const REQUEST_PHOTOS_SUCCESS = 'photos/ALL_PHOTOS';
 
 @Injectable()
@@ -23,14 +22,5 @@ export class PhotoActions {
         photos
       })
     }, error => console.log(error));
-  }
-
-  /**
-   * Dispatch action on the store when action is called
-   */
-  savePhotos() {
-    this.ngRedux.dispatch({
-      type: STORE_PHOTOS
-    });
   }
 }
