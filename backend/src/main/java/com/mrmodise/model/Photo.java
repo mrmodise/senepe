@@ -42,9 +42,9 @@ public class Photo {
 
 	private int likes;
 
-	/*@OneToMany(mappedBy = "photo", cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "photo", cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<Comment> commentList;*/
+	private List<Comment> commentList;
 
 	public Photo() {
 		// TODO Auto-generated constructor stub
@@ -114,7 +114,15 @@ public class Photo {
 		this.likes = likes;
 	}
 
-	@Override
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    @Override
 	public String toString() {
 		return "Photo{" +
 				"photoId=" + photoId +

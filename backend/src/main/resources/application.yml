@@ -30,3 +30,6 @@ jwt:
 # base directory for all indexes (make sure that the application have write
 # permissions on such directory)
 #spring.jpa.properties.hibernate.search.default.indexBase = /home/mrmodise/lucene/indexes/
+
+
+# jdbc:h2:mem:testdb username to access H2 database

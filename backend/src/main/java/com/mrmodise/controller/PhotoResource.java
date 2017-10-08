@@ -1,5 +1,18 @@
 package com.mrmodise.controller;
 
+import com.mrmodise.model.Photo;
+import com.mrmodise.model.User;
+import com.mrmodise.service.PhotoService;
+import com.mrmodise.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,25 +20,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.Iterator;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.mrmodise.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.mrmodise.model.Photo;
-import com.mrmodise.model.User;
-import com.mrmodise.service.PhotoService;
 
 /**
  *
@@ -58,10 +52,12 @@ public class PhotoResource {
 		try {
 			multipartFile.transferTo(new File(path));
 			System.out.println(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		} catch (MaxUploadSizeExceededException fe){
+            return ResponseEntity.badRequest().body("This is message >>>>>>>>>>>>>>>>>>>>>> " + fe.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
 		return ResponseEntity.ok("Upload image successful!");
 	}
 
@@ -72,11 +68,12 @@ public class PhotoResource {
 		User user = userService.findByUsername(principal.getName());
 		photo.setUser(user);
 		System.out.print("Logged in user" + principal.getName());
+
 		if(photo.getPhotoName() != null){
 			photoService.save(photo);
-			return ResponseEntity.ok("{\"message\": \"Server Response: Photo successfully added\"}");
+			return ResponseEntity.status(200).body("Server Response: Photo successfully added");
 		}else{
-			return ResponseEntity.badRequest().body("{\"message\": \"Server Response: Photo was not successfully added\"}");
+			return ResponseEntity.badRequest().body("Server Response: Photo was not successfully added");
 		}
 	}
 
