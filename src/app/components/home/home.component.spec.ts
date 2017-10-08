@@ -5,6 +5,8 @@ import {SidePanelComponent} from '../side-panel/side-panel.component';
 import {PhotoService} from '../../services/photo.service';
 import {HttpClientService} from '../../services/http-client.service';
 import {HttpModule} from '@angular/http';
+import {PhotoActions} from '../../store/photos.action';
+import {NgReduxModule} from '@angular-redux/store';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,8 +15,8 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PhotoListComponent, SidePanelComponent, HomeComponent],
-      providers: [PhotoService, HttpClientService],
-      imports: [HttpModule]
+      providers: [PhotoService, HttpClientService, PhotoActions],
+      imports: [HttpModule, NgReduxModule]
     })
       .compileComponents();
   }));

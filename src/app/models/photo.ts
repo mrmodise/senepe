@@ -1,17 +1,23 @@
 export interface IPhoto {
-  photoId: string;
-  likes: number;
+  photoId: number;
+  photoName: string;
   title: string;
-  imageName: string;
   description: string;
+  imageName: string;
+  created: string;
+  likes: number;
+  commentList: any;
 }
 
 export class Photo implements IPhoto {
-  public photoId: string;
-  public likes: number;
-  public title: string;
-  public imageName: string;
-  public description: string;
+  photoId: number;
+  photoName: string;
+  title: string;
+  description: string;
+  imageName: string;
+  created: string;
+  likes: number;
+  commentList: any;
 
   constructor() {
   }

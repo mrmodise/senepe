@@ -22,7 +22,7 @@ The project was generated using ``angular CLI``, as such, providing ``ng serve -
 Although this is an overkill for such a small application ``:)``, state is managed with Redux (https://github.com/angular-redux/store). Currently, this is a Work-in-progress (WIP).
 
 ### Unit Tests
-```ng test``` to execute all unit tests. Currently all 60+ tests should execute.
+```ng test``` to execute all unit tests. Currently all 70+ tests should execute.
 
 Am busy finishing off the unit tests for all components and services. So far, these are "completed":
 
