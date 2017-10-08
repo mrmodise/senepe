@@ -21,7 +21,7 @@ export class PhotoListComponent implements OnInit {
   }
 
   onSelect(photo) {
-    console.log('test');
+    alert(`selected image ${JSON.stringify(photo)}`)
   }
 
 }

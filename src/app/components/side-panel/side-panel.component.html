@@ -1,8 +1,19 @@
 <div>
   <h4 id="side-panel-title">Photo Rankings</h4>
   <div class="ui divider">
-    <h1>Photo Row 1</h1>
-    <h1>Photo Row 2</h1>
-    <h1>Photo Row 3</h1>
+    <div *ngFor="let photo of photoListRanked">
+      <div class="ui grid">
+        <div class="ten wide column">
+          <br>
+          <img src="http://localhost:8088/images/{{photo.imageName}}" class="ui image small centeredt" alt="photo">
+        </div>
+        <div class="six wide column">
+          <br>
+          <p class="ui centered">{{photo.likes}} likes</p>
+          <p class="ui">{{photo.title}}</p>
+        </div>
+      </div>
+      <div class="ui divider"></div>
+    </div>
   </div>
 </div>
