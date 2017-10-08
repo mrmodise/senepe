@@ -24,7 +24,9 @@ export class ImageDetailComponent implements OnInit {
   ngOnInit() {
     const loggedInUser = localStorage.getItem('currentUserName');
 
+    // retrieve list of parameters
     this.route.params.forEach((params: Params) => {
+      // retrieve the photo ID
       this.photoId = Number.parseInt(params['id']);
     });
 
@@ -41,5 +43,31 @@ export class ImageDetailComponent implements OnInit {
       });
 
     });
+  }
+
+  goBack() {
+    window.history.back();
+  }
+
+  likeDisplay() {
+    if (this.like === 'Like') {
+      this.like = 'Unlike';
+      this.user.likedPhotoList.push(this.photo);
+      this.photo.likes += 1;
+      this.userService.updateUser(this.user).subscribe();
+      this.photoService.updatePhoto(this.photo).subscribe();
+    } else {
+      this.like = 'Like';
+
+      for (let i = 0; i < this.user.likedPhotoList.length; i++) {
+        if (this.user.likedPhotoList[i].photoId === this.photo.photoId) {
+          this.user.likedPhotoList.splice(i, 1)
+        }
+      }
+
+      this.photo.likes -= 1;
+      this.userService.updateUser(this.user).subscribe();
+      this.photoService.updatePhoto(this.photo).subscribe();
+    }
   }
 }

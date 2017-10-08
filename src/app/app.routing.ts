@@ -9,6 +9,7 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {AlbumComponent} from './components/album/album.component';
 import {AuthService} from './services/auth.service';
 import {AddPhotoComponent} from 'app/components/add-photo/add-photo.component';
+import {ImageDetailComponent} from './components/image-detail/image-detail.component';
 
 // define routes
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'album', component: AlbumComponent, canActivate: [AuthService]},
   {path: 'add-photo', component: AddPhotoComponent},
+  {path: 'image-detail', component: ImageDetailComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
