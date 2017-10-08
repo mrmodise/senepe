@@ -12,9 +12,9 @@ export class AddPhotoService {
   /**
    * Pings server with request to save a photo
    * @param photo
-   * @returns {Observable<string>}
+   * @returns {Observable<any>}
    */
-  public sendPhoto(photo: Photo): Observable<string> {
+  public sendPhoto(photo: Photo): Observable<any> {
     return this
       .httpClient
       .post(Config.ADD_PHOTO_URL, photo, Config.AUTH_HEADERS);
