@@ -1,9 +1,7 @@
 // defaults
 import {Component, OnInit} from '@angular/core';
-
 // custom
 import {LoginService} from '../../services/login.service';
-
 // router
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../models/user';
@@ -70,7 +68,7 @@ export class LoginComponent implements OnInit {
         // login attempt failed
         console.log(error);
         this.loginFailed = true;
-        this.message = error.message || 'Something went wrong';
+        this.message = error.message || 'Login credentials incorrect';
       });
   }
 
