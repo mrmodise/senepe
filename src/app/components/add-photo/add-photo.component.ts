@@ -1,7 +1,6 @@
 // internal imports
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
 // custom imports
 import {AddPhotoService} from '../../services/add-photo.service';
 import {UploadPhotoService} from '../../services/upload-photo.service';
@@ -19,6 +18,8 @@ export class AddPhotoComponent implements OnInit {
   newPhoto: Photo;
   photoAdded = false;
   message;
+  error: string;
+  isError = false;
   isPhotoNameValid = true;
   isPhotoTitleValid = true;
   isUploaded = false;
@@ -47,16 +48,26 @@ export class AddPhotoComponent implements OnInit {
    */
   onSubmit(): void {
     // do not submit if validations are not met
-    if (!this.validatePhotoName()) { return; }
-    if (!this.validatePhotoTitle()) { return; }
+    if (!this.validatePhotoName()) {
+      return;
+    }
+    if (!this.validatePhotoTitle()) {
+      return;
+    }
 
     this.newPhoto = this.addPhotoForm.value;
-    this.addPhotoService.sendPhoto(this.newPhoto).subscribe(message => {
+    this.addPhotoService.sendPhoto(this.newPhoto).subscribe(response => {
       this.photoAdded = true;
       this.newPhoto = new Photo();
-      this.message = message;
+      this.isError = false;
+      this.message = response._body;
     }, error => {
-      console.log(error.message);
+      if (error.status === 400) {
+        this.error = 'The uploaded file is larger than the maximum permitted size';
+      } else {
+        this.error = error._body || 'File did not upload';
+      }
+      this.isError = true;
       this.photoAdded = false;
     });
   }

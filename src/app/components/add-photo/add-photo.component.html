@@ -1,50 +1,56 @@
 <div class="container">
   <div class="ui grid addPhoto">
     <div class="twelve wide column">
-  <div *ngIf="photoAdded">
-    <div class="ui info message">
-      {{message}}
-    </div>
-  </div>
-  <br>
-  <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="addPhotoForm" novalidate>
-    <h2 class="ui dividing header">Uploading your favorite photos has never been this easy</h2>
-    <div class="field">
-      <label>* Photo Name / Photo Title</label>
-      <div class="two fields">
-        <div class="field">
-          <input formControlName="photoName" (blur)="validatePhotoName()" placeholder="Photo name" />
-          <div class="error" *ngIf="!isPhotoNameValid">
-            Required
-          </div>
+      <div *ngIf="photoAdded">
+        <div class="ui info message">
+          {{message}}
         </div>
+      </div>
+      <div *ngIf="isError">
+        <div class="ui error message">
+          {{error}}
+        </div>
+      </div>
+      <br>
+      <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="addPhotoForm" novalidate>
+        <h2 class="ui dividing header">Uploading your favorite photos has never been this easy</h2>
+        <div class="field">
+          <label>* Photo Name / Photo Title</label>
+          <div class="two fields">
+            <div class="field">
+              <input formControlName="photoName" (blur)="validatePhotoName()" placeholder="Photo name"/>
+              <div class="error" *ngIf="!isPhotoNameValid">
+                Required
+              </div>
+            </div>
 
-        <div class="field">
-          <input placeholder="Photo title" (blur)="validatePhotoTitle()" formControlName="title"/>
-          <div class="error" *ngIf="!isPhotoTitleValid">
-            Required
+            <div class="field">
+              <input placeholder="Photo title" (blur)="validatePhotoTitle()" formControlName="title"/>
+              <div class="error" *ngIf="!isPhotoTitleValid">
+                Required
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="field">
-      <label>Description</label>
-      <div class="field">
-        <input placeholder="description" formControlName="description"/>
-      </div>
-    </div>
-    <div class="field">
-      <label>* Upload Photo</label>
-      <div class="two fields">
         <div class="field">
-          <input type="file" (change) = "submitPhoto($event)" />
-          <button type="button"  [disabled]="!isUploaded" class="ui primary button" (click) = "uploadPhoto()">Upload</button>
+          <label>Description</label>
+          <div class="field">
+            <input placeholder="description" formControlName="description"/>
+          </div>
         </div>
-      </div>
-    </div>
-    <hr>
-    <button type="submit" class="ui primary button" [disabled]="addPhotoForm.invalid || !isUploaded">Submit</button>
-  </form>
+        <div class="field">
+          <label>* Upload Photo</label>
+          <div class="two fields">
+            <div class="field">
+              <input type="file" (change)="submitPhoto($event)"/>
+              <button type="button" [disabled]="!isUploaded" class="ui primary button" (click)="uploadPhoto()">Upload
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <button type="submit" class="ui primary button" [disabled]="addPhotoForm.invalid || !isUploaded">Submit</button>
+      </form>
     </div>
   </div>
 </div>
