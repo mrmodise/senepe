@@ -37,7 +37,7 @@ export class PhotoService {
    * @param photoId
    * @returns {Observable<Photo>}
    */
-  public getPhotosByUser(photoId: number): Observable<Photo> {
+  public getPhotoById(photoId: number): Observable<Photo> {
     return this
       .httpClient
       .post(Config.GET_USER_PHOTOS, photoId, Config.getOptions());
@@ -49,7 +49,8 @@ export class PhotoService {
    * @returns {Observable<Photo>}
    */
   public updatePhoto(photo: Photo): Observable<Photo> {
-    return this.httpClient
+    return this
+      .httpClient
       .post(Config.UPDATE_PHOTO_URL, photo, {headers: Config.JSON_HEADERS});
   }
 }

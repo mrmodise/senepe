@@ -19,6 +19,7 @@ describe('PhotoService', () => {
         BaseRequestOptions,
         {
           provide: Http,
+          // TODO: add ignore ts-lint on this
           useFactory: (backend, options) => new Http(backend, options),
           deps: [MockBackend, BaseRequestOptions]
         }]
