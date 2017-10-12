@@ -38,9 +38,12 @@ Am busy finishing off the unit tests for all components and services. So far, th
 ### End-to-end Tests
 To execute e2e tests: ```ng e2e```. WIP
 
+### Documentation
+Documentation for this project has been generated using @Compodoc. This is available under the `documentation` folder. Very useful to understand the code base.
+
 ### Summary 
 
-¡`ng serve -o` for a dev server. App will open at `http://localhost:4200/`. 
+`ng serve -o` for a dev server. App will open at `http://localhost:4200/`. 
 
 For back-end code `cd backend` and `mvn package` to package the back-end code. ``java -jar target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
 
