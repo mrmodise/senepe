@@ -1,7 +1,7 @@
 [![Packagist](badges/java-v8-red.png)]()  [![Packagist](badges/angular-v4-orange.png)]() [![Badges](badges/orm.png)]()
 
 ### Senepe
-Senepe is a photo sharing Web application. It allows the user to browse through a list of photos upon landing on the site. 
+Senepe (Tswana language - translated a photo) is a photo sharing Web application. It allows the user to browse through a list of photos upon landing on the site. 
 In the case the user wishes to share photos, the user can register and login to do so. The aim of this project is to demonstrate Angular fundamentals as well as good programming standards. 
 The back-end is developed in Spring boot and front-end is Angular 4. 
 
