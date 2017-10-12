@@ -39,7 +39,7 @@ Am busy finishing off the unit tests for all components and services. So far, th
 To execute e2e tests: ```ng e2e```. WIP
 
 ### Documentation
-Documentation for this project has been generated using @Compodoc. This is available under the `documentation` folder. Very useful to understand the code base.
+Documentation for this project has been generated using @Compodoc. This is available under the `documentation` folder. Very useful for understanding the code base.
 
 ### Summary 
 
