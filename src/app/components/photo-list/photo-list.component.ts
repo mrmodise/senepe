@@ -12,6 +12,7 @@ import {PhotoActions} from '../../store/photos.action';
 export class PhotoListComponent implements OnInit {
 
   @select('photos') photos$: Observable<Photo>;
+  photoId: number;
 
   constructor(private photoActions: PhotoActions) {
   }

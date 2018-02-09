@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: senepe-deployment
+  labels:
+    app: senepe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: senepe
+  template:
+    metadata:
+      labels:
+        app: senepe
+    spec:
+      containers:
+      - name: senepe
+        image: mrmodise/senepe:1.0
+        ports:
+        - containerPort: 80
+

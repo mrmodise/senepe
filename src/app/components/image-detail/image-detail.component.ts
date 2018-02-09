@@ -51,6 +51,10 @@ export class ImageDetailComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+
+  }
+
   /**
    *
    * @returns {FormGroup}
