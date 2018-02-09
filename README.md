@@ -38,6 +38,12 @@ Am busy finishing off the unit tests for all components and services. So far, th
 ### End-to-end Tests
 To execute e2e tests: ```ng e2e```. WIP
 
+### Docker & Kubernetes
+To build the Docker image for this app, first build the project via ``docker build -t senepe:1.1 .`` and then ``docker run senepe:1.1``.
+ I have already built an image, available at 
+  https://hub.docker.com/r/mrmodise/senepe/ so you can ``docker pull mrmodise/senepe``. If you are using Kubernetes to orchestrate your containers' architecture, then simply create a deployment ``kubectl create -f senepe-deployment.yaml`` 
+ 
+
 ### Documentation
 Documentation for this project has been generated using @Compodoc. This is available under the `documentation` folder. Very useful for understanding the code base.
 
