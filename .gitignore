@@ -4,6 +4,9 @@
 /dist
 /tmp
 /out-tsc
+/backend/.idea/
+/backend/senepe.iml
+/backend/target/
 
 # dependencies
 /node_modules
