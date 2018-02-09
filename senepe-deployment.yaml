@@ -17,7 +17,7 @@ spec:
       containers:
       - name: senepe
         image: mrmodise/senepe:1.0 #hosted in my docker hub
-      -name: backend
+      - name: backend
         image: mrmodise/backend:1.0
         ports:
         - containerPort: 80
