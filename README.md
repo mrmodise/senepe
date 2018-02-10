@@ -14,16 +14,16 @@ The back-end is developed in Spring boot and front-end is Angular 4.
 
 ### Setup
 
-- ```git clone https://github.com/mrmodise/senepe.git```
-- ``yarn install`` to install dependencies. 
+- ```$ git clone https://github.com/mrmodise/senepe.git```
+- ``$ yarn install`` to install dependencies. 
 
-The project was generated using ``angular CLI``, as such, providing ``ng serve -o`` should compile the project and open ln.
+The project was generated using ``angular CLI``, as such, providing ``$ ng serve -o`` should compile the project and open ln.
 
 ### State Management
 Although this is an overkill for such a small application ``:)``, state is managed with Redux (https://github.com/angular-redux/store). Currently, this is a Work-in-progress (WIP).
 
 ### Unit Tests
-```ng test``` to execute all unit tests. Currently all 70+ tests should execute.
+```$ ng test``` to execute all unit tests. Currently all 70+ tests should execute.
 
 Am busy finishing off the unit tests for all components and services. So far, these are "completed":
 
@@ -36,12 +36,17 @@ Am busy finishing off the unit tests for all components and services. So far, th
 - PhotoService
 
 ### End-to-end Tests
-To execute e2e tests: ```ng e2e```. WIP
+To execute e2e tests: ```$ ng e2e```. WIP
 
 ### Docker & Kubernetes
-To build the Docker image for this app, first build the project ``(yarn build)`` then image via ``docker build -t senepe:1.1 .`` and then ``docker run senepe:1.1``.
+To build the Docker image for this app, first build the project ``($ yarn build)`` then image via ``$ docker build -t senepe:1.0 .`` and then ``$ docker run senepe:1.0``.
  I have already built an image, available at 
-  https://hub.docker.com/r/mrmodise/senepe/ so you can ``docker pull mrmodise/senepe`` and for backend ``docker push mrmodise/backend:1.0``. If you are using Kubernetes to orchestrate your containers' architecture, then simply create a deployment ``kubectl create -f senepe-deployment.yaml`` 
+  https://hub.docker.com/r/mrmodise/senepe/ so you can ``$ docker pull mrmodise/senepe:latest`` and for backend ``$ docker pull mrmodise/backend:1.0``. If you are using Kubernetes to orchestrate your containers' architecture, follow the following commands:
+  
+* ``$ kubectl create -f senepe-deployment.yaml`` 
+* ``$ kubectl create -f senepe-service.yaml`` 
+* ``$ minikube service senepe-service`` 
+  
  
 
 ### Documentation
@@ -49,9 +54,9 @@ Documentation for this project has been generated using @Compodoc. This is avail
 
 ### Summary 
 
-`ng serve -o` for a dev server. App will open at `http://localhost:4200/`. 
+`$ ng serve -o` for a dev server. App will open at `http://localhost:4200/`. 
 
-For back-end code `cd backend` and `mvn package` to package the back-end code. ``java -jar target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
+For back-end code `$ cd backend` and `$ mvn package` to package the back-end code. ``$ java -jar target/senepe-0.0.1-SNAPSHOT.jar`` to execute the back-end code. REST API launches on port 8088. All routes are secured excluding `/auth`
 
 Completed modules: `registration`, `photo listing`, `login` and `photo uploading`.
 
