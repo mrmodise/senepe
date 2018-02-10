@@ -15,10 +15,12 @@ spec:
         app: senepe
     spec:
       containers:
-      - name: senepe
-        image: mrmodise/senepe:1.0 #hosted in my docker hub
+      - name: frontend
+        image: mrmodise/senepe:latest #hosted in my docker hub
+        ports:
+        - containerPort: 80
       - name: backend
-        image: mrmodise/backend:1.0
+        image: mrmodise/backend:1.0 #hosted in my docker hub
         ports:
         - containerPort: 80
 
