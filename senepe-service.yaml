@@ -7,12 +7,12 @@ metadata:
 spec:
  type: NodePort
  ports:
-  - port: 8080
-    targetPort: 8080
-    name: http
+  - port: 8081
+    targetPort: 8081
+    name: front-port
   - port: 8088
     targetPort: 8088
-    name: tcp
+    name: back-port
  selector:
      app: senepe
 
