@@ -48,7 +48,7 @@ To build the Docker image for this app, first build the project ``($ yarn build)
 * ``$ kubectl create -f senepe-service.yaml`` 
 * ``$ minikube service senepe-service`` 
   
- 
+More information on the Docker image for this project: https://hub.docker.com/r/mrmodise/senepe/
 
 ### Documentation
 Documentation for this project has been generated using @Compodoc. This is available under the `documentation` folder. Very useful for understanding the code base.
