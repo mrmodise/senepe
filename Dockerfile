@@ -1,4 +1,3 @@
-FROM httpd:2.4
-COPY /dist /usr/local/apache2/htdocs
-EXPOSE 8081
-CMD ["httpd", "-D", "FOREGROUND"]
+FROM nginx:alpine
+COPY dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
