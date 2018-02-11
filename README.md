@@ -43,6 +43,7 @@ To build the Docker image for this app, first build the project ``($ yarn build)
  I have already built an image, available at 
   https://hub.docker.com/r/mrmodise/senepe/ so you can ``$ docker pull mrmodise/senepe:latest`` and for backend ``$ docker pull mrmodise/backend:1.0``. If you are using Kubernetes to orchestrate your containers' architecture, follow the following commands:
   
+* ``$ minikube dashboard`` 
 * ``$ kubectl create -f senepe-deployment.yaml`` 
 * ``$ kubectl create -f senepe-service.yaml`` 
 * ``$ minikube service senepe-service`` 
