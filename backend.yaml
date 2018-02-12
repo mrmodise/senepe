@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: senepe-backend-deployment
+  labels:
+    app: senepe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: senepe
+  template:
+    metadata:
+      labels:
+        app: senepe
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: backend-container
+        image: mrmodise/backend:1.0 #hosted in my docker hub
+        ports:
+        - name: http
+          containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: senepe-backend-service
+  labels:
+    app: senepe
+spec:
+ selector:
+    app: senepe
+    tier: backend
+ ports:
+  - protocol: TCP
+    port: 8088
+    targetPort: 8088
+ type: NodePort
+
+

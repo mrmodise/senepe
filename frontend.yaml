@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: senepe-frontend-deployment
+  labels:
+    app: senepe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: senepe
+  template:
+    metadata:
+      labels:
+        app: senepe
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+      - name: frontend-container
+        image: mrmodise/senepe:latest #hosted in my docker hub
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/usr/bin/nginx", "-s", "quit"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: senepe-frontend-service
+  labels:
+      app: senepe
+spec:
+ selector:
+     app: senepe
+     tier: frontend
+ ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+ type: NodePort
