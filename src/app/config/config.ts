@@ -7,21 +7,20 @@ import {Headers, RequestOptions} from '@angular/http';
  */
 export class Config {
   // URLs
-  public static LOGIN_URL = 'http://localhost:8088/auth';
-  // headers
+  public static LOGIN_URL = Config.getUrl('auth');
   public static JSON_HEADERS = new Headers({'Content-Type': 'application/json'});
-  public static GET_PHOTOS_URL = 'http://localhost:8088/auth/allPhotos';
-  public static POST_USER_URL = 'http://localhost:8088/auth/register';
-  public static GET_USER_PHOTOS = 'http://localhost:8088/rest/photo/user';
-  public static ADD_PHOTO_URL = 'http://localhost:8088/rest/photo/add';
-  public static FILE_REQUEST_URL = 'http://localhost:8088/rest/photo/upload';
+  public static GET_PHOTOS_URL = Config.getUrl('auth/allPhotos');
+  public static POST_USER_URL = Config.getUrl('auth/register');
+  public static GET_USER_PHOTOS = Config.getUrl('rest/photo/user');
+  public static ADD_PHOTO_URL = Config.getUrl('rest/photo/add');
+  public static FILE_REQUEST_URL = Config.getUrl('rest/photo/upload');
   // retrieve token from local storage
   public static token = localStorage.getItem('token');
   // set authorization headers
   public static AUTH_HEADERS = new Headers({'Content-Type': 'application/json', 'Authorization': Config.token});
-  public static UPDATE_PHOTO_URL = 'http://localhost:8088/photo/update';
-  // public static TOKENIZE_URL = 'http://localhost:8088/rest/user/users';
-  // public static USER_BY_NAME_URL = 'http://localhost:8088/rest/photo/user';
+  public static UPDATE_PHOTO_URL = Config.getUrl('photo/update');
+  // public static TOKENIZE_URL = 'rest/user/users';
+  // public static USER_BY_NAME_URL = 'rest/photo/user';
 
   /**
    * retrieve headers
@@ -42,6 +41,10 @@ export class Config {
     const opts = new RequestOptions({headers: headers});
     opts.headers = headers;
     return opts;
+  }
+
+  static getUrl(url: string):string {
+    return 'http://192.168.99.100:30339/' + url;
   }
 
 }
